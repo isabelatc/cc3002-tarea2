@@ -8,4 +8,14 @@ public interface ITrainer {
     List<Pokemon> getBench();
     List<ICard> getHand();
     Pokemon getActivePokemon();
+
+    void setActivePokemon();
+
+    void changeActivePokemon(Pokemon abra);
+
+    void getActivePokemonAttacks();
+
+    IAttack selectAttack(int index);
+
+    IAttack getSelectedAttack();
 }
