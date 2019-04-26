@@ -72,5 +72,4 @@ public class Attack implements IAttack {
         return this.waterCost;
     }
 
-
 }
