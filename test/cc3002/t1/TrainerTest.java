@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class TrainerTest {
 
@@ -98,7 +99,7 @@ public class TrainerTest {
 
     @Test
     public void getActivePokemonTest() {
-        assertEquals(null, trainer.getActivePokemon());
+        assertNull(trainer.getActivePokemon());
         trainer.playPokemon(charmander);
         trainer.setActivePokemon();
         assertEquals(charmander, trainer.getActivePokemon());
@@ -119,7 +120,7 @@ public class TrainerTest {
         trainer.playPokemon(squirtle);
         trainer.setActivePokemon();
         assertEquals(squirtle, trainer.getActivePokemon());
-        assertEquals(new ArrayList<>(), trainer.getBench()));
+        assertEquals(new ArrayList<>(), trainer.getBench());
     }
 
     @Test
