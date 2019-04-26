@@ -1,6 +1,6 @@
 package cc3002.t1.pokemon;
 
-import cc3002.t1.Pokemon;
+import cc3002.t1.AbstractPokemon;
 
-public class FightingPokemon extends Pokemon {
+public class FightingPokemon extends AbstractPokemon {
 }

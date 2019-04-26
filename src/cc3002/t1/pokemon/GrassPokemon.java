@@ -1,6 +1,12 @@
 package cc3002.t1.pokemon;
 
-import cc3002.t1.Pokemon;
+import cc3002.t1.AbstractPokemon;
+import cc3002.t1.IAttack;
 
-public class GrassPokemon extends Pokemon {
+import java.util.ArrayList;
+
+public class GrassPokemon extends AbstractPokemon {
+    public GrassPokemon(String name, int id, int hp, ArrayList<IAttack> attackList) {
+        super();
+    }
 }

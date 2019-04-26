@@ -1,6 +1,6 @@
 package cc3002.t1.energies;
 
-import cc3002.t1.Energy;
+import cc3002.t1.AbstractEnergy;
 
-public class WaterEnergy extends Energy {
+public class WaterEnergy extends AbstractEnergy {
 }
