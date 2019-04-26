@@ -5,15 +5,15 @@ import java.util.List;
 public class Trainer implements ITrainer {
 
     private IPokemon activePokemon;
-    private List<ICard> bench;
-    private List<IPokemon> hand;
+    private List<IPokemon> bench;
+    private List<ICard> hand;
 
     /**
      * Creates a new Trainer. Some of their properties are empty when initialized.
      *
      * @param hand Trainer's hand of cards.
      */
-    public Trainer(List<IPokemon> hand) {
+    public Trainer(List<ICard> hand) {
         this.activePokemon = null;
         this.bench = null;
         this.hand = hand;
