@@ -2,6 +2,12 @@ package cc3002.t1;
 
 import java.util.List;
 
+/**
+ * Common interface for all the Pokémon trainers. They all should have an initial hand of cards,
+ * which they can play to their bench, or later as an active Pokémon.
+ *
+ * @author Isabela Tellechea Coluccio
+ */
 public interface ITrainer {
 
     /**
@@ -66,7 +72,7 @@ public interface ITrainer {
      *
      * @return The selected attack.
      */
-    IAttack selectAttack(int index);
+    void selectPokemonAttack(int index);
 
 
 }
