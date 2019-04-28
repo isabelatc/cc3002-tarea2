@@ -12,8 +12,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 public class TrainerTest {
 
@@ -94,7 +93,9 @@ public class TrainerTest {
         trainer.playEnergy(aGrassEnergy);
         IPokemon activePokemon = trainer.getActivePokemon();
         assertEquals(new ArrayList<>(Arrays.asList(0, 0, 1, 0, 0, 0)), trainer.getPokemonEnergies(activePokemon));
+        assertNotEquals(new ArrayList<>(Arrays.asList(0, 1, 0, 0, 0, 0)), trainer.getPokemonEnergies(activePokemon));
         assertEquals(new ArrayList<>(Arrays.asList(anotherSquirtle, charmander, abra, tangela, aFireEnergy, squirtle, aPsychicEnergy, anotherAbra, anotherTangela)), trainer.getHand());
+        assertNotEquals(new ArrayList<>(Arrays.asList(charmander, anotherSquirtle, abra, tangela, aFireEnergy, squirtle, aPsychicEnergy, anotherAbra, anotherTangela)), trainer.getHand());
     }
 
     @Test
@@ -132,7 +133,10 @@ public class TrainerTest {
 
     @Test
     public void selectAttackTest() {
-        assertEquals(attack20, trainer.selectAttack(1));
+        trainer.playPokemon(squirtle);
+        trainer.setActivePokemon();
+        trainer.selectPokemonAttack(1);
+        assertEquals(attack20, squirtle.getSelectedAttack());
     }
 
 }

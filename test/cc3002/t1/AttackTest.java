@@ -10,9 +10,9 @@ import static org.junit.Assert.*;
 
 public class AttackTest {
 
-    String attackName, attackDescription;
-    int attackBaseDamage, fightingCost, fireCost, grassCost, lightningCost, psychicCost, waterCost;
-    IAttack attack;
+    private String attackName, attackDescription;
+    private int attackBaseDamage, fightingCost, fireCost, grassCost, lightningCost, psychicCost, waterCost;
+    private IAttack attack;
 
 
     @Before
@@ -30,8 +30,8 @@ public class AttackTest {
     }
 
     @Test
-    public void getNameTest() {
-        assertEquals("An attack", attack.getName());
+    public void getAttackNameTest() {
+        assertEquals("An attack", attack.getAttackName());
     }
 
     @Test
