@@ -58,4 +58,10 @@ public class LightningEnergyTest {
     public void getCardNameTest() {
         assertEquals("I'm a Lightning Energy!", aLightningEnergy.getCardName());
     }
+
+    @Test
+    public void equalsTest() {
+        IEnergy anotherLightning = new LightningEnergy("I'm a Lightning Energy!");
+        assertEquals(anotherLightning, aLightningEnergy);
+    }
 }

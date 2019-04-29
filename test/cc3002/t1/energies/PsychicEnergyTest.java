@@ -58,4 +58,10 @@ public class PsychicEnergyTest {
     public void getCardNameTest() {
         assertEquals("I'm a Psychic Energy!", aPsychicEnergy.getCardName());
     }
+
+    @Test
+    public void equalsTest() {
+        IEnergy anotherPsychic = new PsychicEnergy("I'm a Psychic Energy!");
+        assertEquals(anotherPsychic, aPsychicEnergy);
+    }
 }

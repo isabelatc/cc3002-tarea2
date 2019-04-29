@@ -43,7 +43,7 @@ public class FightingEnergyTest {
     @Test
     public void isPlayedTest() {
         aFightingEnergy.isPlayed(trainer);
-        assertEquals(new ArrayList<>(Arrays.asList(charmander, tangela, squirtle, aFightingEnergy)), trainer.getHand());
+        assertEquals(4, trainer.getHand().size());
     }
 
     @Test
@@ -57,5 +57,11 @@ public class FightingEnergyTest {
     @Test
     public void getCardNameTest() {
         assertEquals("I'm a Fighting Energy!", aFightingEnergy.getCardName());
+    }
+
+    @Test
+    public void equalsTest() {
+        IEnergy anotherFighting = new FightingEnergy("I'm a Fighting Energy!");
+        assertEquals(anotherFighting, aFightingEnergy);
     }
 }

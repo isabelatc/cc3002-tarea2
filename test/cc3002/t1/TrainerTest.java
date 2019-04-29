@@ -5,6 +5,7 @@ import cc3002.t1.energies.GrassEnergy;
 import cc3002.t1.energies.PsychicEnergy;
 import cc3002.t1.pokemon.FirePokemon;
 import cc3002.t1.pokemon.GrassPokemon;
+import cc3002.t1.pokemon.PsychicPokemon;
 import cc3002.t1.pokemon.WaterPokemon;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,13 +46,13 @@ public class TrainerTest {
                 new ArrayList<>(Arrays.asList(attack10, attack20, attack50)));
         tangela = new GrassPokemon("Tangela", 114, 100,
                 new ArrayList<>(Arrays.asList(attack10, attack30, attack40, attack50)));
-        abra = new GrassPokemon("Abra", 63, 100,
+        abra = new PsychicPokemon("Abra", 63, 100,
                 new ArrayList<>(Arrays.asList(attack20, attack30, attack40, attack50)));
         anotherSquirtle = new WaterPokemon("Squirtle", 7, 100,
                 new ArrayList<>(Arrays.asList(attack10, attack30)));
         anotherTangela = new GrassPokemon("Tangela", 114, 100,
                 new ArrayList<>(Arrays.asList(attack20, attack40, attack50)));
-        anotherAbra = new GrassPokemon("Abra", 63, 100,
+        anotherAbra = new PsychicPokemon("Abra", 63, 100,
                 new ArrayList<>(Arrays.asList(attack10, attack20, attack30, attack40, attack50)));
 
         trainer = new Trainer(new ArrayList<>(Arrays.asList(anotherSquirtle, aGrassEnergy, charmander, abra, tangela, aFireEnergy, squirtle, aPsychicEnergy, anotherAbra, anotherTangela)));
@@ -59,14 +60,12 @@ public class TrainerTest {
 
     @Test
     public void getHandTest() {
-        assertEquals(new ArrayList<>(Arrays.asList(anotherSquirtle, aGrassEnergy, charmander, abra, tangela, aFireEnergy, squirtle, aPsychicEnergy, anotherAbra, anotherTangela)), trainer.getHand());
+        assertEquals(10, trainer.getHand().size());
     }
 
     @Test
     public void getBenchTest() {
-        assertEquals(new ArrayList<>(), trainer.getBench());
-        trainer.playPokemon(charmander);
-        assertEquals(new ArrayList<>(Arrays.asList(charmander)), trainer.getBench());
+        assertEquals(0, trainer.getBench().size());
     }
 
     @Test
@@ -76,14 +75,9 @@ public class TrainerTest {
         trainer.playPokemon(abra);
         trainer.playPokemon(anotherSquirtle);
         trainer.playPokemon(tangela);
-        assertEquals(new ArrayList<>(Arrays.asList(charmander, squirtle, abra, anotherSquirtle, tangela)), trainer.getBench());
-        assertEquals(new ArrayList<>(Arrays.asList(aGrassEnergy, aFireEnergy, aPsychicEnergy, anotherAbra, anotherTangela)), trainer.getHand());
-        trainer.playPokemon(squirtle);
-        assertEquals(new ArrayList<>(Arrays.asList(charmander, squirtle, abra, anotherSquirtle, tangela)), trainer.getBench());
-        assertEquals(new ArrayList<>(Arrays.asList(aGrassEnergy, aFireEnergy, aPsychicEnergy, anotherAbra, anotherTangela)), trainer.getHand());
-        trainer.playPokemon(anotherAbra);
-        assertEquals(new ArrayList<>(Arrays.asList(charmander, squirtle, abra, anotherSquirtle, tangela)), trainer.getBench());
-        assertEquals(new ArrayList<>(Arrays.asList(aGrassEnergy, aFireEnergy, aPsychicEnergy, anotherAbra, anotherTangela)), trainer.getHand());
+        assertEquals(5, trainer.getBench().size());
+        assertEquals(5, trainer.getHand().size());
+
     }
 
     @Test
@@ -94,8 +88,7 @@ public class TrainerTest {
         IPokemon activePokemon = trainer.getActivePokemon();
         assertEquals(new ArrayList<>(Arrays.asList(0, 0, 1, 0, 0, 0)), trainer.getPokemonEnergies(activePokemon));
         assertNotEquals(new ArrayList<>(Arrays.asList(0, 1, 0, 0, 0, 0)), trainer.getPokemonEnergies(activePokemon));
-        assertEquals(new ArrayList<>(Arrays.asList(anotherSquirtle, charmander, abra, tangela, aFireEnergy, squirtle, aPsychicEnergy, anotherAbra, anotherTangela)), trainer.getHand());
-        assertNotEquals(new ArrayList<>(Arrays.asList(charmander, anotherSquirtle, abra, tangela, aFireEnergy, squirtle, aPsychicEnergy, anotherAbra, anotherTangela)), trainer.getHand());
+        assertEquals(8, trainer.getHand().size());
     }
 
     @Test
@@ -113,7 +106,9 @@ public class TrainerTest {
         trainer.setActivePokemon();
         trainer.changeActivePokemon(abra);
         assertEquals(abra, trainer.getActivePokemon());
-        assertEquals(new ArrayList<>(Arrays.asList(charmander)), trainer.getBench());
+        assertTrue(trainer.getBench().contains(charmander));
+        assertFalse(trainer.getBench().contains(abra));
+        assertEquals(1, trainer.getBench().size());
     }
 
     @Test
@@ -121,14 +116,14 @@ public class TrainerTest {
         trainer.playPokemon(squirtle);
         trainer.setActivePokemon();
         assertEquals(squirtle, trainer.getActivePokemon());
-        assertEquals(new ArrayList<>(), trainer.getBench());
+        assertEquals(0, trainer.getBench().size());
     }
 
     @Test
     public void getActivePokemonAttacksTest() {
         trainer.playPokemon(squirtle);
         trainer.setActivePokemon();
-        assertEquals(new ArrayList<>(Arrays.asList(attack10, attack20, attack50)), trainer.getActivePokemonAttacks());
+        assertEquals(3, trainer.getActivePokemonAttacks().size());
     }
 
     @Test

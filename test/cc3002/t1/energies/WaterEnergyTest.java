@@ -58,4 +58,10 @@ public class WaterEnergyTest {
     public void getCardNameTest() {
         assertEquals("I'm a Water Energy!", aWaterEnergy.getCardName());
     }
+
+    @Test
+    public void equalsTest() {
+        IEnergy anotherWater = new WaterEnergy("I'm a Water Energy!");
+        assertEquals(anotherWater, aWaterEnergy);
+    }
 }

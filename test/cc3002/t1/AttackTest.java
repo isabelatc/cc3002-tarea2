@@ -30,8 +30,7 @@ public class AttackTest {
     }
 
     @Test
-    public void getAttackNameTest() {
-        assertEquals("An attack", attack.getAttackName());
+    public void getAttackNameTest() { assertEquals("An attack", attack.getAttackName());
     }
 
     @Test

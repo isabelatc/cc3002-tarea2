@@ -58,4 +58,10 @@ public class FireEnergyTest {
     public void getCardNameTest() {
         assertEquals("I'm a Fire Energy!", aFireEnergy.getCardName());
     }
+
+    @Test
+    public void equalsTest() {
+        IEnergy anotherFire = new FireEnergy("I'm a Fire Energy!");
+        assertEquals(anotherFire, aFireEnergy);
+    }
 }

@@ -58,4 +58,10 @@ public class GrassEnergyTest {
     public void getCardNameTest() {
         assertEquals("I'm a Grass Energy!", aGrassEnergy.getCardName());
     }
+
+    @Test
+    public void equalsTest() {
+        IEnergy anotherGrass = new GrassEnergy("I'm a Grass Energy!");
+        assertEquals(anotherGrass, aGrassEnergy);
+    }
 }
