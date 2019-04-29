@@ -42,25 +42,20 @@ public class Trainer implements ITrainer {
             return;
         }
         else {
-            for (int i = 0; i < hand.size(); i++) {
-                if (pokemon.equals(hand.get(i))) {
-                    hand.remove(i);
-                    bench.add(pokemon);
-                    return;
-                }
+            if (hand.contains(pokemon)) {
+                hand.remove(pokemon);
+                bench.add(pokemon);
+                return;
             }
         }
-
     }
 
     @Override
     public void playEnergy(IEnergy energy) {
-        for (int i = 0; i < hand.size(); i++) {
-            if (energy.equals(hand.get(i))) {
-                hand.remove(i);
-                energy.isAdded(activePokemon);
-                return;
-            }
+        if (hand.contains(energy) && activePokemon != null) {
+            hand.remove(energy);
+            energy.isAdded(activePokemon);
+            return;
         }
     }
 
@@ -74,13 +69,11 @@ public class Trainer implements ITrainer {
 
     @Override
     public void changeActivePokemon(IPokemon pokemon) {
-        for (int i = 0; i < hand.size(); i++) {
-            if (pokemon.equals(hand.get(i))) {
-                hand.remove(i);
-                hand.add(activePokemon);
-                activePokemon = pokemon;
-                return;
-            }
+        if (bench.contains(pokemon)) {
+            bench.remove(pokemon);
+            bench.add(activePokemon);
+            activePokemon = pokemon;
+            return;
         }
     }
 

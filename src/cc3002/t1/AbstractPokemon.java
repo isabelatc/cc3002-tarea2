@@ -42,6 +42,9 @@ public abstract class AbstractPokemon implements ICard, IPokemon {
 
     @Override
     public int getHP() {
+        if (hp < 0) {
+            return 0;
+        }
         return hp;
     }
 
@@ -81,6 +84,11 @@ public abstract class AbstractPokemon implements ICard, IPokemon {
     public abstract boolean equals(Object o);
 
     @Override
+    public void addEnergyToPokemon(IEnergy energy) {
+        energy.isAdded(this);
+    }
+
+    @Override
     public void addFightingEnergy() { fightingEnergies++; }
 
     @Override
@@ -99,7 +107,23 @@ public abstract class AbstractPokemon implements ICard, IPokemon {
     public void addWaterEnergy() { waterEnergies++; }
 
     @Override
-    public void selectAttack(int index) { selectedAttack = attackList.get(index); }
+    public void selectAttack(int index) {
+        if (index < attackList.size()) {
+            selectedAttack = attackList.get(index);
+        }
+    }
+
+    @Override
+    public boolean canAttack() {
+        List<Integer> availableEnergies = this.getEnergies();
+        List<Integer> neededEnergies = this.getSelectedAttack().getEnergyCosts();
+        for (int i = 0; i < neededEnergies.size(); i++) {
+            if (availableEnergies.get(i) < neededEnergies.get(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     @Override
     public abstract void attack(IPokemon other);
@@ -124,16 +148,34 @@ public abstract class AbstractPokemon implements ICard, IPokemon {
 
     @Override
     public void receivesNeutralAttack(IAttack attack) {
-        hp -= attack.getBaseDamage();
+        int test = hp - attack.getBaseDamage();
+        if (test < 0) {
+            hp = 0;
+        }
+        else {
+            hp = test;
+        }
     }
 
     @Override
     public void receivesStrengthenedAttack(IAttack attack) {
-        hp -= 2*(attack.getBaseDamage());
+        int test = hp - 2*(attack.getBaseDamage());
+        if (test < 0) {
+            hp = 0;
+        }
+        else {
+            hp = test;
+        }
     }
 
     @Override
     public void receivesWeakenedAttack(IAttack attack) {
-        hp -= (attack.getBaseDamage() - 30);
+        int test = hp - (attack.getBaseDamage() - 30);
+        if (test < 0) {
+            hp = 0;
+        }
+        else {
+            hp = test;
+        }
     }
 }

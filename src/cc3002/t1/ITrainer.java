@@ -35,7 +35,7 @@ public interface ITrainer {
     void playEnergy(IEnergy energy);
 
     /**
-     * The trainer requests the energies from a Pokémon.
+     * The trainer requests the total energies from a Pokémon.
      *
      * @param pokemon A Pokémon.
      *

@@ -18,7 +18,7 @@ public interface IEnergy extends ICard {
     void isPlayed(ITrainer trainer);
 
     /**
-     * The current energy card adds 1 to the amount of the corresponding available energies of the argument Pokémon.
+     * The current energy card is added to the Pokémon's energy collection.
      *
      * @param pokemon The Pokémon card that gets a new energy card added to its collection.
      */

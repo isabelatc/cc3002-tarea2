@@ -5,6 +5,7 @@ import cc3002.t1.IAttack;
 import cc3002.t1.IPokemon;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PsychicPokemon extends AbstractPokemon {
 
@@ -27,15 +28,16 @@ public class PsychicPokemon extends AbstractPokemon {
                     ((PsychicPokemon) o).getID() == this.getID() &&
                     ((PsychicPokemon) o).getHP() == this.getHP() &&
                     (((PsychicPokemon) o).getAttacks()).equals(this.getAttacks()) &&
-                    (((PsychicPokemon) o).getEnergies()).equals(this.getEnergies()) &&
-                    (((PsychicPokemon) o).getSelectedAttack()).equals(this.getSelectedAttack());
+                    (((PsychicPokemon) o).getEnergies()).equals(this.getEnergies());
         }
         return false;
     }
 
     @Override
     public void attack(IPokemon other) {
-        other.attackedByPsychicPokemon(getSelectedAttack());
+        if (this.canAttack()) {
+            other.attackedByPsychicPokemon(getSelectedAttack());
+        }
     }
 
     @Override

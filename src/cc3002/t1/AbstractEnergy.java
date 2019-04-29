@@ -7,7 +7,7 @@ public abstract class AbstractEnergy implements ICard, IEnergy {
     /**
      * Creates an energy card.
      *
-     * @param name The name of the card.
+     * @param name The card's name.
      */
     protected AbstractEnergy(String name) { this.name = name; }
 

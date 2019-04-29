@@ -26,7 +26,7 @@ public interface IAttack {
     String getDescription();
 
     /**
-     * @return A list of the attack's energy costs, in the following order: fighting, fire, grass, lightning, psychic and water.
+     * @return A list of the attack's energy costs, in the order: fighting, fire, grass, lightning, psychic and water.
      */
 
     List<Integer> getEnergyCosts();

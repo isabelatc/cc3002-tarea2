@@ -66,6 +66,11 @@ public interface IPokemon extends ICard {
     boolean equals(Object o);
 
     /**
+     * Includes one energy to the available ones of the Pokémon.
+     */
+    void addEnergyToPokemon(IEnergy energy);
+
+    /**
      * Includes one fighting energy to the available ones of the Pokémon.
      */
     void addFightingEnergy();
@@ -101,6 +106,12 @@ public interface IPokemon extends ICard {
      * @param index The position of the attack to be set (in the attack list of the Pokémon).
      */
     void selectAttack(int index);
+
+    /**
+     * Checks if, with its current energy count, the Pokémon can attack with the selected attack.
+     * @return A boolean statement, if it can attack (true) or if it can't (false).
+     */
+    boolean canAttack();
 
     /**
      * The current Pokémon attacks another with its selected attack.

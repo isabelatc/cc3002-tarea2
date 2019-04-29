@@ -73,7 +73,7 @@ public class Attack implements IAttack {
 
     @Override
     public int getGrassCost() {
-        return this.fireCost;
+        return this.grassCost;
     }
 
     @Override
