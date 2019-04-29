@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="525.3824451410658" y="404.0">cc3002.t1.AbstractEnergy</node>
+    <node x="293.11552563815485" y="126.0">cc3002.t1.IPokemon</node>
+    <node x="104.99999999999997" y="308.0">cc3002.t1.AbstractPokemon</node>
+    <node x="328.125" y="404.0">cc3002.t1.Trainer</node>
+    <node x="0.0" y="126.0">cc3002.t1.Attack</node>
+    <node x="109.30764386475587" y="0.0">cc3002.t1.IAttack</node>
+    <node x="485.4983766233766" y="480.0">cc3002.t1.energies.WaterEnergy</node>
+    <node x="422.11552563815485" y="232.0">cc3002.t1.IEnergy</node>
+    <node x="114.99999999999997" y="404.0">cc3002.t1.pokemon.WaterPokemon</node>
+    <node x="475.86552563815485" y="308.0">cc3002.t1.ITrainer</node>
+    <node x="377.79709191670395" y="0.0">cc3002.t1.ICard</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="cc3002.t1.IEnergy" target="cc3002.t1.ICard">
+      <point x="29.999999999999986" y="-13.0" />
+      <point x="497.11552563815485" y="212.0" />
+      <point x="498.7931594267801" y="212.0" />
+      <point x="498.7931594267801" y="106.0" />
+      <point x="427.9399490595611" y="106.0" />
+      <point x="11.142857142857167" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.energies.WaterEnergy" target="cc3002.t1.IPokemon">
+      <point x="-43.5" y="-13.0" />
+      <point x="499.9983766233766" y="455.0" />
+      <point x="271.61552563815485" y="455.0" />
+      <point x="271.61552563815485" y="202.0" />
+      <point x="323.9791620017912" y="202.0" />
+      <point x="-17.636363636363626" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.energies.WaterEnergy" target="cc3002.t1.AbstractEnergy">
+      <point x="14.5" y="-13.0" />
+      <point x="557.9983766233765" y="455.0" />
+      <point x="559.1324451410658" y="455.0" />
+      <point x="-33.75" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.pokemon.WaterPokemon" target="cc3002.t1.IAttack">
+      <point x="-45.75" y="-13.0" />
+      <point x="130.24999999999997" y="384.0" />
+      <point x="94.5" y="384.0" />
+      <point x="94.5" y="106.0" />
+      <point x="126.18264386475587" y="106.0" />
+      <point x="-28.125" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.IEnergy" target="cc3002.t1.ITrainer">
+      <point x="35.999999999999986" y="13.0" />
+      <point x="503.11552563815485" y="288.0" />
+      <point x="504.9655256381548" y="288.0" />
+      <point x="-19.400000000000034" y="-13.0" />
+    </edge>
+    <edge source="cc3002.t1.AbstractEnergy" target="cc3002.t1.IPokemon">
+      <point x="16.875" y="-13.0" />
+      <point x="609.7574451410658" y="384.0" />
+      <point x="616.2483766233765" y="384.0" />
+      <point x="616.2483766233765" y="172.0" />
+      <point x="385.7064347290639" y="172.0" />
+      <point x="44.090909090909065" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.Trainer" target="cc3002.t1.IPokemon">
+      <point x="-5.625" y="-13.0" />
+      <point x="367.12893248992384" y="212.0" />
+      <point x="350.43370745633666" y="212.0" />
+      <point x="8.818181818181813" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.Attack" target="cc3002.t1.IAttack">
+      <point x="0.0" y="-13.0" />
+      <point x="42.0" y="96.0" />
+      <point x="114.93264386475587" y="96.0" />
+      <point x="-39.375" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.AbstractEnergy" target="cc3002.t1.ITrainer">
+      <point x="-16.875" y="-13.0" />
+      <point x="576.0074451410658" y="384.0" />
+      <point x="556.6988589714881" y="384.0" />
+      <point x="32.333333333333314" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.IEnergy" target="cc3002.t1.IPokemon">
+      <point x="-30.0" y="-13.0" />
+      <point x="437.11552563815485" y="202.0" />
+      <point x="359.2518892745185" y="202.0" />
+      <point x="17.636363636363626" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.pokemon.WaterPokemon" target="cc3002.t1.IPokemon">
+      <point x="45.75" y="-13.0" />
+      <point x="221.74999999999997" y="384.0" />
+      <point x="258.21590909090907" y="384.0" />
+      <point x="258.21590909090907" y="192.0" />
+      <point x="315.1609801836094" y="192.0" />
+      <point x="-26.45454545454544" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.Trainer" target="cc3002.t1.ICard">
+      <point x="5.625" y="-13.0" />
+      <point x="378.75" y="354.0" />
+      <point x="400.61552563815485" y="354.0" />
+      <point x="400.61552563815485" y="106.0" />
+      <point x="405.65423477384684" y="106.0" />
+      <point x="-11.14285714285711" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.AbstractPokemon" target="cc3002.t1.IEnergy">
+      <point x="60.85714285714286" y="-13.0" />
+      <point x="236.85714285714283" y="288.0" />
+      <point x="431.11552563815485" y="288.0" />
+      <point x="-36.0" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.ITrainer" target="cc3002.t1.IEnergy">
+      <point x="-38.80000000000001" y="-13.0" />
+      <point x="18.0" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.AbstractEnergy" target="cc3002.t1.IEnergy">
+      <point x="-50.625" y="-13.0" />
+      <point x="542.2574451410658" y="374.0" />
+      <point x="463.61552563815485" y="374.0" />
+      <point x="463.61552563815485" y="288.0" />
+      <point x="467.11552563815485" y="288.0" />
+      <point x="0.0" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.IPokemon" target="cc3002.t1.IEnergy">
+      <point x="26.45454545454544" y="13.0" />
+      <point x="368.0700710927003" y="192.0" />
+      <point x="467.11552563815485" y="192.0" />
+      <point x="0.0" y="-13.0" />
+    </edge>
+    <edge source="cc3002.t1.AbstractPokemon" target="cc3002.t1.IAttack">
+      <point x="-60.85714285714289" y="-13.0" />
+      <point x="115.14285714285708" y="278.0" />
+      <point x="131.6904948499776" y="278.0" />
+      <point x="131.6904948499776" y="106.0" />
+      <point x="137.43264386475587" y="106.0" />
+      <point x="-16.875" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.AbstractPokemon" target="cc3002.t1.ICard">
+      <point x="0.0" y="-13.0" />
+      <point x="175.99999999999997" y="288.0" />
+      <point x="170.80764386475587" y="288.0" />
+      <point x="170.80764386475587" y="96.0" />
+      <point x="383.3685204881325" y="96.0" />
+      <point x="-33.428571428571445" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.AbstractEnergy" target="cc3002.t1.ICard">
+      <point x="50.625" y="-13.0" />
+      <point x="643.5074451410658" y="384.0" />
+      <point x="627.2483766233765" y="384.0" />
+      <point x="627.2483766233765" y="46.0" />
+      <point x="450.2256633452754" y="46.0" />
+      <point x="33.428571428571445" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.ITrainer" target="cc3002.t1.IAttack">
+      <point x="19.399999999999977" y="-13.0" />
+      <point x="543.7655256381549" y="66.0" />
+      <point x="193.68264386475587" y="66.0" />
+      <point x="39.375" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.IPokemon" target="cc3002.t1.IAttack">
+      <point x="-24.25" y="-13.0" />
+      <point x="317.36552563815485" y="76.0" />
+      <point x="182.43264386475587" y="76.0" />
+      <point x="28.125" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.pokemon.WaterPokemon" target="cc3002.t1.AbstractPokemon">
+      <point x="-15.25" y="-13.0" />
+      <point x="160.74999999999997" y="384.0" />
+      <point x="140.49999999999997" y="384.0" />
+      <point x="-35.5" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.ITrainer" target="cc3002.t1.IPokemon">
+      <point x="0.0" y="-13.0" />
+      <point x="524.3655256381548" y="288.0" />
+      <point x="532.7655256381549" y="288.0" />
+      <point x="532.7655256381549" y="182.0" />
+      <point x="376.8882529108821" y="182.0" />
+      <point x="35.27272727272725" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.Trainer" target="cc3002.t1.IAttack">
+      <point x="-39.375" y="-13.0" />
+      <point x="333.75" y="384.0" />
+      <point x="282.61552563815485" y="384.0" />
+      <point x="282.61552563815485" y="86.0" />
+      <point x="171.18264386475587" y="86.0" />
+      <point x="16.875" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.Trainer" target="cc3002.t1.IEnergy">
+      <point x="28.125" y="-13.0" />
+      <point x="401.25" y="374.0" />
+      <point x="444.54709191670395" y="374.0" />
+      <point x="444.54709191670395" y="288.0" />
+      <point x="449.11552563815485" y="288.0" />
+      <point x="-18.0" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.AbstractPokemon" target="cc3002.t1.IPokemon">
+      <point x="40.571428571428555" y="-13.0" />
+      <point x="216.57142857142853" y="288.0" />
+      <point x="204.11714901477825" y="288.0" />
+      <point x="204.11714901477825" y="182.0" />
+      <point x="306.3427983654276" y="182.0" />
+      <point x="-35.27272727272725" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.energies.WaterEnergy" target="cc3002.t1.ITrainer">
+      <point x="-14.5" y="-13.0" />
+      <point x="528.9983766233765" y="455.0" />
+      <point x="513.2931594267801" y="455.0" />
+      <point x="513.2931594267801" y="384.0" />
+      <point x="524.3655256381548" y="384.0" />
+      <point x="0.0" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.ITrainer" target="cc3002.t1.ICard">
+      <point x="38.80000000000001" y="-13.0" />
+      <point x="563.1655256381548" y="288.0" />
+      <point x="561.6970919167039" y="288.0" />
+      <point x="561.6970919167039" y="56.0" />
+      <point x="439.0828062024182" y="56.0" />
+      <point x="22.285714285714278" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.Trainer" target="cc3002.t1.ITrainer">
+      <point x="39.375" y="-13.0" />
+      <point x="412.5" y="384.0" />
+      <point x="492.03219230482154" y="384.0" />
+      <point x="-32.333333333333314" y="13.0" />
+    </edge>
+    <edge source="cc3002.t1.IPokemon" target="cc3002.t1.ICard">
+      <point x="24.25" y="-13.0" />
+      <point x="365.86552563815485" y="106.0" />
+      <point x="394.51137763098967" y="106.0" />
+      <point x="-22.285714285714278" y="13.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="330.5" y="253.0" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
