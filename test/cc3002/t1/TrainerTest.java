@@ -130,7 +130,7 @@ public class TrainerTest {
     public void selectAttackTest() {
         trainer.playPokemon(squirtle);
         trainer.setActivePokemon();
-        trainer.selectPokemonAttack(1);
+        trainer.selectAttack(1);
         assertEquals(attack20, squirtle.getSelectedAttack());
     }
 

@@ -11,6 +11,7 @@ public abstract class AbstractPokemon implements ICard, IPokemon {
     private List<IAttack> attackList;
     private int fightingEnergies, fireEnergies, grassEnergies, lightningEnergies, psychicEnergies, waterEnergies;
     private IAttack selectedAttack;
+    private ITrainer trainer;
 
     /**
      * The constructor of AbstractPokemon. It cannot create an instance of the class itself, but it is used by all of its subclasses.
@@ -19,13 +20,16 @@ public abstract class AbstractPokemon implements ICard, IPokemon {
      * @param name The name of the Pokémon.
      * @param id The identification number of the Pokémon (according to the Pokédex).
      * @param hp The initial hit points of the Pokémon.
-     * @param attackList The list of attacks the Pokémon can use.
+     * @param anAttackList The list of attacks the Pokémon can use. If it contains more than 4 attacks, only the first 4 will be stored.
      */
-    protected AbstractPokemon(String name, int id, int hp, ArrayList<IAttack> attackList) {
+    protected AbstractPokemon(String name, int id, int hp, ArrayList<IAttack> anAttackList) {
         this.name = name;
         this.id = id;
         this.hp = hp;
-        this.attackList = attackList;
+        this.attackList = new ArrayList<>();
+        for (IAttack attack : anAttackList) {
+            if (attackList.size() <= 4) { attackList.add(attack); }
+        }
         this.fightingEnergies = 0;
         this.fireEnergies = 0;
         this.grassEnergies = 0;
@@ -33,6 +37,7 @@ public abstract class AbstractPokemon implements ICard, IPokemon {
         this.psychicEnergies = 0;
         this.waterEnergies = 0;
         this.selectedAttack = null;
+        this.trainer = null;
     }
 
     @Override
@@ -81,7 +86,20 @@ public abstract class AbstractPokemon implements ICard, IPokemon {
     public IAttack getSelectedAttack() { return selectedAttack; }
 
     @Override
+    public ITrainer getTrainer() { return trainer; }
+
+    @Override
     public abstract boolean equals(Object o);
+
+    @Override
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
+    }
+
+    @Override
+    public void isPlayed() {
+        this.getTrainer().addToBench(this);
+    }
 
     @Override
     public void addEnergyToPokemon(IEnergy energy) {
@@ -147,35 +165,29 @@ public abstract class AbstractPokemon implements ICard, IPokemon {
     public abstract void attackedByWaterPokemon(IAttack attack);
 
     @Override
-    public void receivesNeutralAttack(IAttack attack) {
-        int test = hp - attack.getBaseDamage();
-        if (test < 0) {
+    public void receivesEffectiveDamage(int damage) {
+        int postHP = hp - damage;
+        if (postHP < 0) {
             hp = 0;
+            this.getTrainer().setActivePokemon();
         }
         else {
-            hp = test;
+            hp = postHP;
         }
+    }
+
+    @Override
+    public void receivesNeutralAttack(IAttack attack) {
+        receivesEffectiveDamage(attack.getBaseDamage());
     }
 
     @Override
     public void receivesStrengthenedAttack(IAttack attack) {
-        int test = hp - 2*(attack.getBaseDamage());
-        if (test < 0) {
-            hp = 0;
-        }
-        else {
-            hp = test;
-        }
+        receivesEffectiveDamage(2*(attack.getBaseDamage()));
     }
 
     @Override
     public void receivesWeakenedAttack(IAttack attack) {
-        int test = hp - (attack.getBaseDamage() - 30);
-        if (test < 0) {
-            hp = 0;
-        }
-        else {
-            hp = test;
-        }
+        receivesEffectiveDamage(attack.getBaseDamage() - 30);
     }
 }

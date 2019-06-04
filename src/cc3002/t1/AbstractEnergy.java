@@ -3,17 +3,21 @@ package cc3002.t1;
 public abstract class AbstractEnergy implements ICard, IEnergy {
 
     private String name;
+    private ITrainer trainer;
 
     /**
      * Creates an energy card.
      *
      * @param name The card's name.
      */
-    protected AbstractEnergy(String name) { this.name = name; }
+    protected AbstractEnergy(String name) {
+        this.name = name;
+        this.trainer = null;
+    }
 
     @Override
-    public void isPlayed(ITrainer trainer) {
-        trainer.playEnergy(this);
+    public void isPlayed() {
+        this.isAdded(this.getTrainer().getActivePokemon());
     }
 
     @Override
@@ -26,4 +30,15 @@ public abstract class AbstractEnergy implements ICard, IEnergy {
 
     @Override
     public abstract boolean equals(Object o);
+
+    @Override
+    public ITrainer getTrainer() {
+        return trainer;
+    }
+
+    @Override
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
+    }
+
 }

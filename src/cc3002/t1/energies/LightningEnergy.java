@@ -26,8 +26,8 @@ public class LightningEnergy extends AbstractEnergy {
     public LightningEnergy() { super("A Lightning Energy"); }
 
     @Override
-    public void isPlayed(ITrainer trainer) {
-        super.isPlayed(trainer);
+    public void isPlayed() {
+        super.isPlayed();
     }
 
     @Override

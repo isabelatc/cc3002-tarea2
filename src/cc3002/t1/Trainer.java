@@ -37,6 +37,23 @@ public class Trainer implements ITrainer {
     }
 
     @Override
+    public void playCard(ICard card) {
+        card.setTrainer(this);
+        card.isPlayed();
+    }
+
+    @Override
+    public void addToBench(IPokemon pokemon) {
+        if (bench.size() < 5) {
+            if (hand.contains(pokemon)) {
+                hand.remove(pokemon);
+                bench.add(pokemon);
+            }
+        }
+    }
+
+    //cambiar
+    @Override
     public void playPokemon(IPokemon pokemon) {
         if (bench.size() == 5) {
             return;
@@ -50,6 +67,7 @@ public class Trainer implements ITrainer {
         }
     }
 
+    //cambiar
     @Override
     public void playEnergy(IEnergy energy) {
         if (hand.contains(energy) && activePokemon != null) {
@@ -73,26 +91,46 @@ public class Trainer implements ITrainer {
             bench.remove(pokemon);
             bench.add(activePokemon);
             activePokemon = pokemon;
-            return;
         }
     }
 
     @Override
     public void setActivePokemon() {
-        if (bench.size() != 0) {
+        if (bench.size() > 0) {
             activePokemon = bench.get(0);
             bench.remove(0);
         }
     }
 
     @Override
+    public List<IAttack> getPokemonAttacks(IPokemon pokemon) {
+        return pokemon.getAttacks();
+    }
+
+    //cambiar
+    @Override
     public List<IAttack> getActivePokemonAttacks() {
         return activePokemon.getAttacks();
     }
 
     @Override
-    public void selectPokemonAttack(int index) {
+    public void selectAttack(int index) {
         activePokemon.selectAttack(index);
+    }
+
+    @Override
+    public void useAttack(ITrainer opponent) {
+        activePokemon.attack(getOppActivePokemon(opponent));
+    }
+
+    @Override
+    public List<IPokemon> getOppBench(ITrainer opponent) {
+        return opponent.getBench();
+    }
+
+    @Override
+    public IPokemon getOppActivePokemon(ITrainer opponent) {
+        return opponent.getActivePokemon();
     }
 
 }

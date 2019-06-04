@@ -10,14 +10,6 @@ public interface IEnergy extends ICard {
     boolean equals(Object o);
 
     /**
-     * It queues the card to be added to the energies of the trainer's active Pokémon. Essentially it removes the energy from
-     * the trainer's hand.
-     *
-     * @param trainer The trainer that plays the energy card.
-     */
-    void isPlayed(ITrainer trainer);
-
-    /**
      * The current energy card is added to the Pokémon's energy collection.
      *
      * @param pokemon The Pokémon card that gets a new energy card added to its collection.
