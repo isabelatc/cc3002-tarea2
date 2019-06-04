@@ -26,8 +26,8 @@ public class GrassEnergy extends AbstractEnergy {
     public GrassEnergy() { super("A Grass Energy"); }
 
     @Override
-    public void isPlayed(ITrainer trainer) {
-        super.isPlayed(trainer);
+    public void isPlayed() {
+        super.isPlayed();
     }
 
     @Override

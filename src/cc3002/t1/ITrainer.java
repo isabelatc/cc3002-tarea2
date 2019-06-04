@@ -21,18 +21,32 @@ public interface ITrainer {
     List<ICard> getHand();
 
     /**
+     * The trainer plays a Card.
+     *
+     * @param card The Card the trainer is going to play (could be an energy or a Pokémon).
+     */
+    void playCard(ICard card);
+
+    /**
+     * The trainer adds a Pokémon to their bench, if there's enough space.
+     *
+     * @param pokemon The Pokémon the trainer will add to their bench.
+     */
+    void addToBench(IPokemon pokemon);
+
+    /**
      * The trainer plays a Pokémon card.
      *
      * @param pokemon The Pokémon the trainer is going to play (place in the bench).
      */
-    void playPokemon(IPokemon pokemon);
+  //  void playPokemon(IPokemon pokemon);
 
     /**
      * The trainer plays an Energy card.
      *
      * @param energy The energy card the trainer is going to play (on the active Pokémon).
      */
-    void playEnergy(IEnergy energy);
+  //  void playEnergy(IEnergy energy);
 
     /**
      * The trainer requests the total energies from a Pokémon.
@@ -61,9 +75,13 @@ public interface ITrainer {
     void setActivePokemon();
 
     /**
-     * @return A list of the active Pokémon's attacks.
+     * The trainer asks for the list of attacks a Pokémon has.
+     *
+     * @param pokemon The Pokémon the trainer is asking about.
+     * @return A list of the Pokémon's attacks.
      */
-    List<IAttack> getActivePokemonAttacks();
+   // List<IAttack> getActivePokemonAttacks();
+    List<IAttack> getPokemonAttacks(IPokemon pokemon);
 
     /**
      * The trainer selects an attack from the active Pokémon.
@@ -72,7 +90,34 @@ public interface ITrainer {
      *
      * @return The selected attack.
      */
-    void selectPokemonAttack(int index);
+    void selectAttack(int index);
+
+    /**
+     * The active Pokémon from the trainer attacks the opponent's active Pokémon with their selected attack.
+     *
+     * @param opponent The opponent of the trainer.
+     */
+    void useAttack(ITrainer opponent);
+
+    /**
+     * Gets the opponent's list of Pokémon in their bench.
+     *
+     * @param opponent The opponent of the trainer.
+     */
+    List<IPokemon> getOppBench(ITrainer opponent);
+
+    /**
+     * Gets the opponent's active Pokémon.
+     *
+     * @param opponent The opponent of the trainer.
+     */
+    IPokemon getOppActivePokemon(ITrainer opponent);
+
+    /**
+     *
+     */
+
+
 
 
 }

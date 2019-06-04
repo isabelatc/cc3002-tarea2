@@ -163,21 +163,31 @@ public interface IPokemon extends ICard {
     void attackedByWaterPokemon(IAttack attack);
 
     /**
-     * This method effectively reduces the HP of the Pokémon, substracting the base damage of the attack.
+     * The damage made by the attack received is effectively substracted to the Pokémon's HP.
+     *
+     * @param damage The effective damage received by the Pokémon.
+     */
+    void receivesEffectiveDamage(int damage);
+
+    /**
+     * This method calculates the effective damage (in this case, the base damage) the attack makes to the Pokémon,
+     * so it can be substracted from the Pokémon's HP later.
      *
      * @param attack The attack the opponent uses to hurt the Pokémon.
      */
     void receivesNeutralAttack(IAttack attack);
 
     /**
-     * This method effectively reduces the HP of the Pokémon, substracting the base damage of the attack, duplicated.
+     * This method calculates the effective damage (the base damage, duplicated) the attack makes to the Pokémon,
+     * so it can be substracted from the Pokémon's HP later.
      *
      * @param attack The attack the opponent uses to hurt the Pokémon.
      */
     void receivesStrengthenedAttack(IAttack attack);
 
     /**
-     * This method effectively reduces the HP of the Pokémon, substracting the base damage of the attack, minus 30 points.
+     * This method calculates the effective damage (the base damage, minus 30 points) the attack makes to the Pokémon,
+     * so it can be substracted from the Pokémon's HP later.
      *
      * @param attack The attack the opponent uses to hurt the Pokémon.
      */

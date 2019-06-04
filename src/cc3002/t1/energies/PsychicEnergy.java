@@ -26,8 +26,8 @@ public class PsychicEnergy extends AbstractEnergy {
     public PsychicEnergy() { super("A Psychic Energy"); }
 
     @Override
-    public void isPlayed(ITrainer trainer) {
-        super.isPlayed(trainer);
+    public void isPlayed() {
+        super.isPlayed();
     }
 
     @Override

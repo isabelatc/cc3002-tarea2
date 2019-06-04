@@ -26,8 +26,8 @@ public class FireEnergy extends AbstractEnergy {
     public FireEnergy() { super("A Fire Energy"); }
 
     @Override
-    public void isPlayed(ITrainer trainer) {
-        super.isPlayed(trainer);
+    public void isPlayed() {
+        super.isPlayed();
     }
 
     @Override

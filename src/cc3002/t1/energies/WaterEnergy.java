@@ -26,8 +26,8 @@ public class WaterEnergy extends AbstractEnergy {
     public WaterEnergy() { super("A Water Energy"); }
 
     @Override
-    public void isPlayed(ITrainer trainer) {
-        super.isPlayed(trainer);
+    public void isPlayed() {
+        super.isPlayed();
     }
 
     @Override
