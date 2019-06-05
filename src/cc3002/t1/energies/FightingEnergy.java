@@ -2,7 +2,6 @@ package cc3002.t1.energies;
 
 import cc3002.t1.AbstractEnergy;
 import cc3002.t1.IPokemon;
-import cc3002.t1.ITrainer;
 
 /**
  * Class of the fighting energy cards. It inherites methods from its abstract superclass AbstractEnergy.
@@ -26,13 +25,8 @@ public class FightingEnergy extends AbstractEnergy {
     public FightingEnergy() { super("A Fighting Energy"); }
 
     @Override
-    public void isPlayed() {
-        super.isPlayed();
-    }
-
-    @Override
     public void isAdded(IPokemon pokemon) {
-        pokemon.addFightingEnergy();
+        pokemon.getEnergyList().addFightingEnergy();
     }
 
     @Override

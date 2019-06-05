@@ -5,7 +5,6 @@ import cc3002.t1.IAttack;
 import cc3002.t1.IPokemon;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class GrassPokemon extends AbstractPokemon {
 
@@ -28,7 +27,7 @@ public class GrassPokemon extends AbstractPokemon {
                     ((GrassPokemon) o).getID() == this.getID() &&
                     ((GrassPokemon) o).getHP() == this.getHP() &&
                     (((GrassPokemon) o).getAttacks()).equals(this.getAttacks()) &&
-                    (((GrassPokemon) o).getEnergies()).equals(this.getEnergies());
+                    (((GrassPokemon) o).getEnergyList()).equals(this.getEnergyList());
         }
         return false;
     }
@@ -36,7 +35,7 @@ public class GrassPokemon extends AbstractPokemon {
     @Override
     public void attack(IPokemon other) {
         if (this.canAttack()) {
-            other.attackedByGrassPokemon(getSelectedAttack());
+            other.attackedByGrassPokemon(this.getSelectedAttack());
         }
     }
 
@@ -69,4 +68,5 @@ public class GrassPokemon extends AbstractPokemon {
     public void attackedByWaterPokemon(IAttack attack) {
         this.receivesWeakenedAttack(attack);
     }
+
 }

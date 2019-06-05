@@ -29,7 +29,7 @@ public interface IAttack {
      * @return A list of the attack's energy costs, in the order: fighting, fire, grass, lightning, psychic and water.
      */
 
-    List<Integer> getEnergyCosts();
+    EnergyCounter getEnergyCosts();
 
     /**
      * @return Attack's fighting energy cost.

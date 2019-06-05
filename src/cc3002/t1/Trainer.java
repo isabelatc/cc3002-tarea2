@@ -16,7 +16,7 @@ public class Trainer implements ITrainer {
     private List<ICard> hand;
 
     /**
-     * Creates a new Trainer. Some of their properties are empty when initialized.
+     * Constructor for a new Trainer. Some of their properties are empty when initialized.
      *
      * @param hand Trainer's hand of cards.
      */
@@ -27,13 +27,26 @@ public class Trainer implements ITrainer {
     }
 
     @Override
+    public List<ICard> getHand() {
+        return this.hand;
+    }
+
+    @Override
     public List<IPokemon> getBench() {
         return this.bench;
     }
 
     @Override
-    public List<ICard> getHand() {
-        return this.hand;
+    public IPokemon getActivePokemon() { return this.activePokemon; }
+
+    @Override
+    public EnergyCounter getPokemonEnergies(IPokemon pokemon) {
+        return pokemon.getEnergyList();
+    }
+
+    @Override
+    public List<IAttack> getPokemonAttacks(IPokemon pokemon) {
+        return pokemon.getAttacks();
     }
 
     @Override
@@ -51,39 +64,6 @@ public class Trainer implements ITrainer {
             }
         }
     }
-
-    //cambiar
-    @Override
-    public void playPokemon(IPokemon pokemon) {
-        if (bench.size() == 5) {
-            return;
-        }
-        else {
-            if (hand.contains(pokemon)) {
-                hand.remove(pokemon);
-                bench.add(pokemon);
-                return;
-            }
-        }
-    }
-
-    //cambiar
-    @Override
-    public void playEnergy(IEnergy energy) {
-        if (hand.contains(energy) && activePokemon != null) {
-            hand.remove(energy);
-            energy.isAdded(activePokemon);
-            return;
-        }
-    }
-
-    @Override
-    public List<Integer> getPokemonEnergies(IPokemon pokemon) {
-        return pokemon.getEnergies();
-    }
-
-    @Override
-    public IPokemon getActivePokemon() { return this.activePokemon; }
 
     @Override
     public void changeActivePokemon(IPokemon pokemon) {
@@ -103,19 +83,8 @@ public class Trainer implements ITrainer {
     }
 
     @Override
-    public List<IAttack> getPokemonAttacks(IPokemon pokemon) {
-        return pokemon.getAttacks();
-    }
-
-    //cambiar
-    @Override
-    public List<IAttack> getActivePokemonAttacks() {
-        return activePokemon.getAttacks();
-    }
-
-    @Override
     public void selectAttack(int index) {
-        activePokemon.selectAttack(index);
+        activePokemon.setAttack(index);
     }
 
     @Override

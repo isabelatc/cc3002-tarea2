@@ -15,42 +15,39 @@ public interface IPokemon extends ICard {
     int getHP();
 
     /**
-     * @return A list that contains the Pokémon available energies in the order: fighting, fire, grass, lightning, psychic and water.
+     * @return A dictionary structure that lists the Pokémon available energies.
      */
-    List<Integer> getEnergies();
+    EnergyCounter getEnergyList();
 
     /**
      * @return The number of fighting energies that have been assigned to the Pokémon.
      */
-    int getFightingEnergies();
+    int getFightingEnergyAvailable();
 
     /**
      * @return The number of fire energies that have been assigned to the Pokémon.
      */
-    int getFireEnergies();
+    int getFireEnergyAvailable();
 
     /**
      * @return The number of grass energies that have been assigned to the Pokémon.
      */
-    int getGrassEnergies();
+    int getGrassEnergyAvailable();
 
     /**
      * @return The number of lightning energies that have been assigned to the Pokémon.
      */
-    int getLightningEnergies();
+    int getLightningEnergyAvailable();
 
     /**
      * @return The number of psychic energies that have been assigned to the Pokémon.
      */
-    int getPsychicEnergies();
+    int getPsychicEnergyAvailable();
 
     /**
      * @return The number of water energies that have been assigned to the Pokémon.
      */
-    int getWaterEnergies();
-
-    @Override
-    String getCardName();
+    int getWaterEnergyAvailable();
 
     /**
      * @return A list of the Pokémon attacks.
@@ -63,7 +60,26 @@ public interface IPokemon extends ICard {
     IAttack getSelectedAttack();
 
     @Override
+    String getCardName();
+
+    @Override
+    ITrainer getTrainer();
+
+    @Override
+    void setTrainer(ITrainer trainer);
+
+    @Override
+    void isPlayed();
+
+    @Override
     boolean equals(Object o);
+
+    /**
+     * Updates the HP of the Pokémon, after a fight.
+     *
+     * @param newHP The updated hit points of the Pokémon.
+     */
+    void updateHP(int newHP);
 
     /**
      * Includes one energy to the available ones of the Pokémon.
@@ -71,44 +87,15 @@ public interface IPokemon extends ICard {
     void addEnergyToPokemon(IEnergy energy);
 
     /**
-     * Includes one fighting energy to the available ones of the Pokémon.
-     */
-    void addFightingEnergy();
-
-    /**
-     * Includes one fire energy to the available ones of the Pokémon.
-     */
-    void addFireEnergy();
-
-    /**
-     * Includes one grass energy to the available ones of the Pokémon.
-     */
-    void addGrassEnergy();
-
-    /**
-     * Includes one lightning energy to the available ones of the Pokémon.
-     */
-    void addLightningEnergy();
-
-    /**
-     * Includes one psychic energy to the available ones of the Pokémon.
-     */
-    void addPsychicEnergy();
-
-    /**
-     * Includes one water energy to the available ones of the Pokémon.
-     */
-    void addWaterEnergy();
-
-    /**
-     * Sets the selected attack parameter of the Pokémon to one of its attacks.
+     * Sets the selected attack parameter of the Pokémon to one of their attacks.
      *
      * @param index The position of the attack to be set (in the attack list of the Pokémon).
      */
-    void selectAttack(int index);
+    void setAttack(int index);
 
     /**
-     * Checks if, with its current energy count, the Pokémon can attack with the selected attack.
+     * Checks if, with their current energy count, the Pokémon can attack with the selected attack.
+     *
      * @return A boolean statement, if it can attack (true) or if it can't (false).
      */
     boolean canAttack();
@@ -167,7 +154,7 @@ public interface IPokemon extends ICard {
      *
      * @param damage The effective damage received by the Pokémon.
      */
-    void receivesEffectiveDamage(int damage);
+    void suffersEffectiveDamage(int damage);
 
     /**
      * This method calculates the effective damage (in this case, the base damage) the attack makes to the Pokémon,

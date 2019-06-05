@@ -1,9 +1,5 @@
 package cc3002.t1;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * Base class for an attack. The Pokémon cards use these objects. In this class, there can be found mainly
  * accessibility methods, so that their properties can be shared with other classes.
@@ -13,7 +9,8 @@ import java.util.List;
 public class Attack implements IAttack {
 
     private String name, description;
-    private int baseDamage, fightingCost, fireCost, grassCost, lightningCost, psychicCost, waterCost;
+    private int baseDamage;
+    private EnergyCounter energyCost;
 
     /**
      * Creates a new Attack.
@@ -33,12 +30,13 @@ public class Attack implements IAttack {
         this.name = name;
         this.baseDamage = baseDamage;
         this.description = description;
-        this.fightingCost = fightingCost;
-        this.fireCost = fireCost;
-        this.grassCost = grassCost;
-        this.lightningCost = lightningCost;
-        this.psychicCost = psychicCost;
-        this.waterCost = waterCost;
+        this.energyCost = new EnergyCounter();
+        energyCost.setFightingEnergy(fightingCost);
+        energyCost.setFireEnergy(fireCost);
+        energyCost.setGrassEnergy(grassCost);
+        energyCost.setLightningEnergy(lightningCost);
+        energyCost.setPsychicEnergy(psychicCost);
+        energyCost.setWaterEnergy(waterCost);
     }
 
     @Override
@@ -57,38 +55,38 @@ public class Attack implements IAttack {
     }
 
     @Override
-    public List<Integer> getEnergyCosts() {
-        return new ArrayList<>(Arrays.asList(fightingCost, fireCost, grassCost, lightningCost, psychicCost, waterCost));
+    public EnergyCounter getEnergyCosts() {
+        return energyCost;
     }
 
     @Override
     public int getFightingCost() {
-        return this.fightingCost;
+        return this.energyCost.getFightingEnergy();
     }
 
     @Override
     public int getFireCost() {
-        return this.fireCost;
+        return this.energyCost.getFireEnergy();
     }
 
     @Override
     public int getGrassCost() {
-        return this.grassCost;
+        return this.energyCost.getGrassEnergy();
     }
 
     @Override
     public int getLightningCost() {
-        return this.lightningCost;
+        return this.energyCost.getLightningEnergy();
     }
 
     @Override
     public int getPsychicCost() {
-        return this.psychicCost;
+        return this.energyCost.getPsychicEnergy();
     }
 
     @Override
     public int getWaterCost() {
-        return this.waterCost;
+        return this.energyCost.getWaterEnergy();
     }
 
 }

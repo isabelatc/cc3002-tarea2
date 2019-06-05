@@ -1,7 +1,6 @@
 package cc3002.t1;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public abstract class AbstractPokemon implements ICard, IPokemon {
@@ -9,13 +8,14 @@ public abstract class AbstractPokemon implements ICard, IPokemon {
     private String name;
     private int id, hp;
     private List<IAttack> attackList;
-    private int fightingEnergies, fireEnergies, grassEnergies, lightningEnergies, psychicEnergies, waterEnergies;
+    private EnergyCounter energyList;
     private IAttack selectedAttack;
     private ITrainer trainer;
 
     /**
      * The constructor of AbstractPokemon. It cannot create an instance of the class itself, but it is used by all of its subclasses.
      * Initially, some of its parameters are empty, because they will be added during the game.
+     * A restriction for the constructor is that the Pokémon cannot have more than 4 attacks.
      *
      * @param name The name of the Pokémon.
      * @param id The identification number of the Pokémon (according to the Pokédex).
@@ -28,14 +28,9 @@ public abstract class AbstractPokemon implements ICard, IPokemon {
         this.hp = hp;
         this.attackList = new ArrayList<>();
         for (IAttack attack : anAttackList) {
-            if (attackList.size() <= 4) { attackList.add(attack); }
+            if (attackList.size() <= 4) attackList.add(attack);
         }
-        this.fightingEnergies = 0;
-        this.fireEnergies = 0;
-        this.grassEnergies = 0;
-        this.lightningEnergies = 0;
-        this.psychicEnergies = 0;
-        this.waterEnergies = 0;
+        this.energyList = new EnergyCounter();
         this.selectedAttack = null;
         this.trainer = null;
     }
@@ -54,30 +49,25 @@ public abstract class AbstractPokemon implements ICard, IPokemon {
     }
 
     @Override
-    public List<Integer> getEnergies() {
-        return new ArrayList<>(Arrays.asList(fightingEnergies, fireEnergies, grassEnergies, lightningEnergies, psychicEnergies, waterEnergies));
-    }
+    public EnergyCounter getEnergyList() { return energyList; }
 
     @Override
-    public int getFightingEnergies() { return fightingEnergies; }
+    public int getFightingEnergyAvailable() { return energyList.getFightingEnergy(); }
 
     @Override
-    public int getFireEnergies() { return fireEnergies; }
+    public int getFireEnergyAvailable() { return energyList.getFireEnergy(); }
 
     @Override
-    public int getGrassEnergies() { return grassEnergies; }
+    public int getGrassEnergyAvailable() { return energyList.getGrassEnergy(); }
 
     @Override
-    public int getLightningEnergies() { return lightningEnergies; }
+    public int getLightningEnergyAvailable() { return energyList.getLightningEnergy(); }
 
     @Override
-    public int getPsychicEnergies() { return psychicEnergies; }
+    public int getPsychicEnergyAvailable() { return energyList.getPsychicEnergy(); }
 
     @Override
-    public int getWaterEnergies() { return waterEnergies; }
-
-    @Override
-    public String getCardName() { return name; }
+    public int getWaterEnergyAvailable() { return energyList.getWaterEnergy(); }
 
     @Override
     public List<IAttack> getAttacks() { return attackList; }
@@ -86,20 +76,26 @@ public abstract class AbstractPokemon implements ICard, IPokemon {
     public IAttack getSelectedAttack() { return selectedAttack; }
 
     @Override
+    public String getCardName() { return name; }
+
+    @Override
     public ITrainer getTrainer() { return trainer; }
 
     @Override
-    public abstract boolean equals(Object o);
-
-    @Override
-    public void setTrainer(Trainer trainer) {
+    public void setTrainer(ITrainer trainer) {
         this.trainer = trainer;
     }
 
     @Override
     public void isPlayed() {
-        this.getTrainer().addToBench(this);
+        trainer.addToBench(this);
     }
+
+    @Override
+    public abstract boolean equals(Object o);
+
+    @Override
+    public void updateHP(int newHP) { this.hp = newHP; }
 
     @Override
     public void addEnergyToPokemon(IEnergy energy) {
@@ -107,40 +103,14 @@ public abstract class AbstractPokemon implements ICard, IPokemon {
     }
 
     @Override
-    public void addFightingEnergy() { fightingEnergies++; }
-
-    @Override
-    public void addFireEnergy() { fireEnergies++; }
-
-    @Override
-    public void addGrassEnergy() { grassEnergies++; }
-
-    @Override
-    public void addLightningEnergy() { lightningEnergies++; }
-
-    @Override
-    public void addPsychicEnergy() { psychicEnergies++; }
-
-    @Override
-    public void addWaterEnergy() { waterEnergies++; }
-
-    @Override
-    public void selectAttack(int index) {
-        if (index < attackList.size()) {
-            selectedAttack = attackList.get(index);
-        }
+    public void setAttack(int index) {
+        if (index < attackList.size()) selectedAttack = attackList.get(index);
     }
 
     @Override
     public boolean canAttack() {
-        List<Integer> availableEnergies = this.getEnergies();
-        List<Integer> neededEnergies = this.getSelectedAttack().getEnergyCosts();
-        for (int i = 0; i < neededEnergies.size(); i++) {
-            if (availableEnergies.get(i) < neededEnergies.get(i)) {
-                return false;
-            }
-        }
-        return true;
+        EnergyCounter costs = selectedAttack.getEnergyCosts();
+        return (getHP() > 0) && (energyList.greaterOrEqual(costs));
     }
 
     @Override
@@ -165,29 +135,33 @@ public abstract class AbstractPokemon implements ICard, IPokemon {
     public abstract void attackedByWaterPokemon(IAttack attack);
 
     @Override
-    public void receivesEffectiveDamage(int damage) {
-        int postHP = hp - damage;
+    public void suffersEffectiveDamage(int damage) {
+        int postHP = this.getHP() - damage;
         if (postHP < 0) {
-            hp = 0;
+            this.updateHP(0);
             this.getTrainer().setActivePokemon();
         }
         else {
-            hp = postHP;
+            this.updateHP(postHP);
         }
     }
 
     @Override
     public void receivesNeutralAttack(IAttack attack) {
-        receivesEffectiveDamage(attack.getBaseDamage());
+        int damage = attack.getBaseDamage();
+        suffersEffectiveDamage(damage);
     }
 
     @Override
     public void receivesStrengthenedAttack(IAttack attack) {
-        receivesEffectiveDamage(2*(attack.getBaseDamage()));
+        int damage = 2*(attack.getBaseDamage());
+        suffersEffectiveDamage(damage);
     }
 
     @Override
     public void receivesWeakenedAttack(IAttack attack) {
-        receivesEffectiveDamage(attack.getBaseDamage() - 30);
+        int damage = attack.getBaseDamage() - 30;
+        suffersEffectiveDamage(damage);
     }
+
 }
