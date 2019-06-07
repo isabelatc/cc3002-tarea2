@@ -5,7 +5,6 @@ import cc3002.t1.IAttack;
 import cc3002.t1.IPokemon;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class FirePokemon extends AbstractPokemon {
 
@@ -28,7 +27,7 @@ public class FirePokemon extends AbstractPokemon {
                     ((FirePokemon) o).getID() == this.getID() &&
                     ((FirePokemon) o).getHP() == this.getHP() &&
                     (((FirePokemon) o).getAttacks()).equals(this.getAttacks()) &&
-                    (((FirePokemon) o).getEnergies()).equals(this.getEnergies());
+                    (((FirePokemon) o).getEnergyList()).equals(this.getEnergyList());
         }
         return false;
     }
@@ -36,7 +35,7 @@ public class FirePokemon extends AbstractPokemon {
     @Override
     public void attack(IPokemon other) {
         if (this.canAttack()) {
-            other.attackedByFirePokemon(getSelectedAttack());
+            other.attackedByFirePokemon(this.getSelectedAttack());
         }
     }
 
@@ -69,4 +68,5 @@ public class FirePokemon extends AbstractPokemon {
     public void attackedByWaterPokemon(IAttack attack) {
         this.receivesStrengthenedAttack(attack);
     }
+
 }

@@ -1,9 +1,6 @@
 package cc3002.t1.pokemon;
 
-import cc3002.t1.Attack;
-import cc3002.t1.IAttack;
-import cc3002.t1.IEnergy;
-import cc3002.t1.IPokemon;
+import cc3002.t1.*;
 import cc3002.t1.energies.FireEnergy;
 import cc3002.t1.energies.PsychicEnergy;
 import cc3002.t1.energies.WaterEnergy;
@@ -20,7 +17,7 @@ public class GrassPokemonTest {
     private IEnergy aFire, aPsychic, aWater;
     private IAttack attack20, attack30, attack40, attack50;
     private IPokemon tangela, squirtle, pikachu;
-
+    private ITrainer trainer;
 
     @Before
     public void setUp() {
@@ -45,22 +42,38 @@ public class GrassPokemonTest {
         pikachu = new LightningPokemon("Pikachu", 25, 100,
                 new ArrayList<>(Arrays.asList(attack20, attack30, attack40, attack50)));
 
+        trainer = new Trainer(new ArrayList<>(Arrays.asList(tangela, squirtle, aFire, aPsychic, pikachu, aWater)));
+
     }
 
     @Test
     public void constructorTest() {
         assertEquals(114, tangela.getID());
         assertEquals(100, tangela.getHP());
-        assertEquals(new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0)), tangela.getEnergies());
-        assertEquals(0, tangela.getFightingEnergies());
-        assertEquals(0, tangela.getFireEnergies());
-        assertEquals(0, tangela.getGrassEnergies());
-        assertEquals(0, tangela.getLightningEnergies());
-        assertEquals(0, tangela.getPsychicEnergies());
-        assertEquals(0, tangela.getWaterEnergies());
+        assertEquals(new EnergyCounter(), tangela.getEnergyList());
+        assertEquals(0, tangela.getFightingEnergyAvailable());
+        assertEquals(0, tangela.getFireEnergyAvailable());
+        assertEquals(0, tangela.getGrassEnergyAvailable());
+        assertEquals(0, tangela.getLightningEnergyAvailable());
+        assertEquals(0, tangela.getPsychicEnergyAvailable());
+        assertEquals(0, tangela.getWaterEnergyAvailable());
         assertEquals("Tangela", tangela.getCardName());
         assertEquals(new ArrayList<>(Arrays.asList(attack30, attack50)), tangela.getAttacks());
         assertNull(tangela.getSelectedAttack());
+    }
+
+    @Test
+    public void setTrainerTest() {
+        tangela.setTrainer(trainer);
+        assertEquals(trainer, tangela.getTrainer());
+    }
+
+    @Test
+    public void isPlayedTest() {
+        tangela.setTrainer(trainer);
+        tangela.isPlayed();
+        assertTrue(tangela.getTrainer().getBench().contains(tangela));
+        assertFalse(tangela.getTrainer().getHand().contains(tangela));
     }
 
     @Test
@@ -71,64 +84,59 @@ public class GrassPokemonTest {
     }
 
     @Test
-    public void addFightingEnergyTest() {
-        tangela.addFightingEnergy();
-        assertEquals(1, tangela.getFightingEnergies());
+    public void updateHPTest() {
+        tangela.updateHP(90);
+        assertEquals(90, tangela.getHP());
     }
 
     @Test
-    public void addFireEnergyTest() {
-        tangela.addFireEnergy();
-        assertEquals(1, tangela.getFireEnergies());
+    public void addEnergyToPokemonTest() {
+        EnergyCounter tangelaCounter = tangela.getEnergyList();
+        aFire.setTrainer(trainer);
+        tangela.addEnergyToPokemon(aFire);
+        tangelaCounter.addFireEnergy();
+        assertEquals(tangelaCounter, tangela.getEnergyList());
     }
 
     @Test
-    public void addGrassEnergyTest() {
-        tangela.addGrassEnergy();
-        assertEquals(1, tangela.getGrassEnergies());
-    }
-
-    @Test
-    public void addLightningEnergyTest() {
-        tangela.addLightningEnergy();
-        assertEquals(1, tangela.getLightningEnergies());
-    }
-
-    @Test
-    public void addPsychicEnergyTest() {
-        tangela.addPsychicEnergy();
-        assertEquals(1, tangela.getPsychicEnergies());
-    }
-
-    @Test
-    public void addWaterEnergyTest() {
-        tangela.addWaterEnergy();
-        assertEquals(1, tangela.getWaterEnergies());
-    }
-
-    @Test
-    public void selectAttackTest() {
-        tangela.selectAttack(0);
+    public void setAttackTest() {
+        tangela.setAttack(0);
         assertEquals(attack30, tangela.getSelectedAttack());
-        tangela.selectAttack(3);
+        tangela.setAttack(3);
         assertEquals(attack30, tangela.getSelectedAttack());
+    }
+
+    @Test
+    public void canAttackTest() {
+        aFire.setTrainer(trainer);
+        aWater.setTrainer(trainer);
+        tangela.addEnergyToPokemon(aFire);
+        tangela.addEnergyToPokemon(aWater);
+        tangela.setAttack(0);
+        assertTrue(tangela.canAttack());
+        tangela.setAttack(1);
+        assertFalse(tangela.canAttack());
     }
 
     @Test
     public void attackTest() {
-        tangela.selectAttack(0);
+        tangela.setAttack(0);
         tangela.attack(squirtle);
         assertEquals(90, squirtle.getHP());
 
+        aFire.setTrainer(trainer);
+        aPsychic.setTrainer(trainer);
+        aWater.setTrainer(trainer);
         tangela.addEnergyToPokemon(aFire);
         tangela.addEnergyToPokemon(aPsychic);
         tangela.addEnergyToPokemon(aWater);
 
-        tangela.selectAttack(1);
+        squirtle.setTrainer(trainer);
+        tangela.setAttack(1);
         tangela.attack(squirtle);
         assertEquals(0, squirtle.getHP());
 
-        tangela.selectAttack(0);
+        tangela.setAttack(0);
         tangela.attack(pikachu);
         assertEquals(70, pikachu.getHP());
     }

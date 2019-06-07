@@ -1,9 +1,6 @@
 package cc3002.t1.pokemon;
 
-import cc3002.t1.Attack;
-import cc3002.t1.IAttack;
-import cc3002.t1.IEnergy;
-import cc3002.t1.IPokemon;
+import cc3002.t1.*;
 import cc3002.t1.energies.FireEnergy;
 import cc3002.t1.energies.PsychicEnergy;
 import cc3002.t1.energies.WaterEnergy;
@@ -16,10 +13,11 @@ import java.util.Arrays;
 import static org.junit.Assert.*;
 
 public class WaterPokemonTest {
+
     private IEnergy aFire, aPsychic, aWater;
     private IAttack attack10, attack20, attack30, attack40, attack50;
     private IPokemon squirtle, charmander, tangela;
-
+    private ITrainer trainer;
 
     @Before
     public void setUp() {
@@ -45,22 +43,38 @@ public class WaterPokemonTest {
                 new ArrayList<>(Arrays.asList(attack10, attack20, attack50)));
         tangela = new GrassPokemon("Tangela", 114, 100,
                 new ArrayList<>(Arrays.asList(attack30, attack40, attack50)));
+
+        trainer = new Trainer(new ArrayList<>(Arrays.asList(squirtle, charmander, aFire, aPsychic, tangela, aWater)));
     }
 
     @Test
     public void constructorTest() {
         assertEquals(7, squirtle.getID());
         assertEquals(100, squirtle.getHP());
-        assertEquals(new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0)), squirtle.getEnergies());
-        assertEquals(0, squirtle.getFightingEnergies());
-        assertEquals(0, squirtle.getFireEnergies());
-        assertEquals(0, squirtle.getGrassEnergies());
-        assertEquals(0, squirtle.getLightningEnergies());
-        assertEquals(0, squirtle.getPsychicEnergies());
-        assertEquals(0, squirtle.getWaterEnergies());
+        assertEquals(new EnergyCounter(), squirtle.getEnergyList());
+        assertEquals(0, squirtle.getFightingEnergyAvailable());
+        assertEquals(0, squirtle.getFireEnergyAvailable());
+        assertEquals(0, squirtle.getGrassEnergyAvailable());
+        assertEquals(0, squirtle.getLightningEnergyAvailable());
+        assertEquals(0, squirtle.getPsychicEnergyAvailable());
+        assertEquals(0, squirtle.getWaterEnergyAvailable());
         assertEquals("Squirtle", squirtle.getCardName());
         assertEquals(new ArrayList<>(Arrays.asList(attack30, attack50)), squirtle.getAttacks());
         assertNull(squirtle.getSelectedAttack());
+    }
+
+    @Test
+    public void setTrainerTest() {
+        squirtle.setTrainer(trainer);
+        assertEquals(trainer, squirtle.getTrainer());
+    }
+
+    @Test
+    public void isPlayedTest() {
+        squirtle.setTrainer(trainer);
+        squirtle.isPlayed();
+        assertTrue(squirtle.getTrainer().getBench().contains(squirtle));
+        assertFalse(squirtle.getTrainer().getHand().contains(squirtle));
     }
 
     @Test
@@ -71,64 +85,59 @@ public class WaterPokemonTest {
     }
 
     @Test
-    public void addFightingEnergyTest() {
-        squirtle.addFightingEnergy();
-        assertEquals(1, squirtle.getFightingEnergies());
+    public void updateHPTest() {
+        squirtle.updateHP(90);
+        assertEquals(90, squirtle.getHP());
     }
 
     @Test
-    public void addFireEnergyTest() {
-        squirtle.addFireEnergy();
-        assertEquals(1, squirtle.getFireEnergies());
+    public void addEnergyToPokemonTest() {
+        EnergyCounter squirtleCounter = squirtle.getEnergyList();
+        aFire.setTrainer(trainer);
+        squirtle.addEnergyToPokemon(aFire);
+        squirtleCounter.addFireEnergy();
+        assertEquals(squirtleCounter, squirtle.getEnergyList());
     }
 
     @Test
-    public void addGrassEnergyTest() {
-        squirtle.addGrassEnergy();
-        assertEquals(1, squirtle.getGrassEnergies());
-    }
-
-    @Test
-    public void addLightningEnergyTest() {
-        squirtle.addLightningEnergy();
-        assertEquals(1, squirtle.getLightningEnergies());
-    }
-
-    @Test
-    public void addPsychicEnergyTest() {
-        squirtle.addPsychicEnergy();
-        assertEquals(1, squirtle.getPsychicEnergies());
-    }
-
-    @Test
-    public void addWaterEnergyTest() {
-        squirtle.addWaterEnergy();
-        assertEquals(1, squirtle.getWaterEnergies());
-    }
-
-    @Test
-    public void selectAttackTest() {
-        squirtle.selectAttack(0);
+    public void setAttackTest() {
+        squirtle.setAttack(0);
         assertEquals(attack30, squirtle.getSelectedAttack());
-        squirtle.selectAttack(3);
+        squirtle.setAttack(3);
         assertEquals(attack30, squirtle.getSelectedAttack());
+    }
+
+    @Test
+    public void canAttackTest() {
+        aFire.setTrainer(trainer);
+        aWater.setTrainer(trainer);
+        squirtle.addEnergyToPokemon(aFire);
+        squirtle.addEnergyToPokemon(aWater);
+        squirtle.setAttack(0);
+        assertTrue(squirtle.canAttack());
+        squirtle.setAttack(1);
+        assertFalse(squirtle.canAttack());
     }
 
     @Test
     public void attackTest() {
-        squirtle.selectAttack(0);
+        squirtle.setAttack(0);
         squirtle.attack(charmander);
         assertEquals(90, charmander.getHP());
 
+        aFire.setTrainer(trainer);
+        aPsychic.setTrainer(trainer);
+        aWater.setTrainer(trainer);
         squirtle.addEnergyToPokemon(aFire);
         squirtle.addEnergyToPokemon(aPsychic);
         squirtle.addEnergyToPokemon(aWater);
 
-        squirtle.selectAttack(1);
+        charmander.setTrainer(trainer);
+        squirtle.setAttack(1);
         squirtle.attack(charmander);
         assertEquals(0, charmander.getHP());
 
-        squirtle.selectAttack(1);
+        squirtle.setAttack(1);
         squirtle.attack(tangela);
         assertEquals(80, tangela.getHP());
     }

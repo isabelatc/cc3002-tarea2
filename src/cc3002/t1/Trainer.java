@@ -16,7 +16,7 @@ public class Trainer implements ITrainer {
     private List<ICard> hand;
 
     /**
-     * Creates a new Trainer. Some of their properties are empty when initialized.
+     * Constructor for a new Trainer. Some of their properties are empty when initialized.
      *
      * @param hand Trainer's hand of cards.
      */
@@ -27,69 +27,56 @@ public class Trainer implements ITrainer {
     }
 
     @Override
-    public List<IPokemon> getBench() {
-        return this.bench;
-    }
-
-    @Override
     public List<ICard> getHand() {
         return this.hand;
     }
 
     @Override
-    public void playCard(ICard card) {
-        card.setTrainer(this);
-        card.isPlayed();
-    }
-
-    @Override
-    public void addToBench(IPokemon pokemon) {
-        if (bench.size() < 5) {
-            if (hand.contains(pokemon)) {
-                hand.remove(pokemon);
-                bench.add(pokemon);
-            }
-        }
-    }
-
-    //cambiar
-    @Override
-    public void playPokemon(IPokemon pokemon) {
-        if (bench.size() == 5) {
-            return;
-        }
-        else {
-            if (hand.contains(pokemon)) {
-                hand.remove(pokemon);
-                bench.add(pokemon);
-                return;
-            }
-        }
-    }
-
-    //cambiar
-    @Override
-    public void playEnergy(IEnergy energy) {
-        if (hand.contains(energy) && activePokemon != null) {
-            hand.remove(energy);
-            energy.isAdded(activePokemon);
-            return;
-        }
-    }
-
-    @Override
-    public List<Integer> getPokemonEnergies(IPokemon pokemon) {
-        return pokemon.getEnergies();
+    public List<IPokemon> getBench() {
+        return this.bench;
     }
 
     @Override
     public IPokemon getActivePokemon() { return this.activePokemon; }
 
     @Override
+    public EnergyCounter getPokemonEnergy(IPokemon pokemon) {
+        return pokemon.getEnergyList();
+    }
+
+    @Override
+    public List<IAttack> getPokemonAttacks(IPokemon pokemon) {
+        return pokemon.getAttacks();
+    }
+
+    @Override
+    public void playCard(ICard card) {
+        if (hand.contains(card)) {
+            card.setTrainer(this);
+            card.isPlayed();
+        }
+    }
+
+    @Override
+    public void removeFromHand(ICard card) {
+        hand.remove(card);
+    }
+
+    @Override
+    public void addToBench(IPokemon pokemon) {
+        if (bench.size() < 5) {
+            if (hand.contains(pokemon)) {
+                this.removeFromHand(pokemon);
+                bench.add(pokemon);
+            }
+        }
+    }
+
+    @Override
     public void changeActivePokemon(IPokemon pokemon) {
         if (bench.contains(pokemon)) {
             bench.remove(pokemon);
-            bench.add(activePokemon);
+            if (activePokemon != null) this.addToBench(activePokemon);
             activePokemon = pokemon;
         }
     }
@@ -103,34 +90,40 @@ public class Trainer implements ITrainer {
     }
 
     @Override
-    public List<IAttack> getPokemonAttacks(IPokemon pokemon) {
-        return pokemon.getAttacks();
-    }
-
-    //cambiar
-    @Override
-    public List<IAttack> getActivePokemonAttacks() {
-        return activePokemon.getAttacks();
-    }
-
-    @Override
     public void selectAttack(int index) {
-        activePokemon.selectAttack(index);
+        activePokemon.setAttack(index);
     }
 
     @Override
     public void useAttack(ITrainer opponent) {
-        activePokemon.attack(getOppActivePokemon(opponent));
+        activePokemon.attack(opponent.getActivePokemon());
     }
 
     @Override
-    public List<IPokemon> getOppBench(ITrainer opponent) {
-        return opponent.getBench();
-    }
+    public boolean equals(Object o) {
+        if (o instanceof ITrainer) {
 
-    @Override
-    public IPokemon getOppActivePokemon(ITrainer opponent) {
-        return opponent.getActivePokemon();
-    }
+            List<ICard> theHand = ((ITrainer) o).getHand();
+            List<ICard> thisHand = this.getHand();
+            List<IPokemon> theBench = ((ITrainer) o).getBench();
+            List<IPokemon> thisBench = this.getBench();
+            IPokemon thePokemon = ((ITrainer) o).getActivePokemon();
+            IPokemon thisPokemon = this.getActivePokemon();
+            boolean handResult;
+            boolean benchResult;
+            boolean pokemonResult;
 
+            if (theHand == null || thisHand == null) handResult = (theHand == null && thisHand == null);
+            else handResult = (theHand.equals(thisHand));
+
+            if (theBench == null || thisBench == null) benchResult = (theBench == null && thisBench == null);
+            else benchResult = (theBench.equals(thisBench));
+
+            if (thePokemon == null || thisPokemon == null) pokemonResult = (thePokemon == null && thisPokemon == null);
+            else pokemonResult = (thePokemon.equals(thisPokemon));
+
+            return handResult && benchResult && pokemonResult;
+        }
+        return false;
+    }
 }

@@ -3,9 +3,6 @@ package cc3002.t1;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import static org.junit.Assert.*;
 
 public class AttackTest {
@@ -13,6 +10,7 @@ public class AttackTest {
     private String attackName, attackDescription;
     private int attackBaseDamage, fightingCost, fireCost, grassCost, lightningCost, psychicCost, waterCost;
     private IAttack attack;
+    private EnergyCounter sameEnergyCounter, differentEnergyCounter;
 
 
     @Before
@@ -27,6 +25,16 @@ public class AttackTest {
         psychicCost = 1;
         waterCost = 0;
         attack = new Attack(attackName, attackBaseDamage, attackDescription, fightingCost, fireCost, grassCost, lightningCost, psychicCost, waterCost);
+
+        sameEnergyCounter = new EnergyCounter();
+        sameEnergyCounter.setFightingEnergy(2);
+        sameEnergyCounter.setFireEnergy(1);
+        sameEnergyCounter.setPsychicEnergy(1);
+
+        differentEnergyCounter = new EnergyCounter();
+        differentEnergyCounter.setFightingEnergy(2);
+        differentEnergyCounter.setFireEnergy(3);
+        differentEnergyCounter.setWaterEnergy(4);
     }
 
     @Test
@@ -45,8 +53,8 @@ public class AttackTest {
 
     @Test
     public void getEnergyCostsTest() {
-        assertEquals(new ArrayList<>(Arrays.asList(2, 1, 0, 0, 1, 0)), attack.getEnergyCosts());
-        assertNotEquals(new ArrayList<>(Arrays.asList(1, 2, 0, 0, 1, 0)), attack.getEnergyCosts());
+        assertEquals(sameEnergyCounter, attack.getEnergyCosts());
+        assertNotEquals(differentEnergyCounter, attack.getEnergyCosts());
     }
 
     @Test

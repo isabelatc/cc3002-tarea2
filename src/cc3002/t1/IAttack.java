@@ -1,7 +1,5 @@
 package cc3002.t1;
 
-import java.util.List;
-
 /**
  * The interface for every attack. They are supposed to have many internal properties, and should be used
  * by a Pokémon in a fight with another one.
@@ -29,7 +27,7 @@ public interface IAttack {
      * @return A list of the attack's energy costs, in the order: fighting, fire, grass, lightning, psychic and water.
      */
 
-    List<Integer> getEnergyCosts();
+    EnergyCounter getEnergyCosts();
 
     /**
      * @return Attack's fighting energy cost.

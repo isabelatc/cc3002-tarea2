@@ -41,22 +41,34 @@ public class GrassEnergyTest {
     }
 
     @Test
+    public void getCardNameTest() {
+        assertEquals("I'm a Grass Energy!", aGrassEnergy.getCardName());
+    }
+
+    @Test
+    public void getTrainerTest() {
+        assertNull(aGrassEnergy.getTrainer());
+    }
+
+    @Test
+    public void setTrainer() {
+        aGrassEnergy.setTrainer(trainer);
+        assertEquals(trainer, aGrassEnergy.getTrainer());
+    }
+
+    @Test
     public void isPlayedTest() {
-        aGrassEnergy.isPlayed(trainer);
-        assertEquals(new ArrayList<>(Arrays.asList(charmander, tangela, squirtle, aGrassEnergy)), trainer.getHand());
+        aGrassEnergy.setTrainer(trainer);
+        aGrassEnergy.isPlayed();
+        assertEquals(4, trainer.getHand().size());
     }
 
     @Test
     public void isAddedTest() {
+        aGrassEnergy.setTrainer(trainer);
         aGrassEnergy.isAdded(charmander);
-        assertEquals(new ArrayList<>(Arrays.asList(0, 0, 1, 0, 0, 0)), charmander.getEnergies());
-        assertNotEquals(new ArrayList<>(Arrays.asList(0, 1, 0, 0, 0, 0)), charmander.getEnergies());
-        assertEquals(1, charmander.getGrassEnergies());
-    }
-
-    @Test
-    public void getCardNameTest() {
-        assertEquals("I'm a Grass Energy!", aGrassEnergy.getCardName());
+        assertEquals(3, trainer.getHand().size());
+        assertEquals(1, charmander.getGrassEnergyAvailable());
     }
 
     @Test

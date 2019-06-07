@@ -2,7 +2,6 @@ package cc3002.t1.energies;
 
 import cc3002.t1.AbstractEnergy;
 import cc3002.t1.IPokemon;
-import cc3002.t1.ITrainer;
 
 /**
  * Class of the lightning energy cards. It inherites methods from its abstract superclass AbstractEnergy.
@@ -26,13 +25,9 @@ public class LightningEnergy extends AbstractEnergy {
     public LightningEnergy() { super("A Lightning Energy"); }
 
     @Override
-    public void isPlayed() {
-        super.isPlayed();
-    }
-
-    @Override
     public void isAdded(IPokemon pokemon) {
-        pokemon.addLightningEnergy();
+        pokemon.getEnergyList().addLightningEnergy();
+        this.getTrainer().removeFromHand(this);
     }
 
     @Override

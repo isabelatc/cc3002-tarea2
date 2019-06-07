@@ -2,7 +2,6 @@ package cc3002.t1.energies;
 
 import cc3002.t1.AbstractEnergy;
 import cc3002.t1.IPokemon;
-import cc3002.t1.ITrainer;
 
 /**
  * Class of the water energy cards. It inherites methods from its abstract superclass AbstractEnergy.
@@ -26,13 +25,9 @@ public class WaterEnergy extends AbstractEnergy {
     public WaterEnergy() { super("A Water Energy"); }
 
     @Override
-    public void isPlayed() {
-        super.isPlayed();
-    }
-
-    @Override
     public void isAdded(IPokemon pokemon) {
-        pokemon.addWaterEnergy();
+        pokemon.getEnergyList().addWaterEnergy();
+        this.getTrainer().removeFromHand(this);
     }
 
     @Override
