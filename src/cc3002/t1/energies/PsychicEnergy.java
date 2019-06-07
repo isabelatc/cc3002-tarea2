@@ -27,6 +27,7 @@ public class PsychicEnergy extends AbstractEnergy {
     @Override
     public void isAdded(IPokemon pokemon) {
         pokemon.getEnergyList().addPsychicEnergy();
+        this.getTrainer().removeFromHand(this);
     }
 
     @Override

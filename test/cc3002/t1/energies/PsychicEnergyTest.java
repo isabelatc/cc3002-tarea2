@@ -41,22 +41,34 @@ public class PsychicEnergyTest {
     }
 
     @Test
+    public void getCardNameTest() {
+        assertEquals("I'm a Psychic Energy!", aPsychicEnergy.getCardName());
+    }
+
+    @Test
+    public void getTrainerTest() {
+        assertNull(aPsychicEnergy.getTrainer());
+    }
+
+    @Test
+    public void setTrainer() {
+        aPsychicEnergy.setTrainer(trainer);
+        assertEquals(trainer, aPsychicEnergy.getTrainer());
+    }
+
+    @Test
     public void isPlayedTest() {
-        aPsychicEnergy.isPlayed(trainer);
-        assertEquals(new ArrayList<>(Arrays.asList(charmander, tangela, squirtle, aPsychicEnergy)), trainer.getHand());
+        aPsychicEnergy.setTrainer(trainer);
+        aPsychicEnergy.isPlayed();
+        assertEquals(4, trainer.getHand().size());
     }
 
     @Test
     public void isAddedTest() {
+        aPsychicEnergy.setTrainer(trainer);
         aPsychicEnergy.isAdded(charmander);
-        assertEquals(new ArrayList<>(Arrays.asList(0, 0, 0, 0, 1, 0)), charmander.getEnergies());
-        assertNotEquals(new ArrayList<>(Arrays.asList(0, 1, 0, 0, 0, 0)), charmander.getEnergies());
-        assertEquals(1, charmander.getPsychicEnergies());
-    }
-
-    @Test
-    public void getCardNameTest() {
-        assertEquals("I'm a Psychic Energy!", aPsychicEnergy.getCardName());
+        assertEquals(3, trainer.getHand().size());
+        assertEquals(1, charmander.getPsychicEnergyAvailable());
     }
 
     @Test

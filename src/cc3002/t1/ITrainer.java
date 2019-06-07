@@ -1,5 +1,7 @@
 package cc3002.t1;
 
+import cc3002.t1.energies.FightingEnergy;
+
 import java.util.List;
 
 /**
@@ -32,7 +34,7 @@ public interface ITrainer {
      *
      * @return A dictionary structure listing the Pokémon's energies.
      */
-    EnergyCounter getPokemonEnergies(IPokemon pokemon);
+    EnergyCounter getPokemonEnergy(IPokemon pokemon);
 
     /**
      * The trainer asks for the list of attacks a Pokémon has.
@@ -50,6 +52,13 @@ public interface ITrainer {
     void playCard(ICard card);
 
     /**
+     * The trainer removes a card from their hand.
+     *
+     * @param card The card that will be removed from the trainer's hand.
+     */
+    void removeFromHand(ICard card);
+
+    /**
      * The trainer adds a Pokémon to their bench, if there's enough space.
      *
      * @param pokemon The Pokémon the trainer will add to their bench.
@@ -57,14 +66,14 @@ public interface ITrainer {
     void addToBench(IPokemon pokemon);
 
     /**
-     * The trainer changes the current active Pokémon, only if they're still alive.
+     * The trainer changes the current active pokémon, or sets a specific one in that position.
      *
-     * @param pokemon The Pokémon that will replace the current active Pokémon.
+     * @param pokemon The Pokémon that will replace the current active Pokémon, or be set as such.
      */
     void changeActivePokemon(IPokemon pokemon);
 
     /**
-     * When the active Pokémon is defeated, this method replaces it with the first Pokémon in the bench.
+     * When there is no active Pokémon, this method sets the first Pokémon in the bench as the active one.
      */
     void setActivePokemon();
 
@@ -83,18 +92,7 @@ public interface ITrainer {
      */
     void useAttack(ITrainer opponent);
 
-    /**
-     * Gets the opponent's list of Pokémon in their bench.
-     *
-     * @param opponent The opponent of the trainer.
-     */
-    List<IPokemon> getOppBench(ITrainer opponent);
-
-    /**
-     * Gets the opponent's active Pokémon.
-     *
-     * @param opponent The opponent of the trainer.
-     */
-    IPokemon getOppActivePokemon(ITrainer opponent);
+    @Override
+    boolean equals(Object o);
 
 }

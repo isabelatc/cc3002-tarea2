@@ -1,7 +1,5 @@
 package cc3002.t1;
 
-import java.util.List;
-
 /**
  * The interface for every attack. They are supposed to have many internal properties, and should be used
  * by a Pokémon in a fight with another one.

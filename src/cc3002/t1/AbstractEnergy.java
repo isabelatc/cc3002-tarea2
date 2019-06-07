@@ -32,7 +32,9 @@ public abstract class AbstractEnergy implements ICard, IEnergy {
 
     @Override
     public void isPlayed() {
-        trainer.getActivePokemon().addEnergyToPokemon(this);
+        if (trainer.getActivePokemon() != null) {
+            trainer.getActivePokemon().addEnergyToPokemon(this);
+        }
     }
 
     @Override

@@ -41,22 +41,34 @@ public class FightingEnergyTest {
     }
 
     @Test
+    public void getCardNameTest() {
+        assertEquals("I'm a Fighting Energy!", aFightingEnergy.getCardName());
+    }
+
+    @Test
+    public void getTrainerTest() {
+        assertNull(aFightingEnergy.getTrainer());
+    }
+
+    @Test
+    public void setTrainer() {
+        aFightingEnergy.setTrainer(trainer);
+        assertEquals(trainer, aFightingEnergy.getTrainer());
+    }
+
+    @Test
     public void isPlayedTest() {
-        aFightingEnergy.isPlayed(trainer);
+        aFightingEnergy.setTrainer(trainer);
+        aFightingEnergy.isPlayed();
         assertEquals(4, trainer.getHand().size());
     }
 
     @Test
     public void isAddedTest() {
+        aFightingEnergy.setTrainer(trainer);
         aFightingEnergy.isAdded(charmander);
-        assertEquals(new ArrayList<>(Arrays.asList(1, 0, 0, 0, 0, 0)), charmander.getEnergies());
-        assertNotEquals(new ArrayList<>(Arrays.asList(0, 1, 0, 0, 0, 0)), charmander.getEnergies());
-        assertEquals(1, charmander.getFightingEnergies());
-    }
-
-    @Test
-    public void getCardNameTest() {
-        assertEquals("I'm a Fighting Energy!", aFightingEnergy.getCardName());
+        assertEquals(3, trainer.getHand().size());
+        assertEquals(1, charmander.getFightingEnergyAvailable());
     }
 
     @Test

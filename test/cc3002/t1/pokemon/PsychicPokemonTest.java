@@ -1,9 +1,6 @@
 package cc3002.t1.pokemon;
 
-import cc3002.t1.Attack;
-import cc3002.t1.IAttack;
-import cc3002.t1.IEnergy;
-import cc3002.t1.IPokemon;
+import cc3002.t1.*;
 import cc3002.t1.energies.FireEnergy;
 import cc3002.t1.energies.PsychicEnergy;
 import cc3002.t1.energies.WaterEnergy;
@@ -20,7 +17,7 @@ public class PsychicPokemonTest {
     private IEnergy aFire, aPsychic, aWater;
     private IAttack attack10, attack20, attack30, attack40, attack50;
     private IPokemon abra, squirtle, otherAbra;
-
+    private ITrainer trainer;
 
     @Before
     public void setUp() {
@@ -46,22 +43,38 @@ public class PsychicPokemonTest {
                 new ArrayList<>(Arrays.asList(attack10, attack50)));
         otherAbra = new PsychicPokemon("Abra", 63, 90,
                 new ArrayList<>(Arrays.asList(attack10, attack20, attack50)));
+
+        trainer = new Trainer(new ArrayList<>(Arrays.asList(abra, squirtle, aFire, aPsychic, otherAbra, aWater)));
     }
 
     @Test
     public void constructorTest() {
         assertEquals(63, abra.getID());
         assertEquals(100, abra.getHP());
-        assertEquals(new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0)), abra.getEnergies());
-        assertEquals(0, abra.getFightingEnergies());
-        assertEquals(0, abra.getFireEnergies());
-        assertEquals(0, abra.getGrassEnergies());
-        assertEquals(0, abra.getLightningEnergies());
-        assertEquals(0, abra.getPsychicEnergies());
-        assertEquals(0, abra.getWaterEnergies());
+        assertEquals(new EnergyCounter(), abra.getEnergyList());
+        assertEquals(0, abra.getFightingEnergyAvailable());
+        assertEquals(0, abra.getFireEnergyAvailable());
+        assertEquals(0, abra.getGrassEnergyAvailable());
+        assertEquals(0, abra.getLightningEnergyAvailable());
+        assertEquals(0, abra.getPsychicEnergyAvailable());
+        assertEquals(0, abra.getWaterEnergyAvailable());
         assertEquals("Abra", abra.getCardName());
         assertEquals(new ArrayList<>(Arrays.asList(attack30, attack50)), abra.getAttacks());
         assertNull(abra.getSelectedAttack());
+    }
+
+    @Test
+    public void setTrainerTest() {
+        abra.setTrainer(trainer);
+        assertEquals(trainer, abra.getTrainer());
+    }
+
+    @Test
+    public void isPlayedTest() {
+        abra.setTrainer(trainer);
+        abra.isPlayed();
+        assertTrue(abra.getTrainer().getBench().contains(abra));
+        assertFalse(abra.getTrainer().getHand().contains(abra));
     }
 
     @Test
@@ -72,64 +85,59 @@ public class PsychicPokemonTest {
     }
 
     @Test
-    public void addFightingEnergyTest() {
-        abra.addFightingEnergy();
-        assertEquals(1, abra.getFightingEnergies());
+    public void updateHPTest() {
+        abra.updateHP(90);
+        assertEquals(90, abra.getHP());
     }
 
     @Test
-    public void addFireEnergyTest() {
-        abra.addFireEnergy();
-        assertEquals(1, abra.getFireEnergies());
+    public void addEnergyToPokemonTest() {
+        EnergyCounter abraCounter = abra.getEnergyList();
+        aFire.setTrainer(trainer);
+        abra.addEnergyToPokemon(aFire);
+        abraCounter.addFireEnergy();
+        assertEquals(abraCounter, abra.getEnergyList());
     }
 
     @Test
-    public void addGrassEnergyTest() {
-        abra.addGrassEnergy();
-        assertEquals(1, abra.getGrassEnergies());
-    }
-
-    @Test
-    public void addLightningEnergyTest() {
-        abra.addLightningEnergy();
-        assertEquals(1, abra.getLightningEnergies());
-    }
-
-    @Test
-    public void addPsychicEnergyTest() {
-        abra.addPsychicEnergy();
-        assertEquals(1, abra.getPsychicEnergies());
-    }
-
-    @Test
-    public void addWaterEnergyTest() {
-        abra.addWaterEnergy();
-        assertEquals(1, abra.getWaterEnergies());
-    }
-
-    @Test
-    public void selectAttackTest() {
-        abra.selectAttack(0);
+    public void setAttackTest() {
+        abra.setAttack(0);
         assertEquals(attack30, abra.getSelectedAttack());
-        abra.selectAttack(3);
+        abra.setAttack(3);
         assertEquals(attack30, abra.getSelectedAttack());
+    }
+
+    @Test
+    public void canAttackTest() {
+        aFire.setTrainer(trainer);
+        aWater.setTrainer(trainer);
+        abra.addEnergyToPokemon(aFire);
+        abra.addEnergyToPokemon(aWater);
+        abra.setAttack(0);
+        assertTrue(abra.canAttack());
+        abra.setAttack(1);
+        assertFalse(abra.canAttack());
     }
 
     @Test
     public void attackTest() {
-        abra.selectAttack(0);
+        abra.setAttack(0);
         abra.attack(otherAbra);
         assertEquals(90, otherAbra.getHP());
 
+        aFire.setTrainer(trainer);
+        aPsychic.setTrainer(trainer);
+        aWater.setTrainer(trainer);
         abra.addEnergyToPokemon(aFire);
         abra.addEnergyToPokemon(aPsychic);
         abra.addEnergyToPokemon(aWater);
 
-        abra.selectAttack(1);
+        otherAbra.setTrainer(trainer);
+        abra.setAttack(1);
         abra.attack(otherAbra);
         assertEquals(0, otherAbra.getHP());
 
-        abra.selectAttack(0);
+        abra.setAttack(0);
         abra.attack(squirtle);
         assertEquals(70, squirtle.getHP());
     }

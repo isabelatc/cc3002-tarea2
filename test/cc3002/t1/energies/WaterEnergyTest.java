@@ -41,22 +41,34 @@ public class WaterEnergyTest {
     }
 
     @Test
+    public void getCardNameTest() {
+        assertEquals("I'm a Water Energy!", aWaterEnergy.getCardName());
+    }
+
+    @Test
+    public void getTrainerTest() {
+        assertNull(aWaterEnergy.getTrainer());
+    }
+
+    @Test
+    public void setTrainer() {
+        aWaterEnergy.setTrainer(trainer);
+        assertEquals(trainer, aWaterEnergy.getTrainer());
+    }
+
+    @Test
     public void isPlayedTest() {
-        aWaterEnergy.isPlayed(trainer);
-        assertEquals(new ArrayList<>(Arrays.asList(charmander, tangela, squirtle, aWaterEnergy)), trainer.getHand());
+        aWaterEnergy.setTrainer(trainer);
+        aWaterEnergy.isPlayed();
+        assertEquals(4, trainer.getHand().size());
     }
 
     @Test
     public void isAddedTest() {
+        aWaterEnergy.setTrainer(trainer);
         aWaterEnergy.isAdded(charmander);
-        assertEquals(new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 1)), charmander.getEnergies());
-        assertNotEquals(new ArrayList<>(Arrays.asList(0, 1, 0, 0, 0, 0)), charmander.getEnergies());
-        assertEquals(1, charmander.getWaterEnergies());
-    }
-
-    @Test
-    public void getCardNameTest() {
-        assertEquals("I'm a Water Energy!", aWaterEnergy.getCardName());
+        assertEquals(3, trainer.getHand().size());
+        assertEquals(1, charmander.getWaterEnergyAvailable());
     }
 
     @Test

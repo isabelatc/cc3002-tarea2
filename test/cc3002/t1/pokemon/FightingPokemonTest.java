@@ -15,6 +15,7 @@ public class FightingPokemonTest {
     private IEnergy aFire, aPsychic, aWater;
     private IAttack attack20, attack30, attack40, attack50;
     private IPokemon mankey, squirtle, pikachu;
+    private ITrainer trainer;
 
 
     @Before
@@ -40,22 +41,39 @@ public class FightingPokemonTest {
         pikachu = new LightningPokemon("Pikachu", 25, 50,
                 new ArrayList<>(Arrays.asList(attack20, attack30, attack40, attack50)));
 
+        trainer = new Trainer(new ArrayList<>(Arrays.asList(mankey, squirtle, aFire, aPsychic, pikachu, aWater)));
+
     }
 
     @Test
     public void constructorTest() {
         assertEquals(56, mankey.getID());
         assertEquals(100, mankey.getHP());
-        assertEquals(new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0)), mankey.getEnergies());
-        assertEquals(0, mankey.getFightingEnergies());
-        assertEquals(0, mankey.getFireEnergies());
-        assertEquals(0, mankey.getGrassEnergies());
-        assertEquals(0, mankey.getLightningEnergies());
-        assertEquals(0, mankey.getPsychicEnergies());
-        assertEquals(0, mankey.getWaterEnergies());
+        assertEquals(new EnergyCounter(), mankey.getEnergyList());
+        assertEquals(0, mankey.getFightingEnergyAvailable());
+        assertEquals(0, mankey.getFireEnergyAvailable());
+        assertEquals(0, mankey.getGrassEnergyAvailable());
+        assertEquals(0, mankey.getLightningEnergyAvailable());
+        assertEquals(0, mankey.getPsychicEnergyAvailable());
+        assertEquals(0, mankey.getWaterEnergyAvailable());
         assertEquals("Mankey", mankey.getCardName());
         assertEquals(new ArrayList<>(Arrays.asList(attack30, attack50)), mankey.getAttacks());
         assertNull(mankey.getSelectedAttack());
+        assertNull(mankey.getTrainer());
+    }
+
+    @Test
+    public void setTrainerTest() {
+        mankey.setTrainer(trainer);
+        assertEquals(trainer, mankey.getTrainer());
+    }
+
+    @Test
+    public void isPlayedTest() {
+        mankey.setTrainer(trainer);
+        mankey.isPlayed();
+        assertTrue(mankey.getTrainer().getBench().contains(mankey));
+        assertFalse(mankey.getTrainer().getHand().contains(mankey));
     }
 
     @Test
@@ -66,100 +84,95 @@ public class FightingPokemonTest {
     }
 
     @Test
-    public void addFightingEnergyTest() {
-        mankey.addFightingEnergy();
-        assertEquals(1, mankey.getFightingEnergies());
+    public void updateHPTest() {
+        mankey.updateHP(90);
+        assertEquals(90, mankey.getHP());
     }
 
     @Test
-    public void addFireEnergyTest() {
-        mankey.addFireEnergy();
-        assertEquals(1, mankey.getFireEnergies());
+    public void addEnergyToPokemonTest() {
+        EnergyCounter mankeyCounter = mankey.getEnergyList();
+        aFire.setTrainer(trainer);
+        mankey.addEnergyToPokemon(aFire);
+        mankeyCounter.addFireEnergy();
+        assertEquals(mankeyCounter, mankey.getEnergyList());
     }
 
     @Test
-    public void addGrassEnergyTest() {
-        mankey.addGrassEnergy();
-        assertEquals(1, mankey.getGrassEnergies());
-    }
-
-    @Test
-    public void addLightningEnergyTest() {
-        mankey.addLightningEnergy();
-        assertEquals(1, mankey.getLightningEnergies());
-    }
-
-    @Test
-    public void addPsychicEnergyTest() {
-        mankey.addPsychicEnergy();
-        assertEquals(1, mankey.getPsychicEnergies());
-    }
-
-    @Test
-    public void addWaterEnergyTest() {
-        mankey.addWaterEnergy();
-        assertEquals(1, mankey.getWaterEnergies());
-    }
-
-    @Test
-    public void selectAttackTest() {
-        mankey.selectAttack(0);
+    public void setAttackTest() {
+        mankey.setAttack(0);
         assertEquals(attack30, mankey.getSelectedAttack());
-        mankey.selectAttack(3);
+        mankey.setAttack(3);
         assertEquals(attack30, mankey.getSelectedAttack());
+    }
+
+    @Test
+    public void canAttackTest() {
+        aFire.setTrainer(trainer);
+        aWater.setTrainer(trainer);
+        mankey.addEnergyToPokemon(aFire);
+        mankey.addEnergyToPokemon(aWater);
+        mankey.setAttack(0);
+        assertTrue(mankey.canAttack());
+        mankey.setAttack(1);
+        assertFalse(mankey.canAttack());
     }
 
     @Test
     public void attackTest() {
-        mankey.selectAttack(0);
+        mankey.setAttack(0);
         mankey.attack(squirtle);
         assertEquals(100, squirtle.getHP());
 
+        aFire.setTrainer(trainer);
+        aPsychic.setTrainer(trainer);
+        aWater.setTrainer(trainer);
         mankey.addEnergyToPokemon(aFire);
         mankey.addEnergyToPokemon(aPsychic);
         mankey.addEnergyToPokemon(aWater);
 
-        mankey.selectAttack(1);
+        mankey.setAttack(1);
         mankey.attack(squirtle);
         assertEquals(80, squirtle.getHP());
 
-        mankey.selectAttack(0);
+        pikachu.setTrainer(trainer);
+        mankey.setAttack(0);
         mankey.attack(pikachu);
         assertEquals(0, pikachu.getHP());
     }
 
     @Test
-    public void attackedByFightingPokemon() {
+    public void attackedByFightingPokemonTest() {
         mankey.attackedByFightingPokemon(attack40);
         assertEquals(60, mankey.getHP());
     }
 
     @Test
-    public void attackedByFirePokemon() {
+    public void attackedByFirePokemonTest() {
         mankey.attackedByFirePokemon(attack40);
         assertEquals(60, mankey.getHP());
     }
 
     @Test
-    public void attackedByGrassPokemon() {
+    public void attackedByGrassPokemonTest() {
         mankey.attackedByGrassPokemon(attack40);
         assertEquals(20, mankey.getHP());
     }
 
     @Test
-    public void attackedByLightningPokemon() {
+    public void attackedByLightningPokemonTest() {
         mankey.attackedByLightningPokemon(attack40);
         assertEquals(60, mankey.getHP());
     }
 
     @Test
-    public void attackedByPsychicPokemon() {
+    public void attackedByPsychicPokemonTest() {
         mankey.attackedByPsychicPokemon(attack40);
         assertEquals(20, mankey.getHP());
     }
 
     @Test
-    public void attackedByWaterPokemon() {
+    public void attackedByWaterPokemonTest() {
         mankey.attackedByWaterPokemon(attack40);
         assertEquals(60, mankey.getHP());
     }
