@@ -35,6 +35,7 @@ public class AttackTest {
         differentEnergyCounter.setFightingEnergy(2);
         differentEnergyCounter.setFireEnergy(3);
         differentEnergyCounter.setWaterEnergy(4);
+        
     }
 
     @Test
