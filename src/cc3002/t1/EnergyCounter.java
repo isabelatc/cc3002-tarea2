@@ -3,6 +3,11 @@ package cc3002.t1;
 import java.util.EnumMap;
 import java.util.Map;
 
+/**
+ * Class of the structure that will be used to keep track of a card's energies.
+ *
+ * @author Isabela Tellechea Coluccio
+ */
 public class EnergyCounter {
     private Map<EnergyType, Integer> energies = new EnumMap<>(EnergyType.class);
 

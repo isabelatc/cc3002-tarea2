@@ -7,15 +7,18 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
 public class TrainerTest {
 
-    private IEnergy aFightingEnergy, aFireEnergy, aGrassEnergy, aLightningEnergy, anotherGrassEnergy, aWaterEnergy;
+    private IEnergy aFightingEnergy, aFireEnergy, aGrassEnergy, aLightningEnergy, anotherGrassEnergy, aWaterEnergy, aPsychicEnergy;
     private IAttack attack10, attack20, attack30, attack40, attack50;
     private IPokemon charmander, squirtle, tangela, abra, anotherSquirtle, anotherTangela, pikachu, mankey, anotherAbra;
     private ITrainer trainer, opponent;
+    private List<ICard> trainerDeck, opponentDeck, auxTrainerDeck, auxOpponentDeck;
 
     @Before
     public void setUp() {
@@ -23,8 +26,9 @@ public class TrainerTest {
         aFightingEnergy = new FightingEnergy();
         aFireEnergy = new FireEnergy();
         aGrassEnergy = new GrassEnergy();
-        aLightningEnergy = new LightningEnergy();
         anotherGrassEnergy = new GrassEnergy();
+        aLightningEnergy = new LightningEnergy();
+        aPsychicEnergy = new PsychicEnergy();
         aWaterEnergy = new WaterEnergy();
 
         attack10 = new Attack("Attack 10", 10, "This attack has a base damage of 10",
@@ -58,16 +62,37 @@ public class TrainerTest {
         anotherAbra = new PsychicPokemon("Abra", 63, 100,
                 new ArrayList<>(Arrays.asList(attack10, attack20, attack30, attack40, attack50)));
 
-        trainer = new Trainer(new ArrayList<>(Arrays.asList(anotherSquirtle, aGrassEnergy, charmander, abra, tangela,
-                aFireEnergy, squirtle, anotherGrassEnergy, anotherTangela)));
+        auxTrainerDeck = new ArrayList<>(Arrays.asList(charmander, squirtle, tangela, abra, anotherSquirtle,
+                anotherTangela, aFireEnergy, aGrassEnergy, anotherGrassEnergy, aPsychicEnergy));
 
-        opponent = new Trainer(new ArrayList<>(Arrays.asList(pikachu, mankey, aLightningEnergy, aFightingEnergy,
-                aWaterEnergy, anotherAbra)));
+        auxOpponentDeck = new ArrayList<>(Arrays.asList(pikachu, mankey, anotherAbra, aFightingEnergy, aLightningEnergy, aWaterEnergy));
+
+        trainerDeck = new ArrayList<>();
+        opponentDeck = new ArrayList<>();
+
+        for (int i = 0; i < 6; i++) {
+            for (ICard card : auxTrainerDeck) {
+                trainerDeck.add(card);
+            }
+        }
+
+        for (int i = 0; i < 10; i++) {
+            for (ICard card : auxOpponentDeck) {
+                opponentDeck.add(card);
+            }
+        }
+
+        Collections.shuffle(trainerDeck);
+        Collections.shuffle(opponentDeck);
+
+        trainer = new Trainer(trainerDeck);
+        opponent = new Trainer(opponentDeck);
+
     }
 
     @Test
     public void getHandTest() {
-        assertEquals(9, trainer.getHand().size());
+        assertEquals(0, trainer.getHand().size());
     }
 
     @Test
@@ -76,8 +101,24 @@ public class TrainerTest {
     }
 
     @Test
+    public void getDiscardPileTest() {
+        assertEquals(0, trainer.getDiscardPile().size());
+    }
+
+    @Test
+    public void getDeckTest() {
+        assertEquals(60, trainer.getDeck().size());
+    }
+
+    @Test
+    public void getPrizesTest() {
+        assertEquals(0, trainer.getPrizes().size());
+    }
+
+    @Test
     public void getActivePokemonTest() {
         assertNull(trainer.getActivePokemon());
+        trainer.addToHand(charmander);
         trainer.playCard(charmander);
         trainer.setActivePokemon();
         assertEquals(charmander, trainer.getActivePokemon());
@@ -94,43 +135,69 @@ public class TrainerTest {
     }
 
     @Test
+    public void drawFromDeckTest() {
+        trainer.drawFromDeck();
+        assertEquals(59, trainer.getDeck().size());
+        assertEquals(1, trainer.getHand().size());
+    }
+
+    @Test
     public void playCardTest() {
+        trainer.addToHand(charmander);
+        trainer.addToHand(squirtle);
+        trainer.addToHand(abra);
+        trainer.addToHand(aFireEnergy);
+
         trainer.playCard(charmander);
         trainer.playCard(squirtle);
         trainer.playCard(abra);
         trainer.playCard(aFireEnergy);
+
         assertEquals(3, trainer.getBench().size());
-        assertEquals(6, trainer.getHand().size());
+        assertEquals(1, trainer.getHand().size());
         trainer.setActivePokemon();
         trainer.playCard(aFireEnergy);
         assertEquals(2, trainer.getBench().size());
-        assertEquals(5, trainer.getHand().size());
+        assertEquals(0, trainer.getHand().size());
         assertEquals(1, charmander.getFireEnergyAvailable());
         assertEquals(0, charmander.getGrassEnergyAvailable());
+        assertEquals(trainer, charmander.getTrainer());
         assertEquals(trainer, squirtle.getTrainer());
     }
 
     @Test
+    public void addToHandTest() {
+        trainer.addToHand(charmander);
+        assertEquals(1, trainer.getHand().size());
+    }
+
+    @Test
     public void removeFromHandTest() {
+        trainer.addToHand(tangela);
         trainer.removeFromHand(tangela);
         assertFalse(trainer.getHand().contains(tangela));
-        assertEquals(8, trainer.getHand().size());
+        assertEquals(0, trainer.getHand().size());
     }
 
     @Test
     public void addToBenchTest() {
+        trainer.addToHand(tangela);
         trainer.addToBench(tangela);
         assertFalse(trainer.getHand().contains(tangela));
         assertTrue(trainer.getBench().contains(tangela));
-        assertEquals(8, trainer.getHand().size());
+        assertEquals(0, trainer.getHand().size());
         assertEquals(1, trainer.getBench().size());
     }
 
     @Test
     public void changeActivePokemonTest() {
+        trainer.addToHand(charmander);
+        trainer.addToHand(abra);
+
         trainer.playCard(charmander);
         trainer.playCard(abra);
         trainer.changeActivePokemon(abra);
+
         assertEquals(abra, trainer.getActivePokemon());
         assertTrue(trainer.getBench().contains(charmander));
         assertFalse(trainer.getBench().contains(abra));
@@ -139,6 +206,7 @@ public class TrainerTest {
 
     @Test
     public void setActivePokemonTest() {
+        trainer.addToHand(squirtle);
         trainer.playCard(squirtle);
         trainer.setActivePokemon();
         assertEquals(squirtle, trainer.getActivePokemon());
@@ -147,6 +215,7 @@ public class TrainerTest {
 
     @Test
     public void selectAttackTest() {
+        trainer.addToHand(squirtle);
         trainer.playCard(squirtle);
         trainer.setActivePokemon();
         trainer.selectAttack(1);
@@ -155,15 +224,24 @@ public class TrainerTest {
 
     @Test
     public void useAttackTest() {
+        trainer.addToHand(charmander);
+        trainer.addToHand(anotherSquirtle);
+        trainer.addToHand(anotherTangela);
         trainer.playCard(charmander);
         trainer.playCard(anotherSquirtle);
         trainer.playCard(anotherTangela);
         trainer.setActivePokemon();
 
+        trainer.addToHand(aFireEnergy);
+        trainer.addToHand(aGrassEnergy);
+        trainer.addToHand(anotherGrassEnergy);
         trainer.playCard(aFireEnergy);
         trainer.playCard(aGrassEnergy);
         trainer.playCard(anotherGrassEnergy);
 
+        opponent.addToHand(pikachu);
+        opponent.addToHand(mankey);
+        opponent.addToHand(anotherAbra);
         opponent.playCard(pikachu);
         opponent.playCard(mankey);
         opponent.playCard(anotherAbra);
@@ -181,8 +259,7 @@ public class TrainerTest {
 
     @Test
     public void equalsTest() {
-        ITrainer otherTrainer = new Trainer(new ArrayList<>(Arrays.asList(anotherSquirtle, aGrassEnergy, charmander, abra, tangela,
-                aFireEnergy, squirtle, anotherGrassEnergy, anotherTangela)));
-        assertEquals(otherTrainer, trainer);
+        List<ICard> newDeck = trainer.getDeck();
+        assertEquals(new Trainer(newDeck), trainer);
     }
 }

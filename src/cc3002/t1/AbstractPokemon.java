@@ -3,14 +3,12 @@ package cc3002.t1;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractPokemon implements ICard, IPokemon {
+public abstract class AbstractPokemon extends AbstractCard implements ICard, IPokemon {
 
-    private String name;
     private int id, hp;
     private List<IAttack> attackList;
     private EnergyCounter energyList;
     private IAttack selectedAttack;
-    private ITrainer trainer;
 
     /**
      * The constructor of AbstractPokemon. It cannot create an instance of the class itself, but it is used by all of its subclasses.
@@ -23,7 +21,7 @@ public abstract class AbstractPokemon implements ICard, IPokemon {
      * @param anAttackList The list of attacks the Pokémon can use. If it contains more than 4 attacks, only the first 4 will be stored.
      */
     protected AbstractPokemon(String name, int id, int hp, ArrayList<IAttack> anAttackList) {
-        this.name = name;
+        super(name);
         this.id = id;
         this.hp = hp;
         this.attackList = new ArrayList<>();
@@ -32,7 +30,6 @@ public abstract class AbstractPokemon implements ICard, IPokemon {
         }
         this.energyList = new EnergyCounter();
         this.selectedAttack = null;
-        this.trainer = null;
     }
 
     @Override
@@ -75,21 +72,9 @@ public abstract class AbstractPokemon implements ICard, IPokemon {
     @Override
     public IAttack getSelectedAttack() { return selectedAttack; }
 
-    @Override
-    public String getCardName() { return name; }
 
     @Override
-    public ITrainer getTrainer() { return trainer; }
-
-    @Override
-    public void setTrainer(ITrainer trainer) {
-        this.trainer = trainer;
-    }
-
-    @Override
-    public void isPlayed() {
-        trainer.addToBench(this);
-    }
+    public void isPlayed() { this.getTrainer().addToBench(this); }
 
     @Override
     public abstract boolean equals(Object o);

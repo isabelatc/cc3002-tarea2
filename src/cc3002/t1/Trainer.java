@@ -12,18 +12,21 @@ import java.util.List;
 public class Trainer implements ITrainer {
 
     private IPokemon activePokemon;
+    private List<ICard> deck, hand, discardPile, prizes;
     private List<IPokemon> bench;
-    private List<ICard> hand;
 
     /**
      * Constructor for a new Trainer. Some of their properties are empty when initialized.
      *
-     * @param hand Trainer's hand of cards.
+     * @param deck Trainer's deck of cards.
      */
-    public Trainer(List<ICard> hand) {
+    public Trainer(List<ICard> deck) {
         this.activePokemon = null;
+        if(deck.size() == 60) this.deck = deck;
+        this.hand = new ArrayList<>();
+        this.discardPile = new ArrayList<>();
+        this.prizes = new ArrayList<>();
         this.bench = new ArrayList<>();
-        this.hand = hand;
     }
 
     @Override
@@ -34,6 +37,21 @@ public class Trainer implements ITrainer {
     @Override
     public List<IPokemon> getBench() {
         return this.bench;
+    }
+
+    @Override
+    public List<ICard> getDiscardPile() {
+        return this.discardPile;
+    }
+
+    @Override
+    public List<ICard> getDeck() {
+        return this.deck;
+    }
+
+    @Override
+    public List<ICard> getPrizes() {
+        return this.prizes;
     }
 
     @Override
@@ -50,11 +68,25 @@ public class Trainer implements ITrainer {
     }
 
     @Override
+    public void drawFromDeck() {
+        if (getDeck().size() > 0) {
+            ICard card = deck.get(0);
+            deck.remove(0);
+            this.addToHand(card);
+        }
+    }
+
+    @Override
     public void playCard(ICard card) {
         if (hand.contains(card)) {
             card.setTrainer(this);
             card.isPlayed();
         }
+    }
+
+    @Override
+    public void addToHand(ICard card) {
+        hand.add(card);
     }
 
     @Override
@@ -103,18 +135,37 @@ public class Trainer implements ITrainer {
     public boolean equals(Object o) {
         if (o instanceof ITrainer) {
 
+            List<ICard> theDeck = ((ITrainer) o).getDeck();
+            List<ICard> thisDeck = this.getDeck();
+            List<ICard> theDiscardPile = ((ITrainer) o).getDiscardPile();
+            List<ICard> thisDiscardPile = this.getDiscardPile();
             List<ICard> theHand = ((ITrainer) o).getHand();
             List<ICard> thisHand = this.getHand();
+            List<ICard> thePrizes = ((ITrainer) o).getPrizes();
+            List<ICard> thisPrizes = this.getPrizes();
             List<IPokemon> theBench = ((ITrainer) o).getBench();
             List<IPokemon> thisBench = this.getBench();
             IPokemon thePokemon = ((ITrainer) o).getActivePokemon();
             IPokemon thisPokemon = this.getActivePokemon();
+
+            boolean deckResult;
+            boolean discardPileResult;
             boolean handResult;
+            boolean prizesResult;
             boolean benchResult;
             boolean pokemonResult;
 
+            if (theDeck == null || thisDeck == null) deckResult = (theDeck == null && thisDeck == null);
+            else deckResult = (theDeck.equals(thisDeck));
+
+            if (theDiscardPile == null || thisDiscardPile == null) discardPileResult = (theDiscardPile == null && thisDiscardPile == null);
+            else discardPileResult = (theDiscardPile.equals(thisDiscardPile));
+
             if (theHand == null || thisHand == null) handResult = (theHand == null && thisHand == null);
             else handResult = (theHand.equals(thisHand));
+
+            if (thePrizes == null || thisPrizes == null) prizesResult = (thePrizes == null && thisPrizes == null);
+            else prizesResult = (thePrizes.equals(thisPrizes));
 
             if (theBench == null || thisBench == null) benchResult = (theBench == null && thisBench == null);
             else benchResult = (theBench.equals(thisBench));
@@ -122,7 +173,7 @@ public class Trainer implements ITrainer {
             if (thePokemon == null || thisPokemon == null) pokemonResult = (thePokemon == null && thisPokemon == null);
             else pokemonResult = (thePokemon.equals(thisPokemon));
 
-            return handResult && benchResult && pokemonResult;
+            return deckResult && discardPileResult && handResult && prizesResult && benchResult && pokemonResult;
         }
         return false;
     }
