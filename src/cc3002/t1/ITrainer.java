@@ -1,7 +1,5 @@
 package cc3002.t1;
 
-import cc3002.t1.energies.FightingEnergy;
-
 import java.util.List;
 
 /**
@@ -21,6 +19,21 @@ public interface ITrainer {
      * @return A list of the Pokémon in the Trainer's bench.
      */
     List<IPokemon> getBench();
+
+    /**
+     * @return A list of the cards in the trainer's discard pile.
+     */
+    List<ICard> getDiscardPile();
+
+    /**
+     * @return The size of the current deck of the trainer.
+     */
+    List<ICard> getDeck();
+
+    /**
+     * @return The size of the list of prize cards the trainer hasn't revealed.
+     */
+    List<ICard> getPrizes();
 
     /**
      * @return The current active Pokémon.
@@ -45,11 +58,23 @@ public interface ITrainer {
     List<IAttack> getPokemonAttacks(IPokemon pokemon);
 
     /**
+     * The trainer draws the first card of their deck.
+     */
+    void drawFromDeck();
+
+    /**
      * This method represents the actions that happen when the trainer plays a card.
      *
      * @param card The card the trainer is going to play (could be an energy or a Pokémon).
      */
     void playCard(ICard card);
+
+    /**
+     * The trainer adds a card to their hand.
+     *
+     * @param card The card that will be added to the trainer's hand.
+     */
+    void addToHand(ICard card);
 
     /**
      * The trainer removes a card from their hand.

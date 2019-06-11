@@ -6,6 +6,11 @@ import cc3002.t1.IPokemon;
 
 import java.util.ArrayList;
 
+/**
+ * Class of the lightning pokémon cards. It inherites methods from its abstract superclass AbstractPokemon.
+ *
+ * @author Isabela Tellechea Coluccio
+ */
 public class LightningPokemon extends AbstractPokemon {
 
     /**

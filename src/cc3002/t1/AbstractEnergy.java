@@ -1,9 +1,6 @@
 package cc3002.t1;
 
-public abstract class AbstractEnergy implements ICard, IEnergy {
-
-    private String name;
-    private ITrainer trainer;
+public abstract class AbstractEnergy extends AbstractCard implements ICard, IEnergy {
 
     /**
      * Creates an energy card. At the moment there is no trainer associated to it.
@@ -11,29 +8,13 @@ public abstract class AbstractEnergy implements ICard, IEnergy {
      * @param name The card's name.
      */
     protected AbstractEnergy(String name) {
-        this.name = name;
-        this.trainer = null;
-    }
-
-    @Override
-    public String getCardName() {
-        return this.name;
-    }
-
-    @Override
-    public ITrainer getTrainer() {
-        return this.trainer;
-    }
-
-    @Override
-    public void setTrainer(ITrainer trainer) {
-        this.trainer = trainer;
+        super(name);
     }
 
     @Override
     public void isPlayed() {
-        if (trainer.getActivePokemon() != null) {
-            trainer.getActivePokemon().addEnergyToPokemon(this);
+        if (this.getTrainer().getActivePokemon() != null) {
+            this.getTrainer().getActivePokemon().addEnergyToPokemon(this);
         }
     }
 

@@ -9,6 +9,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -18,6 +20,7 @@ public class FightingEnergyTest {
     private IAttack attack10, attack20, attack30;
     private IPokemon charmander, squirtle, tangela;
     private ITrainer trainer;
+    private List<ICard> trainerDeck, auxTrainerDeck;
 
     @Before
     public void setUp(){
@@ -37,7 +40,23 @@ public class FightingEnergyTest {
         tangela = new GrassPokemon("Tangela", 114, 100,
                 new ArrayList<>(Arrays.asList(attack10)));
 
-        trainer = new Trainer(new ArrayList<>(Arrays.asList(charmander, tangela, squirtle, aFightingEnergy)));
+        auxTrainerDeck = new ArrayList<>(Arrays.asList(charmander, tangela, squirtle, aFightingEnergy));
+        trainerDeck = new ArrayList<>();
+
+        for (int i = 0; i < 15; i++) {
+            for (ICard card : auxTrainerDeck) {
+                trainerDeck.add(card);
+            }
+        }
+
+        Collections.shuffle(trainerDeck);
+
+        trainer = new Trainer(trainerDeck);
+        trainer.addToHand(charmander);
+        trainer.addToHand(tangela);
+        trainer.addToHand(squirtle);
+        trainer.addToHand(aFightingEnergy);
+
     }
 
     @Test

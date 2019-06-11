@@ -4,17 +4,16 @@
     <list default="true" id="6b903b28-c627-41fd-b6a3-cbe95d61801c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cc3002/t1/AbstractEnergy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc3002/t1/AbstractEnergy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cc3002/t1/AbstractPokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc3002/t1/AbstractPokemon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cc3002/t1/EnergyCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc3002/t1/EnergyCounter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc3002/t1/IAttack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc3002/t1/IAttack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cc3002/t1/ITrainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc3002/t1/ITrainer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cc3002/t1/Trainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc3002/t1/Trainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc3002/t1/energies/FightingEnergy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc3002/t1/energies/FightingEnergy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc3002/t1/energies/FireEnergy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc3002/t1/energies/FireEnergy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc3002/t1/energies/GrassEnergy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc3002/t1/energies/GrassEnergy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc3002/t1/energies/LightningEnergy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc3002/t1/energies/LightningEnergy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc3002/t1/energies/PsychicEnergy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc3002/t1/energies/PsychicEnergy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cc3002/t1/energies/WaterEnergy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc3002/t1/energies/WaterEnergy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/cc3002/t1/AttackTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/cc3002/t1/AttackTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cc3002/t1/pokemon/FightingPokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc3002/t1/pokemon/FightingPokemon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cc3002/t1/pokemon/FirePokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc3002/t1/pokemon/FirePokemon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cc3002/t1/pokemon/GrassPokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc3002/t1/pokemon/GrassPokemon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cc3002/t1/pokemon/LightningPokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc3002/t1/pokemon/LightningPokemon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cc3002/t1/pokemon/PsychicPokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc3002/t1/pokemon/PsychicPokemon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cc3002/t1/pokemon/WaterPokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cc3002/t1/pokemon/WaterPokemon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/cc3002/t1/TrainerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/cc3002/t1/TrainerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/cc3002/t1/energies/FightingEnergyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/cc3002/t1/energies/FightingEnergyTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/cc3002/t1/energies/FireEnergyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/cc3002/t1/energies/FireEnergyTest.java" afterDir="false" />
@@ -45,82 +44,24 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cc3002/t1/AbstractEnergy.java">
+        <entry file="file://$PROJECT_DIR$/test/cc3002/t1/pokemon/FightingPokemonTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
+            <state relative-caret-position="15">
+              <caret line="43" column="32" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/cc3002/t1/TrainerTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-793">
-              <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4452#4453#0" expanded="true" />
-                <element signature="e#4532#4533#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cc3002/t1/EnergyCounter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="932">
-              <caret line="137" column="7" lean-forward="true" selection-start-line="137" selection-start-column="7" selection-end-line="137" selection-end-column="7" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/cc3002/t1/pokemon/FirePokemonTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="52" column="40" selection-start-line="52" selection-start-column="40" selection-end-line="52" selection-end-column="40" />
+            <state relative-caret-position="990">
+              <caret line="66" column="8" selection-start-line="66" selection-start-column="8" selection-end-line="66" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cc3002/t1/AbstractPokemon.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="930">
-              <caret line="141" column="49" selection-start-line="141" selection-start-column="49" selection-end-line="141" selection-end-column="49" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cc3002/t1/Attack.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-120">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cc3002/t1/energies/WaterEnergy.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="29" column="47" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="47" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#446#447#0" expanded="true" />
-                <element signature="e#473#474#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -129,8 +70,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/cc3002/t1/pokemon/GrassPokemonTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-165">
-              <caret line="52" column="40" selection-start-line="52" selection-start-column="40" selection-end-line="52" selection-end-column="40" />
+            <state relative-caret-position="300">
+              <caret line="21" column="52" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -141,8 +82,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/cc3002/t1/pokemon/LightningPokemonTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="74" column="27" lean-forward="true" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
+            <state relative-caret-position="239">
+              <caret line="21" column="52" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -151,17 +92,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cc3002/t1/Trainer.java">
+        <entry file="file://$PROJECT_DIR$/test/cc3002/t1/pokemon/PsychicPokemonTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1349">
-              <caret line="124" column="62" selection-start-line="124" selection-start-column="62" selection-end-line="124" selection-end-column="62" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2220#2221#0" expanded="true" />
-                <element signature="e#2266#2267#0" expanded="true" />
-                <element signature="e#2328#2329#0" expanded="true" />
-                <element signature="e#2393#2394#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="150">
+              <caret line="21" column="52" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/cc3002/t1/pokemon/WaterPokemonTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="21" column="52" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -183,7 +126,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/cc3002/t1/PsychicEnergy.java" />
         <option value="$PROJECT_DIR$/src/cc3002/t1/LightningEnergy.java" />
         <option value="$PROJECT_DIR$/src/cc3002/t1/LightningEnergyCard.java" />
         <option value="$PROJECT_DIR$/src/cc3002/t1/FightingEnergyCard.java" />
@@ -195,45 +137,46 @@
         <option value="$PROJECT_DIR$/src/cc3002/t1/PokemonCard.java" />
         <option value="$PROJECT_DIR$/src/cc3002/t1/Pokemon.java" />
         <option value="$PROJECT_DIR$/src/cc3002/t1/Energy.java" />
-        <option value="$PROJECT_DIR$/src/cc3002/t1/AbstractCard.java" />
-        <option value="$PROJECT_DIR$/src/cc3002/t1/ICard.java" />
         <option value="$PROJECT_DIR$/src/cc3002/t1/IEnergy.java" />
-        <option value="$PROJECT_DIR$/src/cc3002/t1/pokemon/FightingPokemon.java" />
-        <option value="$PROJECT_DIR$/src/cc3002/t1/pokemon/FirePokemon.java" />
-        <option value="$PROJECT_DIR$/src/cc3002/t1/pokemon/GrassPokemon.java" />
-        <option value="$PROJECT_DIR$/src/cc3002/t1/pokemon/LightningPokemon.java" />
-        <option value="$PROJECT_DIR$/src/cc3002/t1/pokemon/PsychicPokemon.java" />
-        <option value="$PROJECT_DIR$/src/cc3002/t1/pokemon/WaterPokemon.java" />
         <option value="$PROJECT_DIR$/src/cc3002/t1/IPokemon.java" />
         <option value="$PROJECT_DIR$/src/cc3002/t1/EnergyType.java" />
         <option value="$PROJECT_DIR$/src/cc3002/t1/Attack.java" />
-        <option value="$PROJECT_DIR$/src/cc3002/t1/AbstractEnergy.java" />
         <option value="$PROJECT_DIR$/src/cc3002/t1/energies/FightingEnergy.java" />
         <option value="$PROJECT_DIR$/src/cc3002/t1/energies/FireEnergy.java" />
         <option value="$PROJECT_DIR$/src/cc3002/t1/energies/GrassEnergy.java" />
         <option value="$PROJECT_DIR$/src/cc3002/t1/energies/LightningEnergy.java" />
         <option value="$PROJECT_DIR$/src/cc3002/t1/energies/PsychicEnergy.java" />
         <option value="$PROJECT_DIR$/src/cc3002/t1/energies/WaterEnergy.java" />
-        <option value="$PROJECT_DIR$/src/cc3002/t1/EnergyCounter.java" />
         <option value="$PROJECT_DIR$/src/cc3002/t1/IAttack.java" />
         <option value="$PROJECT_DIR$/test/cc3002/t1/AttackTest.java" />
+        <option value="$PROJECT_DIR$/test/cc3002/t1/EnergyCounterTest.java" />
+        <option value="$PROJECT_DIR$/src/cc3002/t1/AbstractPokemon.java" />
+        <option value="$PROJECT_DIR$/src/cc3002/t1/AbstractCard.java" />
+        <option value="$PROJECT_DIR$/src/cc3002/t1/ICard.java" />
+        <option value="$PROJECT_DIR$/src/cc3002/t1/EnergyCounter.java" />
+        <option value="$PROJECT_DIR$/src/cc3002/t1/pokemon/FightingPokemon.java" />
+        <option value="$PROJECT_DIR$/src/cc3002/t1/pokemon/FirePokemon.java" />
+        <option value="$PROJECT_DIR$/src/cc3002/t1/pokemon/GrassPokemon.java" />
+        <option value="$PROJECT_DIR$/src/cc3002/t1/pokemon/LightningPokemon.java" />
+        <option value="$PROJECT_DIR$/src/cc3002/t1/pokemon/PsychicPokemon.java" />
+        <option value="$PROJECT_DIR$/src/cc3002/t1/pokemon/WaterPokemon.java" />
+        <option value="$PROJECT_DIR$/src/cc3002/t1/DeckCreator.java" />
+        <option value="$PROJECT_DIR$/src/cc3002/t1/ITrainer.java" />
+        <option value="$PROJECT_DIR$/src/cc3002/t1/Trainer.java" />
+        <option value="$PROJECT_DIR$/src/cc3002/t1/AbstractEnergy.java" />
+        <option value="$PROJECT_DIR$/test/cc3002/t1/TrainerTest.java" />
         <option value="$PROJECT_DIR$/test/cc3002/t1/energies/FightingEnergyTest.java" />
         <option value="$PROJECT_DIR$/test/cc3002/t1/energies/GrassEnergyTest.java" />
-        <option value="$PROJECT_DIR$/test/cc3002/t1/energies/FireEnergyTest.java" />
         <option value="$PROJECT_DIR$/test/cc3002/t1/energies/LightningEnergyTest.java" />
+        <option value="$PROJECT_DIR$/test/cc3002/t1/energies/FireEnergyTest.java" />
         <option value="$PROJECT_DIR$/test/cc3002/t1/energies/PsychicEnergyTest.java" />
         <option value="$PROJECT_DIR$/test/cc3002/t1/energies/WaterEnergyTest.java" />
-        <option value="$PROJECT_DIR$/test/cc3002/t1/EnergyCounterTest.java" />
-        <option value="$PROJECT_DIR$/src/cc3002/t1/ITrainer.java" />
-        <option value="$PROJECT_DIR$/src/cc3002/t1/AbstractPokemon.java" />
         <option value="$PROJECT_DIR$/test/cc3002/t1/pokemon/FightingPokemonTest.java" />
-        <option value="$PROJECT_DIR$/src/cc3002/t1/Trainer.java" />
-        <option value="$PROJECT_DIR$/test/cc3002/t1/pokemon/FirePokemonTest.java" />
         <option value="$PROJECT_DIR$/test/cc3002/t1/pokemon/GrassPokemonTest.java" />
+        <option value="$PROJECT_DIR$/test/cc3002/t1/pokemon/LightningPokemonTest.java" />
         <option value="$PROJECT_DIR$/test/cc3002/t1/pokemon/PsychicPokemonTest.java" />
         <option value="$PROJECT_DIR$/test/cc3002/t1/pokemon/WaterPokemonTest.java" />
-        <option value="$PROJECT_DIR$/test/cc3002/t1/pokemon/LightningPokemonTest.java" />
-        <option value="$PROJECT_DIR$/test/cc3002/t1/TrainerTest.java" />
+        <option value="$PROJECT_DIR$/test/cc3002/t1/pokemon/FirePokemonTest.java" />
       </list>
     </option>
   </component>
@@ -251,8 +194,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -327,7 +270,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Auxiliares/ExercisesInJava/pom.xml" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Codigo_base_semestre_pasado/Codigo Base/src" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -343,6 +286,9 @@
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="cc3002.t1" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -357,23 +303,7 @@
     </option>
   </component>
   <component name="RunManager" selected="JUnit.cc3002.t1 in cc3002-t1">
-    <configuration name="FightingPokemonTest.isPlayedTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="cc3002-t1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cc3002.t1.pokemon.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="cc3002.t1.pokemon" />
-      <option name="MAIN_CLASS_NAME" value="cc3002.t1.pokemon.FightingPokemonTest" />
-      <option name="METHOD_NAME" value="isPlayedTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FirePokemonTest.constructorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FirePokemonTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="cc3002-t1" />
       <extension name="coverage">
         <pattern>
@@ -383,13 +313,27 @@
       </extension>
       <option name="PACKAGE_NAME" value="cc3002.t1.pokemon" />
       <option name="MAIN_CLASS_NAME" value="cc3002.t1.pokemon.FirePokemonTest" />
-      <option name="METHOD_NAME" value="constructorTest" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LightningPokemonTest.isPlayedTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GrassPokemonTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cc3002-t1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cc3002.t1.pokemon.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cc3002.t1.pokemon" />
+      <option name="MAIN_CLASS_NAME" value="cc3002.t1.pokemon.GrassPokemonTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LightningPokemonTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="cc3002-t1" />
       <extension name="coverage">
         <pattern>
@@ -399,29 +343,27 @@
       </extension>
       <option name="PACKAGE_NAME" value="cc3002.t1.pokemon" />
       <option name="MAIN_CLASS_NAME" value="cc3002.t1.pokemon.LightningPokemonTest" />
-      <option name="METHOD_NAME" value="isPlayedTest" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TrainerTest.useAttackTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PsychicPokemonTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="cc3002-t1" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="cc3002.t1.*" />
+          <option name="PATTERN" value="cc3002.t1.pokemon.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="cc3002.t1" />
-      <option name="MAIN_CLASS_NAME" value="cc3002.t1.TrainerTest" />
-      <option name="METHOD_NAME" value="useAttackTest" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="cc3002.t1.pokemon" />
+      <option name="MAIN_CLASS_NAME" value="cc3002.t1.pokemon.PsychicPokemonTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WaterPokemonTest.attackTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="WaterPokemonTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="cc3002-t1" />
       <extension name="coverage">
         <pattern>
@@ -431,8 +373,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="cc3002.t1.pokemon" />
       <option name="MAIN_CLASS_NAME" value="cc3002.t1.pokemon.WaterPokemonTest" />
-      <option name="METHOD_NAME" value="attackTest" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -456,11 +397,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TrainerTest.useAttackTest" />
-        <item itemvalue="JUnit.LightningPokemonTest.isPlayedTest" />
-        <item itemvalue="JUnit.FirePokemonTest.constructorTest" />
-        <item itemvalue="JUnit.FightingPokemonTest.isPlayedTest" />
-        <item itemvalue="JUnit.WaterPokemonTest.attackTest" />
+        <item itemvalue="JUnit.WaterPokemonTest" />
+        <item itemvalue="JUnit.PsychicPokemonTest" />
+        <item itemvalue="JUnit.LightningPokemonTest" />
+        <item itemvalue="JUnit.GrassPokemonTest" />
+        <item itemvalue="JUnit.FirePokemonTest" />
       </list>
     </recent_temporary>
   </component>
@@ -494,44 +435,45 @@
       <workItem from="1559515562154" duration="7571000" />
       <workItem from="1559683093462" duration="12321000" />
       <workItem from="1559851868084" duration="12860000" />
-      <workItem from="1559882303575" duration="10201000" />
+      <workItem from="1559882303575" duration="10885000" />
+      <workItem from="1560208479325" duration="13320000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="LightningPokemonTest_isPlayedTest - 2019.06.07 at 03h 39m 38s.xml">
-      <configuration name="LightningPokemonTest.isPlayedTest" configurationId="JUnit" />
+    <history-entry file="TrainerTest - 2019.06.11 at 00h 21m 58s.xml">
+      <configuration name="TrainerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="LightningPokemonTest_isPlayedTest - 2019.06.07 at 03h 40m 14s.xml">
-      <configuration name="LightningPokemonTest.isPlayedTest" configurationId="JUnit" />
+    <history-entry file="TrainerTest - 2019.06.11 at 00h 22m 47s.xml">
+      <configuration name="TrainerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="LightningPokemonTest_isPlayedTest - 2019.06.07 at 03h 41m 14s.xml">
-      <configuration name="LightningPokemonTest.isPlayedTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="LightningPokemonTest_isPlayedTest - 2019.06.07 at 03h 42m 10s.xml">
-      <configuration name="LightningPokemonTest.isPlayedTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="LightningPokemonTest_isPlayedTest - 2019.06.07 at 03h 48m 13s.xml">
-      <configuration name="LightningPokemonTest.isPlayedTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="LightningPokemonTest_isPlayedTest - 2019.06.07 at 03h 48m 16s.xml">
-      <configuration name="LightningPokemonTest.isPlayedTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="cc3002_t1_in_cc3002-t1 - 2019.06.07 at 03h 48m 32s.xml">
+    <history-entry file="cc3002_t1_in_cc3002-t1 - 2019.06.11 at 00h 30m 02s.xml">
       <configuration name="cc3002.t1 in cc3002-t1" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TrainerTest_useAttackTest - 2019.06.07 at 03h 52m 15s.xml">
-      <configuration name="TrainerTest.useAttackTest" configurationId="JUnit" />
+    <history-entry file="FightingEnergyTest - 2019.06.11 at 00h 35m 56s.xml">
+      <configuration name="FightingEnergyTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TrainerTest_useAttackTest - 2019.06.07 at 03h 56m 02s.xml">
-      <configuration name="TrainerTest.useAttackTest" configurationId="JUnit" />
+    <history-entry file="FireEnergyTest - 2019.06.11 at 00h 38m 21s.xml">
+      <configuration name="FireEnergyTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TrainerTest_useAttackTest - 2019.06.07 at 03h 59m 49s.xml">
-      <configuration name="TrainerTest.useAttackTest" configurationId="JUnit" />
+    <history-entry file="GrassEnergyTest - 2019.06.11 at 00h 38m 48s.xml">
+      <configuration name="GrassEnergyTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LightningEnergyTest - 2019.06.11 at 00h 39m 25s.xml">
+      <configuration name="LightningEnergyTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="PsychicEnergyTest - 2019.06.11 at 00h 40m 03s.xml">
+      <configuration name="PsychicEnergyTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="WaterEnergyTest - 2019.06.11 at 00h 40m 37s.xml">
+      <configuration name="WaterEnergyTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="FightingPokemonTest - 2019.06.11 at 00h 43m 17s.xml">
+      <configuration name="FightingPokemonTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="124838000" />
+    <option name="totallyTimeSpent" value="138842000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -546,7 +488,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22654155" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22922252" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -557,8 +499,8 @@
       <window_info anchor="bottom" id="Messages" order="0" weight="0.32956153" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32956153" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.32956153" />
-      <window_info active="true" anchor="bottom" id="Debug" order="4" visible="true" weight="0.39886847" />
+      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.32956153" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.39886847" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32956153" />
@@ -578,53 +520,9 @@
       <window_info anchor="right" id="Database" order="8" />
       <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.3297587" />
     </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21313673" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info id="simpleUML" order="7" />
-      <window_info anchor="bottom" id="Messages" order="0" weight="0.32956153" />
-      <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.32956153" />
-      <window_info anchor="bottom" id="Run" order="3" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="7" weight="0.32956153" />
-      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32956153" />
-      <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32956153" />
-      <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Theme Preview" order="4" />
-      <window_info anchor="right" id="Maven" order="5" />
-      <window_info anchor="right" id="Capture Analysis" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Database" order="8" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/test/cc3002/t1/TrainerTest.java</url>
-          <line>171</line>
-          <properties />
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/cc3002_t1$FightingPokemonTest_attackTest.ic" NAME="FightingPokemonTest.attackTest Coverage Results" MODIFIED="1559890230126" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -633,16 +531,16 @@
     <SUITE FILE_PATH="coverage/cc3002_t1$AttackTest.ic" NAME="AttackTest Coverage Results" MODIFIED="1556505865914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>cc3002.t1.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/cc3002_t1$TrainerTest.ic" NAME="TrainerTest Coverage Results" MODIFIED="1559889098298" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>cc3002.t1.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/cc3002_t1$FightingPokemonTest_isPlayedTest.ic" NAME="FightingPokemonTest.isPlayedTest Coverage Results" MODIFIED="1559891769108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>cc3002.t1.pokemon.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/cc3002_t1$TrainerTest.ic" NAME="TrainerTest Coverage Results" MODIFIED="1560225395895" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>cc3002.t1.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/cc3002_t1$cc3002_t1_energies_in_cc3002_t1.ic" NAME="cc3002.t1.energies in cc3002-t1 Coverage Results" MODIFIED="1556512537383" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>cc3002.t1.energies.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/cc3002_t1$cc3002_t1_in_cc3002_t1.ic" NAME="cc3002.t1 in cc3002-t1 Coverage Results" MODIFIED="1559894437315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/cc3002_t1$cc3002_t1_in_cc3002_t1.ic" NAME="cc3002.t1 in cc3002-t1 Coverage Results" MODIFIED="1560228534428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>cc3002.t1.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/cc3002_t1$FightingEnergyTest.ic" NAME="FightingEnergyTest Coverage Results" MODIFIED="1556512531247" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -723,31 +621,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/AbstractCard.java" />
-    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/pokemon/FirePokemon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cc3002/t1/IEnergy.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/energies/FireEnergy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="29" column="47" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -771,23 +648,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/ICard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/pokemon/PsychicPokemon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cc3002/t1/energies/LightningEnergy.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -798,13 +658,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/EnergyType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cc3002/t1/IPokemon.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1441">
@@ -812,91 +665,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/pokemon/WaterPokemon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-91">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/AttackTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-271">
-          <caret line="17" column="33" lean-forward="true" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cc3002/t1/IAttack.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/pokemon/GrassPokemon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/energies/LightningEnergyTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="70" column="64" selection-start-line="70" selection-start-column="64" selection-end-line="70" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1666#1667#0" expanded="true" />
-            <element signature="e#1718#1719#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/energies/PsychicEnergyTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="70" column="62" selection-start-line="70" selection-start-column="62" selection-end-line="70" selection-end-column="62" />
-          <folding>
-            <element signature="e#1650#1651#0" expanded="true" />
-            <element signature="e#1702#1703#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/energies/WaterEnergyTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-136">
-          <caret line="29" column="43" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
-          <folding>
-            <element signature="e#1630#1631#0" expanded="true" />
-            <element signature="e#1683#1684#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/energies/FightingEnergy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="24" column="26" lean-forward="true" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/energies/FireEnergyTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="70" column="59" selection-start-line="70" selection-start-column="59" selection-end-line="70" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -910,71 +682,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/energies/FightingEnergyTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="58" column="9" lean-forward="true" selection-start-line="58" selection-start-column="9" selection-end-line="58" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/runners/BlockJUnit4ClassRunner.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="49" selection-start-line="49" selection-end-line="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/pokemon/FightingPokemon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-15">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/ITrainer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="93" selection-start-line="93" selection-end-line="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/energies/GrassEnergyTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="846">
-          <caret line="70" column="60" selection-start-line="70" selection-start-column="60" selection-end-line="70" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/pokemon/FightingPokemonTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="75" column="49" selection-start-line="75" selection-start-column="49" selection-end-line="75" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/pokemon/PsychicPokemonTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="53" column="40" selection-start-line="53" selection-start-column="40" selection-end-line="53" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/pokemon/WaterPokemonTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="53" column="40" selection-start-line="53" selection-start-column="40" selection-end-line="53" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -985,26 +696,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/pokemon/LightningPokemon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/pokemon/LightningPokemonTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="74" column="27" lean-forward="true" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1012,40 +703,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/Trainer.java">
+    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/Attack.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1349">
-          <caret line="124" column="62" selection-start-line="124" selection-start-column="62" selection-end-line="124" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2220#2221#0" expanded="true" />
-            <element signature="e#2266#2267#0" expanded="true" />
-            <element signature="e#2328#2329#0" expanded="true" />
-            <element signature="e#2393#2394#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/AbstractEnergy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/pokemon/GrassPokemonTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-165">
-          <caret line="52" column="40" selection-start-line="52" selection-start-column="40" selection-end-line="52" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="120">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cc3002/t1/energies/WaterEnergy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
+        <state relative-caret-position="390">
           <caret line="29" column="47" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1055,10 +722,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/pokemon/FirePokemonTest.java">
+    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/ICard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="52" column="40" selection-start-line="52" selection-start-column="40" selection-end-line="52" selection-end-column="40" />
+        <state relative-caret-position="285">
+          <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/AbstractCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="96" lean-forward="true" selection-start-line="8" selection-start-column="96" selection-end-line="8" selection-end-column="96" />
+          <folding>
+            <element signature="e#321#322#0" expanded="true" />
+            <element signature="e#348#349#0" expanded="true" />
+            <element signature="e#398#399#0" expanded="true" />
+            <element signature="e#428#429#0" expanded="true" />
+            <element signature="e#490#491#0" expanded="true" />
+            <element signature="e#528#529#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/EnergyType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/energies/FireEnergy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="29" column="47" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/pokemon/FirePokemon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/pokemon/GrassPokemon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/pokemon/LightningPokemon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1067,39 +793,280 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cc3002/t1/EnergyCounter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="932">
-          <caret line="137" column="7" lean-forward="true" selection-start-line="137" selection-start-column="7" selection-end-line="137" selection-end-column="7" />
+        <state relative-caret-position="195">
+          <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#627#628#0" expanded="true" />
+            <element signature="e#683#684#0" expanded="true" />
+            <element signature="e#901#902#0" expanded="true" />
+            <element signature="e#953#954#0" expanded="true" />
+            <element signature="e#1174#1175#0" expanded="true" />
+            <element signature="e#1227#1228#0" expanded="true" />
+            <element signature="e#1460#1461#0" expanded="true" />
+            <element signature="e#1517#1518#0" expanded="true" />
+            <element signature="e#1744#1745#0" expanded="true" />
+            <element signature="e#1799#1800#0" expanded="true" />
+            <element signature="e#2213#2214#0" expanded="true" />
+            <element signature="e#2244#2245#0" expanded="true" />
+            <element signature="e#2359#2360#0" expanded="true" />
+            <element signature="e#2415#2416#0" expanded="true" />
+            <element signature="e#2522#2523#0" expanded="true" />
+            <element signature="e#2574#2575#0" expanded="true" />
+            <element signature="e#2683#2684#0" expanded="true" />
+            <element signature="e#2736#2737#0" expanded="true" />
+            <element signature="e#3011#3012#0" expanded="true" />
+            <element signature="e#3066#3067#0" expanded="true" />
+            <element signature="e#3175#3176#0" expanded="true" />
+            <element signature="e#3228#3229#0" expanded="true" />
+            <element signature="e#3346#3347#0" expanded="true" />
+            <element signature="e#3434#3435#0" expanded="true" />
+            <element signature="e#3544#3545#0" expanded="true" />
+            <element signature="e#3624#3625#0" expanded="true" />
+            <element signature="e#3736#3737#0" expanded="true" />
+            <element signature="e#3818#3819#0" expanded="true" />
+            <element signature="e#3938#3939#0" expanded="true" />
+            <element signature="e#4028#4029#0" expanded="true" />
+            <element signature="e#4144#4145#0" expanded="true" />
+            <element signature="e#4230#4231#0" expanded="true" />
+            <element signature="e#4342#4343#0" expanded="true" />
+            <element signature="e#4424#4425#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/pokemon/PsychicPokemon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/pokemon/WaterPokemon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/DeckCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="49" selection-start-line="5" selection-start-column="49" selection-end-line="5" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/pokemon/FightingPokemon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/ITrainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/Trainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1544">
+          <caret line="170" column="57" selection-start-line="170" selection-start-column="57" selection-end-line="170" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#933#934#0" expanded="true" />
+            <element signature="e#957#958#0" expanded="true" />
+            <element signature="e#1003#1004#0" expanded="true" />
+            <element signature="e#1027#1028#0" expanded="true" />
+            <element signature="e#1074#1075#0" expanded="true" />
+            <element signature="e#1098#1099#0" expanded="true" />
+            <element signature="e#2072#2073#0" expanded="true" />
+            <element signature="e#2097#2098#0" expanded="true" />
+            <element signature="e#2199#2200#0" expanded="true" />
+            <element signature="e#2990#2991#0" expanded="true" />
+            <element signature="e#3117#3118#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cc3002/t1/AbstractPokemon.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="930">
-          <caret line="141" column="49" selection-start-line="141" selection-start-column="49" selection-end-line="141" selection-end-column="49" />
+        <state relative-caret-position="59">
+          <caret line="76" column="65" selection-start-line="76" selection-start-column="65" selection-end-line="76" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/Attack.java">
+    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/energies/FightingEnergy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-120">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="-114">
+          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc3002/t1/AbstractEnergy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="15" column="59" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/cc3002/t1/TrainerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-793">
-          <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
+        <state relative-caret-position="270">
+          <caret line="69" column="21" selection-start-line="69" selection-start-column="21" selection-end-line="69" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4452#4453#0" expanded="true" />
-            <element signature="e#4532#4533#0" expanded="true" />
+            <element signature="e#3963#3964#0" expanded="true" />
+            <element signature="e#4065#4066#0" expanded="true" />
+            <element signature="e#4195#4196#0" expanded="true" />
+            <element signature="e#4259#4260#0" expanded="true" />
+            <element signature="e#4670#4671#0" expanded="true" />
+            <element signature="e#4700#4701#0" expanded="true" />
+            <element signature="e#4415#4416#0" expanded="true" />
+            <element signature="e#4470#4471#0" expanded="true" />
+            <element signature="e#4804#4805#0" expanded="true" />
+            <element signature="e#4932#4933#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/energies/GrassEnergyTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="57" column="38" selection-start-line="57" selection-start-column="38" selection-end-line="57" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/energies/FireEnergyTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="58" column="8" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/energies/LightningEnergyTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="855">
+          <caret line="57" column="42" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/energies/PsychicEnergyTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="57" column="40" selection-start-line="57" selection-start-column="40" selection-end-line="57" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/energies/WaterEnergyTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="57" column="38" selection-start-line="57" selection-start-column="38" selection-end-line="57" selection-end-column="38" />
+          <folding>
+            <element signature="e#1630#1631#0" expanded="true" />
+            <element signature="e#1683#1684#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/energies/FightingEnergyTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="57" column="43" lean-forward="true" selection-start-line="42" selection-start-column="8" selection-end-line="57" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1523#1524#0" expanded="true" />
+            <element signature="e#1608#1609#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/AttackTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="33" lean-forward="true" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/pokemon/GrassPokemonTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="21" column="52" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/pokemon/LightningPokemonTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="21" column="52" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/pokemon/PsychicPokemonTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="21" column="52" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/pokemon/WaterPokemonTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="21" column="52" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/pokemon/FightingPokemonTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="43" column="32" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/cc3002/t1/pokemon/FirePokemonTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="990">
+          <caret line="66" column="8" selection-start-line="66" selection-start-column="8" selection-end-line="66" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
