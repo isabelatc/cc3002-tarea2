@@ -1,5 +1,6 @@
 package cc3002.t1;
 
+import cc3002.t1.general.EnergyCounter;
 import org.junit.Before;
 import org.junit.Test;
 

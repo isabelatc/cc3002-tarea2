@@ -1,9 +1,19 @@
 package cc3002.t1.pokemon;
 
-import cc3002.t1.*;
+import cc3002.t1.abilities.Attack;
+import cc3002.t1.abilities.IAttack;
 import cc3002.t1.energies.FireEnergy;
+import cc3002.t1.energies.IEnergy;
 import cc3002.t1.energies.PsychicEnergy;
 import cc3002.t1.energies.WaterEnergy;
+
+import cc3002.t1.general.EnergyCounter;
+import cc3002.t1.general.ICard;
+import cc3002.t1.general.ITrainer;
+import cc3002.t1.general.Trainer;
+import cc3002.t1.pokemon.basic.BasicGrassPokemon;
+import cc3002.t1.pokemon.basic.BasicLightningPokemon;
+import cc3002.t1.pokemon.basic.BasicWaterPokemon;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -38,11 +48,11 @@ public class GrassPokemonTest {
         attack50 = new Attack("Attack 50", 50, "This attack has a base damage of 50",
                 0, 1, 0, 0, 1, 0);
 
-        tangela = new GrassPokemon("Tangela", 114, 100,
+        tangela = new BasicGrassPokemon("Tangela", 114, 100,
                 new ArrayList<>(Arrays.asList(attack30, attack50)));
-        squirtle = new WaterPokemon("Squirtle", 7, 90,
+        squirtle = new BasicWaterPokemon("Squirtle", 7, 90,
                 new ArrayList<>(Arrays.asList(attack20, attack50)));
-        pikachu = new LightningPokemon("Pikachu", 25, 100,
+        pikachu = new BasicLightningPokemon("Pikachu", 25, 100,
                 new ArrayList<>(Arrays.asList(attack20, attack30, attack40, attack50)));
 
         auxTrainerDeck = new ArrayList<>(Arrays.asList(tangela, squirtle, aFire, aPsychic, pikachu, aWater));
@@ -98,7 +108,7 @@ public class GrassPokemonTest {
 
     @Test
     public void equalsTest() {
-        IPokemon anotherTangela = new GrassPokemon("Tangela", 114, 100, new ArrayList<>(Arrays.asList(attack30, attack50)));
+        IPokemon anotherTangela = new BasicGrassPokemon("Tangela", 114, 100, new ArrayList<>(Arrays.asList(attack30, attack50)));
         assertEquals(anotherTangela, tangela);
         assertNotEquals(squirtle, tangela);
     }

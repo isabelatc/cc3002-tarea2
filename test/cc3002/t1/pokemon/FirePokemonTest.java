@@ -1,7 +1,15 @@
 package cc3002.t1.pokemon;
 
-import cc3002.t1.*;
+import cc3002.t1.abilities.Attack;
+import cc3002.t1.abilities.IAttack;
 import cc3002.t1.energies.*;
+import cc3002.t1.general.EnergyCounter;
+import cc3002.t1.general.ICard;
+import cc3002.t1.general.ITrainer;
+import cc3002.t1.general.Trainer;
+import cc3002.t1.pokemon.firePokemon.FirePokemon;
+import cc3002.t1.pokemon.grassPokemon.GrassPokemon;
+import cc3002.t1.pokemon.waterPokemon.WaterPokemon;
 import org.junit.Before;
 import org.junit.Test;
 

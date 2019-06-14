@@ -1,7 +1,6 @@
 package cc3002.t1.energies;
 
-import cc3002.t1.AbstractEnergy;
-import cc3002.t1.IPokemon;
+import cc3002.t1.pokemon.IPokemon;
 
 /**
  * Class of the grass energy cards. It inherites methods from its abstract superclass AbstractEnergy.

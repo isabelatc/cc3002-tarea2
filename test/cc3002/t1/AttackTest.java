@@ -1,5 +1,8 @@
 package cc3002.t1;
 
+import cc3002.t1.abilities.Attack;
+import cc3002.t1.abilities.IAttack;
+import cc3002.t1.general.EnergyCounter;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,7 +38,7 @@ public class AttackTest {
         differentEnergyCounter.setFightingEnergy(2);
         differentEnergyCounter.setFireEnergy(3);
         differentEnergyCounter.setWaterEnergy(4);
-        
+
     }
 
     @Test

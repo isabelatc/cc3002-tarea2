@@ -1,7 +1,14 @@
 package cc3002.t1;
 
+import cc3002.t1.abilities.Attack;
+import cc3002.t1.abilities.IAttack;
 import cc3002.t1.energies.*;
-import cc3002.t1.pokemon.*;
+import cc3002.t1.general.EnergyCounter;
+import cc3002.t1.general.ICard;
+import cc3002.t1.general.ITrainer;
+import cc3002.t1.general.Trainer;
+import cc3002.t1.pokemon.IPokemon;
+import cc3002.t1.pokemon.basic.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -42,24 +49,24 @@ public class TrainerTest {
         attack50 = new Attack("Attack 50", 50, "This attack has a base damage of 50",
                 0, 2, 0, 0, 3, 1);
 
-        charmander = new FirePokemon("Charmander", 4, 100,
+        charmander = new BasicFirePokemon("Charmander", 4, 100,
                 new ArrayList<>(Arrays.asList(attack30, attack50)));
-        squirtle = new WaterPokemon("Squirtle", 7, 100,
+        squirtle = new BasicWaterPokemon("Squirtle", 7, 100,
                 new ArrayList<>(Arrays.asList(attack10, attack20, attack50)));
-        tangela = new GrassPokemon("Tangela", 114, 100,
+        tangela = new BasicGrassPokemon("Tangela", 114, 100,
                 new ArrayList<>(Arrays.asList(attack10, attack30, attack40, attack50)));
-        abra = new PsychicPokemon("Abra", 63, 100,
+        abra = new BasicPsychicPokemon("Abra", 63, 100,
                 new ArrayList<>(Arrays.asList(attack20, attack30, attack40, attack50)));
-        anotherSquirtle = new WaterPokemon("Squirtle", 7, 100,
+        anotherSquirtle = new BasicWaterPokemon("Squirtle", 7, 100,
                 new ArrayList<>(Arrays.asList(attack10, attack30)));
-        anotherTangela = new GrassPokemon("Tangela", 114, 100,
+        anotherTangela = new BasicGrassPokemon("Tangela", 114, 100,
                 new ArrayList<>(Arrays.asList(attack20, attack40, attack50)));
 
-        pikachu = new LightningPokemon("Pikachu", 25, 100,
+        pikachu = new BasicLightningPokemon("Pikachu", 25, 100,
                 new ArrayList<>(Arrays.asList(attack20, attack40)));
-        mankey = new FightingPokemon("Mankey", 56, 100,
+        mankey = new BasicFightingPokemon("Mankey", 56, 100,
                 new ArrayList<>(Arrays.asList(attack30, attack40, attack50)));
-        anotherAbra = new PsychicPokemon("Abra", 63, 100,
+        anotherAbra = new BasicPsychicPokemon("Abra", 63, 100,
                 new ArrayList<>(Arrays.asList(attack10, attack20, attack30, attack40, attack50)));
 
         auxTrainerDeck = new ArrayList<>(Arrays.asList(charmander, squirtle, tangela, abra, anotherSquirtle,
@@ -135,6 +142,11 @@ public class TrainerTest {
     }
 
     @Test
+    public void getSelectedPokemonTest() {
+        assertNull(trainer.getSelectedPokemon());
+    }
+
+    @Test
     public void drawFromDeckTest() {
         trainer.drawFromDeck();
         assertEquals(59, trainer.getDeck().size());
@@ -187,6 +199,12 @@ public class TrainerTest {
         assertTrue(trainer.getBench().contains(tangela));
         assertEquals(0, trainer.getHand().size());
         assertEquals(1, trainer.getBench().size());
+    }
+
+    @Test
+    public void addToDiscardPileTest() {
+        trainer.addToDiscardPile(charmander);
+        assertEquals(1, trainer.getDiscardPile().size());
     }
 
     @Test
@@ -255,6 +273,18 @@ public class TrainerTest {
         assertEquals(70, pikachu.getHP());
         assertEquals(charmander, trainer.getActivePokemon());
         assertEquals(100, charmander.getHP());
+    }
+
+    @Test
+    public void setSelectedPokemonTest() {
+        trainer.addToHand(charmander);
+        trainer.addToHand(tangela);
+        trainer.playCard(charmander);
+        trainer.playCard(tangela);
+        trainer.setActivePokemon();
+        assertEquals(charmander, trainer.getSelectedPokemon());
+        trainer.setSelectedPokemon(tangela);
+        assertEquals(tangela, trainer.setSelectedPokemon());
     }
 
     @Test
