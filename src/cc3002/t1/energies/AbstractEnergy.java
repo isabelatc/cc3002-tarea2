@@ -5,6 +5,11 @@ import cc3002.t1.general.ICard;
 import cc3002.t1.pokemon.IPokemon;
 import cc3002.t1.visitors.PlayCardVisitor;
 
+/**
+ * Class for a generic energy card.
+ *
+ * @author Isabela Tellechea Coluccio
+ */
 public abstract class AbstractEnergy extends AbstractCard implements ICard, IEnergy {
 
     /**

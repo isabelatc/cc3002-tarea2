@@ -1,17 +1,16 @@
 package cc3002.t1.general;
 
-import cc3002.t1.abilities.IAttack;
-import cc3002.t1.general.EnergyCounter;
-import cc3002.t1.general.ICard;
-import cc3002.t1.general.ITrainer;
+import cc3002.t1.abilities.IAbility;
 import cc3002.t1.pokemon.IPokemon;
+import cc3002.t1.trainercards.field.AbstractFieldCard;
 import cc3002.t1.visitors.PlayCardVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
- * Class that represents the Pokémon trainers. It has methods to access to their properties, and for the necessary
+ * Class that represents the Pokémon trainers. It has methods to access to their properties, and for some necessary
  * actions to play their turns.
  *
  * @author Isabela Tellechea Coluccio
@@ -22,6 +21,9 @@ public class Trainer implements ITrainer {
     private List<ICard> deck, hand, discardPile, prizes;
     private List<IPokemon> bench;
     private IPokemon selectedPokemon;
+    private ICard activeFieldCard;
+    private ITrainer adversary;
+    private boolean actionSuccessful;
 
     /**
      * Constructor for a new Trainer. Some of their properties are empty when initialized.
@@ -35,7 +37,10 @@ public class Trainer implements ITrainer {
         this.discardPile = new ArrayList<>();
         this.prizes = new ArrayList<>();
         this.bench = new ArrayList<>();
-        this.selectedPokemon = activePokemon;
+        this.selectedPokemon = null;
+        this.activeFieldCard = null;
+        this.actionSuccessful = false;
+        this.adversary = null;
     }
 
     @Override
@@ -72,13 +77,39 @@ public class Trainer implements ITrainer {
     }
 
     @Override
-    public List<IAttack> getPokemonAttacks(IPokemon pokemon) {
-        return pokemon.getAttacks();
+    public List<IAbility> getPokemonAbilities(IPokemon pokemon) {
+        return pokemon.getAbilityList();
     }
 
     @Override
-    public IPokemon getSelectedPokemon() {
-        return this.selectedPokemon;
+    public IPokemon getSelectedPokemon() { return this.selectedPokemon; }
+
+    @Override
+    public ICard getActiveFieldCard() { return this.activeFieldCard; }
+
+    @Override
+    public boolean getActionSuccessful() {
+        return this.actionSuccessful;
+    }
+
+    @Override
+    public ITrainer getAdversary() {
+        return this.adversary;
+    }
+
+    @Override
+    public void setAdversary(ITrainer adversary) {
+        this.adversary = adversary;
+    }
+
+    @Override
+    public void setActionSuccessful(boolean value) {
+        this.actionSuccessful = value;
+    }
+
+    @Override
+    public void setActiveFieldCard(AbstractFieldCard card) {
+        this.activeFieldCard = card;
     }
 
     @Override
@@ -96,6 +127,7 @@ public class Trainer implements ITrainer {
             card.setTrainer(this);
             PlayCardVisitor v = new PlayCardVisitor();
             card.isPlayed(v);
+            if (actionSuccessful) removeFromHand(card);
         }
     }
 
@@ -142,13 +174,14 @@ public class Trainer implements ITrainer {
     }
 
     @Override
-    public void selectAttack(int index) {
-        activePokemon.setAttack(index);
+    public void selectAbility(int index) {
+        activePokemon.setSelectedAbility(index);
     }
 
     @Override
-    public void useAttack(ITrainer opponent) {
-        activePokemon.attack(opponent.getActivePokemon());
+    public void useAbility() {
+        activePokemon.getSelectedAbility().setPokemon(activePokemon);
+        activePokemon.usesAbility();
     }
 
     @Override
@@ -205,7 +238,10 @@ public class Trainer implements ITrainer {
 
     @Override
     public boolean flipACoin() {
-        return Math.random() < 0.5;
+        Random rand = new Random();
+        int result = rand.nextInt(2);
+        if (result == 1) return true;
+        else return false;
     }
 
     @Override

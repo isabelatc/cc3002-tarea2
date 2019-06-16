@@ -5,10 +5,15 @@ import cc3002.t1.pokemon.basic.IBasicPokemon;
 import cc3002.t1.pokemon.stage1.IStage1Pokemon;
 import cc3002.t1.pokemon.stage2.IStage2Pokemon;
 
-public class PlayableVisitor extends Visitor{
+/**
+ * Class of the visitor that checks if a card can be played.
+ *
+ * @author Isabela Tellechea Coluccio
+ */
+public class PlayableCardVisitor extends AbstractCardsVisitor {
 
     private boolean value;
-    private int preID;
+    private int preID = -1;
 
     @Override
     public void visitBasicPokemon(IBasicPokemon pokemon) {
@@ -44,6 +49,17 @@ public class PlayableVisitor extends Visitor{
         this.visitNonBasicPokemon(pokemon);
     }
 
+    /**
+     * @return The value of the visitor, true if the card can be played, and false otherwise.
+     */
     public boolean getValue() { return this.value; }
+
+    /**
+     * @return The ID of the preevolution associated to the card being played (only changes if the card is a
+     * non basic pokémon).
+     */
+    public int getPreID() {
+        return this.preID;
+    }
 
 }

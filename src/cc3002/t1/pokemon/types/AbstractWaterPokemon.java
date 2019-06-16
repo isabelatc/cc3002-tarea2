@@ -1,9 +1,17 @@
-package cc3002.t1.pokemon;
+package cc3002.t1.pokemon.types;
 
+import cc3002.t1.abilities.IAbility;
 import cc3002.t1.abilities.IAttack;
+import cc3002.t1.pokemon.AbstractPokemon;
+import cc3002.t1.pokemon.IPokemon;
 
 import java.util.ArrayList;
 
+/**
+ * Class for a generic water pokémon.
+ *
+ * @author Isabela Tellechea Coluccio
+ */
 public  abstract class AbstractWaterPokemon extends AbstractPokemon implements IPokemon {
 
     /**
@@ -12,19 +20,19 @@ public  abstract class AbstractWaterPokemon extends AbstractPokemon implements I
      * @param name The name of the Pokémon.
      * @param id The identification number of the Pokémon (according to the Pokédex).
      * @param hp The initial hit points of the Pokémon.
-     * @param attackList The list of attacks the Pokémon can use.
+     * @param abilityList The list of abilities the Pokémon can use.
      */
-    public AbstractWaterPokemon(String name, int id, int hp, ArrayList<IAttack> attackList) {
-        super(name, id, hp, attackList);
+    public AbstractWaterPokemon(String name, int id, int hp, ArrayList<IAbility> abilityList) {
+        super(name, id, hp, abilityList);
     }
 
     @Override
     public abstract boolean equals(Object o);
 
     @Override
-    public void attack(IPokemon other) {
-        if (this.canAttack()) {
-            other.attackedByWaterPokemon(this.getSelectedAttack());
+    public void usesAbility() {
+        if (this.canUseAbility()) {
+            this.getSelectedAbility().usedByWaterPokemon();
         }
     }
 

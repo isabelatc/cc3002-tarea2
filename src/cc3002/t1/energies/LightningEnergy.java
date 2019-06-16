@@ -25,7 +25,7 @@ public class LightningEnergy extends AbstractEnergy {
 
     @Override
     public void isAdded(IPokemon pokemon) {
-        pokemon.getEnergyList().addLightningEnergy();
+        pokemon.getEnergyList().addLightningEnergy(1);
         this.getTrainer().removeFromHand(this);
     }
 

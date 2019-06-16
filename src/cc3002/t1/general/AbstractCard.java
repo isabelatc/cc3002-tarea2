@@ -2,6 +2,11 @@ package cc3002.t1.general;
 
 import cc3002.t1.visitors.PlayCardVisitor;
 
+/**
+ * Abstract class for a generic card.
+ *
+ * @author Isabela Tellechea Coluccio
+ */
 public abstract class AbstractCard implements ICard {
 
     private String name;

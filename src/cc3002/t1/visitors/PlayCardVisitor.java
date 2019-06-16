@@ -7,12 +7,22 @@ import cc3002.t1.general.ITrainer;
 import cc3002.t1.pokemon.basic.IBasicPokemon;
 import cc3002.t1.pokemon.stage1.IStage1Pokemon;
 import cc3002.t1.pokemon.stage2.IStage2Pokemon;
-import cc3002.t1.trainercards.LuckyStadium;
-import cc3002.t1.trainercards.ProfessorJuniper;
-import cc3002.t1.trainercards.SuperScoopUp;
+import cc3002.t1.trainercards.field.LuckyStadium;
+import cc3002.t1.trainercards.support.ProfessorJuniper;
+import cc3002.t1.trainercards.object.SuperScoopUp;
 
-public class PlayCardVisitor extends Visitor {
+/**
+ * Class of the visitor that implements what's needed for a card to be played.
+ *
+ * @author Isabela Tellechea Coluccio
+ */
+public class PlayCardVisitor extends AbstractCardsVisitor {
 
+    /**
+     * Execute the actions that happen when an energy card is played.
+     *
+     * @param energy The energy card being played.
+     */
     public void visitEnergy(IEnergy energy) {
         if (energy.getTrainer().getSelectedPokemon() != null) {
             energy.getTrainer().getSelectedPokemon().addEnergyToPokemon(energy);
@@ -26,7 +36,7 @@ public class PlayCardVisitor extends Visitor {
 
     @Override
     public void visitNonBasicPokemon(IPokemon pokemon) {
-        PlayableVisitor v = new PlayableVisitor();
+        PlayableCardVisitor v = new PlayableCardVisitor();
         if (pokemon.canBePlayed(v)) {
             pokemon.replacePokemon(pokemon.getTrainer().getSelectedPokemon());
         }
@@ -42,27 +52,43 @@ public class PlayCardVisitor extends Visitor {
         this.visitNonBasicPokemon(pokemon);
     }
 
+    /**
+     * Execute the actions that happen when a Super Scoop Up card is played.
+     *
+     * @param objectCard The card being played.
+     */
     public void visitSuperScoopUp(SuperScoopUp objectCard) {
         boolean heads = objectCard.getTrainer().flipACoin();
         if (heads) {
             ITrainer trainer = objectCard.getTrainer();
             IPokemon pokemon = trainer.getSelectedPokemon();
             if (trainer.isOnField(pokemon)) {
-                trainer.getHand().add(pokemon);
+                trainer.addToHand(pokemon);
                 trainer.removeFromField(pokemon);
                 for (ICard card : pokemon.getAssociatedCards()) {
-                    trainer.getHand().add(card);
+                    trainer.addToHand(card);
                     pokemon.getAssociatedCards().remove(card);
                 }
             }
+            trainer.addToDiscardPile(objectCard);
         }
     }
 
+    /**
+     * Execute the actions that happen when a Lucky Stadium card is played.
+     *
+     * @param fieldCard The card being played.
+     */
     public void visitLuckyStadium(LuckyStadium fieldCard) {
         boolean heads = fieldCard.getTrainer().flipACoin();
         if (heads) fieldCard.getTrainer().drawFromDeck();
     }
 
+    /**
+     * Execute the actions that happen when a Professor Juniper card is played.
+     *
+     * @param supportCard The card being played.
+     */
     public void visitProfessorJuniper(ProfessorJuniper supportCard) {
         ITrainer trainer = supportCard.getTrainer();
         while (trainer.getHand().size() > 0) {

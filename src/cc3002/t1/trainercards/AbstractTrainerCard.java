@@ -4,6 +4,11 @@ import cc3002.t1.general.AbstractCard;
 import cc3002.t1.general.ICard;
 import cc3002.t1.visitors.PlayCardVisitor;
 
+/**
+ * Abstract class for a trainer card.
+ *
+ * @author Isabela Tellechea Coluccio
+ */
 public abstract class AbstractTrainerCard extends AbstractCard implements ICard, ITrainerCard {
 
     private String description;

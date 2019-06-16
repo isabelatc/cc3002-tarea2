@@ -1,14 +1,20 @@
 package cc3002.t1.pokemon;
 
+import cc3002.t1.abilities.IAbility;
 import cc3002.t1.general.EnergyCounter;
 import cc3002.t1.general.ICard;
 import cc3002.t1.abilities.IAttack;
 import cc3002.t1.energies.IEnergy;
 import cc3002.t1.visitors.PlayCardVisitor;
-import cc3002.t1.visitors.PlayableVisitor;
+import cc3002.t1.visitors.PlayableCardVisitor;
 
 import java.util.List;
 
+/**
+ * Common interface for pokémon cards.
+ *
+ * @author Isabela Tellechea Coluccio
+ */
 public interface IPokemon extends ICard {
 
     /**
@@ -57,14 +63,31 @@ public interface IPokemon extends ICard {
     int getWaterEnergyAvailable();
 
     /**
-     * @return A list of the Pokémon attacks.
+     * @return A list of the Pokémon abilities.
      */
-    List<IAttack> getAttacks();
+    List<IAbility> getAbilityList();
 
     /**
-     * @return The attack the trainer has selected for the Pokémon to use.
+     * @return The ability the trainer has selected for the Pokémon to use.
      */
-    IAttack getSelectedAttack();
+    IAbility getSelectedAbility();
+
+    /**
+     * @return The list of cards the Pokémon has associated to it.
+     */
+    List<ICard> getAssociatedCards();
+
+    /**
+     * @return This Pokémon's opponent in a fight.
+     */
+    IPokemon getOpponent();
+
+    /**
+     * Set the Pokémon's adversary in a fight.
+     *
+     * @param opponent This Pokémon's opponent.
+     */
+    void setOpponent(IPokemon opponent);
 
     @Override
     void isPlayed(PlayCardVisitor v);
@@ -79,7 +102,7 @@ public interface IPokemon extends ICard {
      * @param v The visitor that will implement the method.
      * @return True if the Pokémon can be played, false otherwise.
      */
-    boolean canBePlayed(PlayableVisitor v);
+    boolean canBePlayed(PlayableCardVisitor v);
 
     /**
      * Updates the HP of the Pokémon, after a fight.
@@ -94,25 +117,24 @@ public interface IPokemon extends ICard {
     void addEnergyToPokemon(IEnergy energy);
 
     /**
-     * Sets the selected attack parameter of the Pokémon to one of their attacks.
+     * Sets the selected ability parameter of the Pokémon to one of their attacks.
      *
-     * @param index The position of the attack to be set (in the attack list of the Pokémon).
+     * @param index The position of the ability to be set (in the ability list of the Pokémon).
      */
-    void setAttack(int index);
+    void setSelectedAbility(int index);
 
     /**
-     * Checks if, with their current energy count, the Pokémon can attack with the selected attack.
+     * Checks if, with their current energy count, the Pokémon can use its selected ability
      *
-     * @return A boolean statement, if it can attack (true) or if it can't (false).
+     * @return A boolean statement, if it can use the ability (true) or if it can't (false).
      */
-    boolean canAttack();
+    boolean canUseAbility();
 
     /**
-     * The current Pokémon attacks another with its selected attack.
+     * The current Pokémon uses its selected ability.
      *
-     * @param other The Pokémon that is attacked.
      */
-    void attack(IPokemon other);
+    void usesAbility();
 
     /**
      * This method decides how to reduce the HP of the Pokémon, considering it was attacked by a fighting opponent.
@@ -202,8 +224,10 @@ public interface IPokemon extends ICard {
     void replacePokemon(IPokemon other);
 
     /**
-     * @return The list of cards the Pokémon has associated to it.
+     * Add a card to the associated cards of the Pokémon.
+     *
+     * @param card The card that will be added to the list.
      */
-    List<ICard> getAssociatedCards();
+    void associateCard(ICard card);
 
 }

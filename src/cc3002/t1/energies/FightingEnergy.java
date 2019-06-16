@@ -25,7 +25,7 @@ public class FightingEnergy extends AbstractEnergy {
 
     @Override
     public void isAdded(IPokemon pokemon) {
-        pokemon.getEnergyList().addFightingEnergy();
+        pokemon.getEnergyList().addFightingEnergy(1);
         this.getTrainer().removeFromHand(this);
     }
 

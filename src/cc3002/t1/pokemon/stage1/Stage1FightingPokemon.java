@@ -1,18 +1,33 @@
 package cc3002.t1.pokemon.stage1;
 
-import cc3002.t1.abilities.IAttack;
-import cc3002.t1.pokemon.AbstractFightingPokemon;
+import cc3002.t1.abilities.IAbility;
+import cc3002.t1.pokemon.types.AbstractFightingPokemon;
 import cc3002.t1.visitors.PlayCardVisitor;
-import cc3002.t1.visitors.PlayableVisitor;
+import cc3002.t1.visitors.PlayableCardVisitor;
 
 import java.util.ArrayList;
 
+/**
+ * Class for every stage 1 fighting pokémon.
+ *
+ * @author Isabela Tellechea Coluccio
+ */
 public class Stage1FightingPokemon extends AbstractFightingPokemon implements IStage1Pokemon {
 
     private int preEvolutionID;
 
-    public Stage1FightingPokemon(String name, int id, int hp, ArrayList<IAttack> attackList, int preEvolutionID) {
-        super(name, id, hp, attackList);
+    /**
+     * The constructor of a stage 1 fighting pokémon. Initially, some of its parameters are empty, because they will be
+     * added during the game. The Pokémon cannot have more than 4 abilities.
+     *
+     * @param name The name of the Pokémon.
+     * @param id The identification number of the Pokémon (according to the Pokédex).
+     * @param hp The initial hit points of the Pokémon.
+     * @param abilityList The list of abilities the Pokémon can use. If it contains more than 4 abilities, only the first 4 will be stored.
+     * @param preEvolutionID The ID of the Pokémon's pre evolution.
+     */
+    public Stage1FightingPokemon(String name, int id, int hp, ArrayList<IAbility> abilityList, int preEvolutionID) {
+        super(name, id, hp, abilityList);
         this.preEvolutionID = preEvolutionID;
     }
 
@@ -27,7 +42,7 @@ public class Stage1FightingPokemon extends AbstractFightingPokemon implements IS
     }
 
     @Override
-    public boolean canBePlayed(PlayableVisitor v) {
+    public boolean canBePlayed(PlayableCardVisitor v) {
         v.visitStage1Pokemon(this);
         return v.getValue();
     }
@@ -38,7 +53,7 @@ public class Stage1FightingPokemon extends AbstractFightingPokemon implements IS
             return (((Stage1FightingPokemon) o).getCardName()).equals(this.getCardName()) &&
                     ((Stage1FightingPokemon) o).getID() == this.getID() &&
                     ((Stage1FightingPokemon) o).getHP() == this.getHP() &&
-                    (((Stage1FightingPokemon) o).getAttacks()).equals(this.getAttacks()) &&
+                    (((Stage1FightingPokemon) o).getAbilityList()).equals(this.getAbilityList()) &&
                     (((Stage1FightingPokemon) o).getEnergyList()).equals(this.getEnergyList());
         }
         return false;

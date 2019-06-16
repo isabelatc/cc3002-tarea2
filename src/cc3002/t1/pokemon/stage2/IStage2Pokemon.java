@@ -2,8 +2,11 @@ package cc3002.t1.pokemon.stage2;
 
 import cc3002.t1.pokemon.IPokemon;
 import cc3002.t1.visitors.PlayCardVisitor;
-import cc3002.t1.visitors.PlayableVisitor;
+import cc3002.t1.visitors.PlayableCardVisitor;
 
+/**
+ * Common interface for every stage 2 pokémon.
+ */
 public interface IStage2Pokemon extends IPokemon {
 
     /**
@@ -15,6 +18,6 @@ public interface IStage2Pokemon extends IPokemon {
     void isPlayed(PlayCardVisitor v);
 
     @Override
-    boolean canBePlayed(PlayableVisitor v);
+    boolean canBePlayed(PlayableCardVisitor v);
 
 }

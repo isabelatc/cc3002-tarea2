@@ -2,6 +2,11 @@ package cc3002.t1.general;
 
 import cc3002.t1.visitors.PlayCardVisitor;
 
+/**
+ * Common interface for all the cards.
+ *
+ * @author Isabela Tellechea Coluccio
+ */
 public interface ICard {
 
     /**

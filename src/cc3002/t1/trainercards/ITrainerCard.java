@@ -8,6 +8,9 @@ import cc3002.t1.visitors.PlayCardVisitor;
  */
 public interface ITrainerCard extends ICard {
 
+    /**
+     * @return The trainer card's description.
+     */
     String getTCDescription();
 
     @Override

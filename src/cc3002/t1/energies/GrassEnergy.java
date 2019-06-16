@@ -25,7 +25,7 @@ public class GrassEnergy extends AbstractEnergy {
 
     @Override
     public void isAdded(IPokemon pokemon) {
-        pokemon.getEnergyList().addGrassEnergy();
+        pokemon.getEnergyList().addGrassEnergy(1);
         this.getTrainer().removeFromHand(this);
     }
 

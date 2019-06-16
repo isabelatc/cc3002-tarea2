@@ -12,7 +12,7 @@ public class EnergyCounter {
     private Map<EnergyType, Integer> energies = new EnumMap<>(EnergyType.class);
 
     /**
-     * Creates a new instance for an energy counter.
+     * Creates a new instance of an energy counter.
      */
     public EnergyCounter() {
         for (EnergyType energy : EnergyType.values()) {
@@ -21,12 +21,22 @@ public class EnergyCounter {
     }
 
     /**
+     * Set the value of a specific energy type to the one provided.
+     *
+     * @param value The value the counter will have after the execution.
+     * @param type The energy type to be changed.
+     */
+    public void setEnergyByType(int value, EnergyType type) {
+        energies.put(type, value);
+    }
+
+    /**
      * Sets the value of the fighting energy count to the one provided.
      *
      * @param value The value the fighting energy count will have after the execution.
      */
     public void setFightingEnergy(int value) {
-        energies.put(EnergyType.FIGHTING, value);
+        setEnergyByType(value, EnergyType.FIGHTING);
     }
 
     /**
@@ -35,7 +45,7 @@ public class EnergyCounter {
      * @param value The value the fire energy count will have after the execution.
      */
     public void setFireEnergy(int value) {
-        energies.put(EnergyType.FIRE, value);
+        setEnergyByType(value, EnergyType.FIRE);
     }
 
     /**
@@ -44,7 +54,7 @@ public class EnergyCounter {
      * @param value The value the grass energy count will have after the execution.
      */
     public void setGrassEnergy(int value) {
-        energies.put(EnergyType.GRASS, value);
+        setEnergyByType(value, EnergyType.GRASS);
     }
 
     /**
@@ -53,7 +63,7 @@ public class EnergyCounter {
      * @param value The value the lightning energy count will have after the execution.
      */
     public void setLightningEnergy(int value) {
-        energies.put(EnergyType.LIGHTNING, value);
+        setEnergyByType(value, EnergyType.LIGHTNING);
     }
 
     /**
@@ -62,7 +72,7 @@ public class EnergyCounter {
      * @param value The value the psychic energy count will have after the execution.
      */
     public void setPsychicEnergy(int value) {
-        energies.put(EnergyType.PSYCHIC, value);
+        setEnergyByType(value, EnergyType.PSYCHIC);
     }
 
     /**
@@ -70,7 +80,7 @@ public class EnergyCounter {
      *
      * @param value The value the water energy count will have after the execution.
      */
-    public void setWaterEnergy(int value) { energies.put(EnergyType.WATER, value); }
+    public void setWaterEnergy(int value) { setEnergyByType(value, EnergyType.WATER); }
 
     /**
      * @return The dictionary that represents the amount of energy of the counter.
@@ -80,85 +90,115 @@ public class EnergyCounter {
     }
 
     /**
+     * @param type The energy type that's being asked for.
+     * @return The amount of energy associated to the type.
+     */
+    public int getEnergyByType(EnergyType type) {
+        return energies.get(type);
+    }
+
+    /**
      * @return The amount of fighting energy of the counter.
      */
     public int getFightingEnergy() {
-        return energies.get(EnergyType.FIGHTING);
+        return getEnergyByType(EnergyType.FIGHTING);
     }
 
     /**
      * @return The amount of fire energy of the counter.
      */
     public int getFireEnergy() {
-        return energies.get(EnergyType.FIRE);
+        return getEnergyByType(EnergyType.FIRE);
     }
 
     /**
      * @return The amount of grass energy of the counter.
      */
     public int getGrassEnergy() {
-        return energies.get(EnergyType.GRASS);
+        return getEnergyByType(EnergyType.GRASS);
     }
 
     /**
      * @return The amount of lightning energy of the counter.
      */
-    public int getLightningEnergy() { return energies.get(EnergyType.LIGHTNING); }
+    public int getLightningEnergy() { return getEnergyByType(EnergyType.LIGHTNING); }
 
     /**
      * @return The amount of psychic energy of the counter.
      */
     public int getPsychicEnergy() {
-        return energies.get(EnergyType.PSYCHIC);
+        return getEnergyByType(EnergyType.PSYCHIC);
     }
 
     /**
      * @return The amount of water energy of the counter.
      */
     public int getWaterEnergy() {
-        return energies.get(EnergyType.WATER);
+        return getEnergyByType(EnergyType.WATER);
     }
 
     /**
-     * Adds 1 to the number of fighting energy of the counter.
+     * Adds a value to the number of energy of a certain type to the counter.
+     *
+     * @param value The amount of energy cards that will be added.
+     * @param type The type of the energies to add;
      */
-    public void addFightingEnergy() {
-        energies.put(EnergyType.FIGHTING, energies.get(EnergyType.FIGHTING) + 1);
+    public void addToEnergyType(int value, EnergyType type) {
+        energies.put(type, energies.get(type) + value);
     }
 
     /**
-     * Adds 1 to the number of fire energy of the counter.
+     * Adds a value to the number of fighting energy of the counter.
+     *
+     * @param value The amount of energy cards that will be added.
      */
-    public void addFireEnergy() {
-        energies.put(EnergyType.FIRE, energies.get(EnergyType.FIRE) + 1);
+    public void addFightingEnergy(int value) {
+        addToEnergyType(value, EnergyType.FIGHTING);
     }
 
     /**
-     * Adds 1 to the number of grass energy of the counter.
+     * Adds a value to the number of fire energy of the counter.
+     *
+     * @param value The amount of energy cards that will be added.
      */
-    public void addGrassEnergy() {
-        energies.put(EnergyType.GRASS, energies.get(EnergyType.GRASS) + 1);
+    public void addFireEnergy(int value) {
+        addToEnergyType(value, EnergyType.FIRE);
     }
 
     /**
-     * Adds 1 to the number of lightning energy of the counter.
+     * Adds a value to the number of grass energy of the counter.
+     *
+     * @param value The amount of energy cards that will be added.
      */
-    public void addLightningEnergy() {
-        energies.put(EnergyType.LIGHTNING, energies.get(EnergyType.LIGHTNING) + 1);
+    public void addGrassEnergy(int value) {
+        addToEnergyType(value, EnergyType.GRASS);
     }
 
     /**
-     * Adds 1 to the number of psychic energy of the counter.
+     * Adds a value to the number of lightning energy of the counter.
+     *
+     * @param value The amount of energy cards that will be added.
      */
-    public void addPsychicEnergy() {
-        energies.put(EnergyType.PSYCHIC, energies.get(EnergyType.PSYCHIC) + 1);
+    public void addLightningEnergy(int value) {
+        addToEnergyType(value, EnergyType.LIGHTNING);
     }
 
     /**
-     * Adds 1 to the number of water energy of the counter.
+     * Adds a value to the number of psychic energy of the counter.
+     *
+     * @param value The amount of energy cards that will be added.
      */
-    public void addWaterEnergy() {
-        energies.put(EnergyType.WATER, energies.get(EnergyType.WATER) + 1);
+    public void addPsychicEnergy(int value) {
+        addToEnergyType(value, EnergyType.PSYCHIC);
+    }
+
+    /**
+     * Adds a value to the number of water energy of the counter.
+     *
+     * @param value The amount of energy cards that will be added.
+     */
+    public void addWaterEnergy(int value) {
+        addToEnergyType(value, EnergyType.WATER);
     }
 
     /**

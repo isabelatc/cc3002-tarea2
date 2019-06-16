@@ -25,7 +25,7 @@ public class WaterEnergy extends AbstractEnergy {
 
     @Override
     public void isAdded(IPokemon pokemon) {
-        pokemon.getEnergyList().addWaterEnergy();
+        pokemon.getEnergyList().addWaterEnergy(1);
         this.getTrainer().removeFromHand(this);
     }
 

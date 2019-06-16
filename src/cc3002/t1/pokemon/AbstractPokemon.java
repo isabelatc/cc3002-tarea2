@@ -1,5 +1,6 @@
 package cc3002.t1.pokemon;
 
+import cc3002.t1.abilities.IAbility;
 import cc3002.t1.abilities.IAttack;
 import cc3002.t1.energies.IEnergy;
 import cc3002.t1.general.AbstractCard;
@@ -10,35 +11,40 @@ import cc3002.t1.general.ICard;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Abstract class for a generic pokémon.
+ */
 public abstract class AbstractPokemon extends AbstractCard implements ICard, IPokemon {
 
     private int id, hp;
-    private List<IAttack> attackList;
+    private List<IAbility> abilityList;
     private EnergyCounter energyList;
-    private IAttack selectedAttack;
+    private IAbility selectedAbility;
     private List<ICard> associatedCards;
+    private IPokemon opponent;
 
     /**
-     * The constructor of AbstractPokemon. It cannot create an instance of the class itself, but it is used by all of its subclasses.
+     * The constructor of a generic Pokémon. It cannot create an instance of the class itself, but it is used by all of its subclasses.
      * Initially, some of its parameters are empty, because they will be added during the game.
-     * A restriction for the constructor is that the Pokémon cannot have more than 4 attacks.
+     * A restriction for the constructor is that the Pokémon cannot have more than 4 abilities.
      *
      * @param name The name of the Pokémon.
      * @param id The identification number of the Pokémon (according to the Pokédex).
      * @param hp The initial hit points of the Pokémon.
-     * @param anAttackList The list of attacks the Pokémon can use. If it contains more than 4 attacks, only the first 4 will be stored.
+     * @param anAbilityList The list of abilities the Pokémon can use. If it contains more than 4 abilities, only the first 4 will be stored.
      */
-    protected AbstractPokemon(String name, int id, int hp, ArrayList<IAttack> anAttackList) {
+    protected AbstractPokemon(String name, int id, int hp, ArrayList<IAbility> anAbilityList) {
         super(name);
         this.id = id;
         this.hp = hp;
-        this.attackList = new ArrayList<>();
-        for (IAttack attack : anAttackList) {
-            if (attackList.size() <= 4) attackList.add(attack);
+        this.abilityList = new ArrayList<>();
+        for (IAbility ability : anAbilityList) {
+            while (abilityList.size() <= 4) abilityList.add(ability);
         }
         this.energyList = new EnergyCounter();
-        this.selectedAttack = null;
+        this.selectedAbility = null;
         this.associatedCards = new ArrayList<>();
+        this.opponent = null;
     }
 
     @Override
@@ -76,10 +82,25 @@ public abstract class AbstractPokemon extends AbstractCard implements ICard, IPo
     public int getWaterEnergyAvailable() { return energyList.getWaterEnergy(); }
 
     @Override
-    public List<IAttack> getAttacks() { return attackList; }
+    public List<IAbility> getAbilityList() { return abilityList; }
 
     @Override
-    public IAttack getSelectedAttack() { return selectedAttack; }
+    public IAbility getSelectedAbility() { return selectedAbility; }
+
+    @Override
+    public List<ICard> getAssociatedCards() {
+        return this.associatedCards;
+    }
+
+    @Override
+    public IPokemon getOpponent() {
+        return this.opponent;
+    }
+
+    @Override
+    public void setOpponent(IPokemon opponent) {
+        this.opponent = opponent;
+    }
 
     @Override
     public abstract boolean equals(Object o);
@@ -93,18 +114,18 @@ public abstract class AbstractPokemon extends AbstractCard implements ICard, IPo
     }
 
     @Override
-    public void setAttack(int index) {
-        if (index < attackList.size()) selectedAttack = attackList.get(index);
+    public void setSelectedAbility(int index) {
+        if (index < abilityList.size()) selectedAbility = abilityList.get(index);
     }
 
     @Override
-    public boolean canAttack() {
-        EnergyCounter costs = selectedAttack.getEnergyCosts();
+    public boolean canUseAbility() {
+        EnergyCounter costs = selectedAbility.getEnergyCosts();
         return (getHP() > 0) && (energyList.greaterOrEqual(costs));
     }
 
     @Override
-    public abstract void attack(IPokemon other);
+    public abstract void usesAbility();
 
     @Override
     public abstract void attackedByFightingPokemon(IAttack attack);
@@ -179,8 +200,8 @@ public abstract class AbstractPokemon extends AbstractCard implements ICard, IPo
     }
 
     @Override
-    public List<ICard> getAssociatedCards() {
-        return this.associatedCards;
+    public void associateCard(ICard card) {
+        associatedCards.add(card);
     }
 
 }

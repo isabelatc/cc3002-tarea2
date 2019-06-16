@@ -1,25 +1,25 @@
 package cc3002.t1.general;
 
-import cc3002.t1.abilities.IAttack;
+import cc3002.t1.abilities.IAbility;
 import cc3002.t1.pokemon.IPokemon;
+import cc3002.t1.trainercards.field.AbstractFieldCard;
 
 import java.util.List;
 
 /**
- * Common interface for all the Pokémon trainers. They should all have an initial hand of cards,
- * which they can play to their bench, or later as an active Pokémon.
+ * Common interface for all the Pokémon trainers. They should all have an initial deck of cards.
  *
  * @author Isabela Tellechea Coluccio
  */
 public interface ITrainer {
 
     /**
-     * @return A list of the cards in the Trainer's hand.
+     * @return A list of the cards in the trainer's hand.
      */
     List<ICard> getHand();
 
     /**
-     * @return A list of the Pokémon in the Trainer's bench.
+     * @return A list of the Pokémon in the trainer's bench.
      */
     List<IPokemon> getBench();
 
@@ -53,12 +53,12 @@ public interface ITrainer {
     EnergyCounter getPokemonEnergy(IPokemon pokemon);
 
     /**
-     * The trainer asks for the list of attacks a Pokémon has.
+     * The trainer asks for the list of abilities a Pokémon has.
      *
      * @param pokemon The Pokémon the trainer is asking about.
-     * @return A list of the Pokémon's attacks.
+     * @return A list of the Pokémon's abilities.
      */
-    List<IAttack> getPokemonAttacks(IPokemon pokemon);
+    List<IAbility> getPokemonAbilities(IPokemon pokemon);
 
     /**
      * @return The trainer's selected pokémon.
@@ -66,7 +66,43 @@ public interface ITrainer {
     IPokemon getSelectedPokemon();
 
     /**
-     * The trainer draws the first card of their deck.
+     * @return The current field card of the trainer, if there is one.
+     */
+    ICard getActiveFieldCard();
+
+    /**
+     * @return True if the action was successful, false otherwise.
+     */
+    boolean getActionSuccessful();
+
+    /**
+     * @return The trainer that this one is going to play against with.
+     */
+    ITrainer getAdversary();
+
+    /**
+     * Sets the value of this trainer's adversary.
+     *
+     * @param adversary The trainer this one is playing against with.
+     */
+    void setAdversary(ITrainer adversary);
+
+    /**
+     * Changes the value of the parameter that indicates if an action was successful or not.
+     *
+     * @param value True if the action was successful, false otherwise.
+     */
+    void setActionSuccessful(boolean value);
+
+    /**
+     * Changes current active field card.
+     *
+     * @param card The new active field card.
+     */
+    void setActiveFieldCard(AbstractFieldCard card);
+
+    /**
+     * The trainer draws the first card of their deck and adds it to their hand.
      */
     void drawFromDeck();
 
@@ -118,19 +154,16 @@ public interface ITrainer {
     void setActivePokemon();
 
     /**
-     * The trainer selects an attack from the active Pokémon. This will be the attack to be used against an
-     * opponent.
+     * The trainer selects an ability from the active Pokémon. This will be the ability to be used by the pokémon.
      *
-     * @param index The position in the active Pokémon's list of attacks that contains the selected attack.
+     * @param index The position in the active Pokémon's list of abilities that contains the selected ability.
      */
-    void selectAttack(int index);
+    void selectAbility(int index);
 
     /**
-     * The active Pokémon from the trainer attacks the opponent's active Pokémon with their selected attack.
-     *
-     * @param opponent The opponent of the trainer.
+     * The active Pokémon from the trainer uses its selected ability.
      */
-    void useAttack(ITrainer opponent);
+    void useAbility();
 
     /**
      * This method updates the selected pokémon parameter. The new selected one can only be a pokémon from the
@@ -151,6 +184,8 @@ public interface ITrainer {
     boolean flipACoin();
 
     /**
+     * The trainer checks is a pokémon is on their field.
+     *
      * @param pokemon Pokémon to be checked.
      * @return true if the pokémon is on the field, false otherwise.
      */
@@ -162,4 +197,5 @@ public interface ITrainer {
      * @param pokemon The pokémon that will be removed.
      */
     void removeFromField(IPokemon pokemon);
+
 }
