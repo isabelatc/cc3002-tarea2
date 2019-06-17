@@ -1,7 +1,7 @@
 Project 2: Pokémon TCG: Electric Boogaloo
 ======
 This project is completed for the Design and Programming Methodologies course (CC3002), lectured by the Computer Science Department at Universidad de Chile. 
-In this case, the purpose of the project is to implement, using the programming language Java, a basic game of Pokémon. The current implementation is the second and final (at least for now) update on the game, adding more features to it than it was done in the first project. The most important and basic classes and interfaces were previously created on the first instance, and everything that didn't work according to expectations was corrected before starting the second version of development.
+In this case, the purpose of the project is to implement, using the programming language Java, a basic game of Pokémon. The current implementation is the second and final update on the game, adding more features to it than it was done in the first project. The most important and basic classes and interfaces were previously created on the first instance, and everything that didn't work according to expectations was corrected before starting the second version of development.
 Academically, it's relevant to note that the code is full of applications of some of the design patterns studied in this course, such as Double Dispatch, Visitor and Template. This increases its value, since the implementation of every class and method was carefully optimized, in order to make it more readable, understandable and extensible, so it's easier to make it grow in the future.
 
 ### Running the Project
