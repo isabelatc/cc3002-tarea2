@@ -1,7 +1,6 @@
 package cc3002.t1.energies;
 
-import cc3002.t1.AbstractEnergy;
-import cc3002.t1.IPokemon;
+import cc3002.t1.pokemon.IPokemon;
 
 /**
  * Class of the psychic energy cards. It inherites methods from its abstract superclass AbstractEnergy.
@@ -26,7 +25,7 @@ public class PsychicEnergy extends AbstractEnergy {
 
     @Override
     public void isAdded(IPokemon pokemon) {
-        pokemon.getEnergyList().addPsychicEnergy();
+        pokemon.getEnergyList().addPsychicEnergy(1);
         this.getTrainer().removeFromHand(this);
     }
 

@@ -1,7 +1,6 @@
 package cc3002.t1.energies;
 
-import cc3002.t1.AbstractEnergy;
-import cc3002.t1.IPokemon;
+import cc3002.t1.pokemon.IPokemon;
 
 /**
  * Class of the fire energy cards. It inherites methods from its abstract superclass AbstractEnergy.
@@ -26,7 +25,7 @@ public class FireEnergy extends AbstractEnergy {
 
     @Override
     public void isAdded(IPokemon pokemon) {
-        pokemon.getEnergyList().addFireEnergy();
+        pokemon.getEnergyList().addFireEnergy(1);
         this.getTrainer().removeFromHand(this);
     }
 
