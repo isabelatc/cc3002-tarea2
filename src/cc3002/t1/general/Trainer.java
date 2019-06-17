@@ -2,6 +2,7 @@ package cc3002.t1.general;
 
 import cc3002.t1.abilities.IAbility;
 import cc3002.t1.pokemon.IPokemon;
+import cc3002.t1.trainercards.ITrainerCard;
 import cc3002.t1.trainercards.field.AbstractFieldCard;
 import cc3002.t1.visitors.PlayCardVisitor;
 
@@ -21,7 +22,7 @@ public class Trainer implements ITrainer {
     private List<ICard> deck, hand, discardPile, prizes;
     private List<IPokemon> bench;
     private IPokemon selectedPokemon;
-    private ICard activeFieldCard;
+    private ITrainerCard activeFieldCard;
     private ITrainer adversary;
     private boolean actionSuccessful;
 
@@ -85,7 +86,7 @@ public class Trainer implements ITrainer {
     public IPokemon getSelectedPokemon() { return this.selectedPokemon; }
 
     @Override
-    public ICard getActiveFieldCard() { return this.activeFieldCard; }
+    public ITrainerCard getActiveFieldCard() { return this.activeFieldCard; }
 
     @Override
     public boolean getActionSuccessful() {
@@ -108,7 +109,7 @@ public class Trainer implements ITrainer {
     }
 
     @Override
-    public void setActiveFieldCard(AbstractFieldCard card) {
+    public void setActiveFieldCard(ITrainerCard card) {
         this.activeFieldCard = card;
     }
 
@@ -181,12 +182,13 @@ public class Trainer implements ITrainer {
     @Override
     public void useAbility() {
         activePokemon.getSelectedAbility().setPokemon(activePokemon);
+        activePokemon.setOpponent(getAdversary().getActivePokemon());
         activePokemon.usesAbility();
     }
 
     @Override
     public void setSelectedPokemon(IPokemon pokemon) {
-        if (bench.contains(pokemon) || activePokemon.equals(pokemon)) selectedPokemon = pokemon;
+        if (this.isOnField(pokemon)) selectedPokemon = pokemon;
     }
 
     @Override
@@ -237,8 +239,7 @@ public class Trainer implements ITrainer {
     }
 
     @Override
-    public boolean flipACoin() {
-        Random rand = new Random();
+    public boolean flipACoin(Random rand) {
         int result = rand.nextInt(2);
         if (result == 1) return true;
         else return false;

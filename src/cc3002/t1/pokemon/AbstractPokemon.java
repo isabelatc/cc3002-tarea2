@@ -39,7 +39,7 @@ public abstract class AbstractPokemon extends AbstractCard implements ICard, IPo
         this.hp = hp;
         this.abilityList = new ArrayList<>();
         for (IAbility ability : anAbilityList) {
-            while (abilityList.size() <= 4) abilityList.add(ability);
+            if (abilityList.size() <= 4) abilityList.add(ability);
         }
         this.energyList = new EnergyCounter();
         this.selectedAbility = null;

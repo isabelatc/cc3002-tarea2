@@ -1,6 +1,6 @@
 package cc3002.t1.pokemon;
 
-import cc3002.t1.abilities.Attack;
+import cc3002.t1.abilities.ElectricShock;
 import cc3002.t1.abilities.IAttack;
 import cc3002.t1.energies.FireEnergy;
 import cc3002.t1.energies.IEnergy;
@@ -10,9 +10,10 @@ import cc3002.t1.general.EnergyCounter;
 import cc3002.t1.general.ICard;
 import cc3002.t1.general.ITrainer;
 import cc3002.t1.general.Trainer;
-import cc3002.t1.pokemon.grassPokemon.GrassPokemon;
-import cc3002.t1.pokemon.lightningPokemon.LightningPokemon;
-import cc3002.t1.pokemon.waterPokemon.WaterPokemon;
+import cc3002.t1.pokemon.basic.BasicGrassPokemon;
+import cc3002.t1.pokemon.basic.BasicLightningPokemon;
+import cc3002.t1.pokemon.basic.BasicWaterPokemon;
+import cc3002.t1.visitors.PlayCardVisitor;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,6 +31,7 @@ public class LightningPokemonTest {
     private IPokemon pikachu, squirtle, tangela;
     private ITrainer trainer;
     private List<ICard> trainerDeck, auxTrainerDeck;
+    private EnergyCounter count10, count20, count30, count40, count50;
 
     @Before
     public void setUp() {
@@ -38,22 +40,43 @@ public class LightningPokemonTest {
         aPsychic = new PsychicEnergy();
         aWater = new WaterEnergy();
 
-        attack10 = new Attack("Attack 10", 10, "This attack has a base damage of 10",
-                0, 2, 0, 0, 0, 1);
-        attack20 = new Attack("Attack 20", 20, "This attack has a base damage of 20",
-                0, 0, 2, 0, 1, 0);
-        attack30 = new Attack("Attack 30", 30, "This attack has a base damage of 30",
-                0, 1, 0, 0, 0, 1);
-        attack40 = new Attack("Attack 40", 40, "This attack has a base damage of 40",
-                0, 1, 2, 0, 1, 0);
-        attack50 = new Attack("Attack 50", 50, "This attack has a base damage of 50",
-                0, 1, 0, 0, 1, 0);
+        count10 = new EnergyCounter();
+        count10.setFireEnergy(2);
+        count10.setWaterEnergy(1);
 
-        pikachu = new LightningPokemon("Pikachu", 25, 100,
+        count20 = new EnergyCounter();
+        count20.setGrassEnergy(2);
+        count20.setPsychicEnergy(1);
+
+        count30 = new EnergyCounter();
+        count30.setFireEnergy(1);
+        count30.setWaterEnergy(1);
+
+        count40 = new EnergyCounter();
+        count40.setFireEnergy(1);
+        count40.setGrassEnergy(2);
+        count40.setPsychicEnergy(1);
+
+        count50 = new EnergyCounter();
+        count50.setFireEnergy(1);
+        count50.setPsychicEnergy(1);
+
+        attack10 = new ElectricShock("Electric Shock 10", 10,
+                "This Electric Shock has a base damage of 10", count10);
+        attack20 = new ElectricShock("Electric Shock 20", 20,
+                "This Electric Shock has a base damage of 20", count20);
+        attack30 = new ElectricShock("Electric Shock 30", 30,
+                "This Electric Shock has a base damage of 30", count30);
+        attack40 = new ElectricShock("Electric Shock 40", 40,
+                "This Electric Shock has a base damage of 40", count40);
+        attack50 = new ElectricShock("Electric Shock 50", 50,
+                "This Electric Shock has a base damage of 50", count50);
+
+        pikachu = new BasicLightningPokemon("Pikachu", 25, 100,
                 new ArrayList<>(Arrays.asList(attack30, attack50)));
-        squirtle = new WaterPokemon("Squirtle", 7, 90,
+        squirtle = new BasicWaterPokemon("Squirtle", 7, 90,
                 new ArrayList<>(Arrays.asList(attack10, attack20, attack50)));
-        tangela = new GrassPokemon("Tangela", 114, 100,
+        tangela = new BasicGrassPokemon("Tangela", 114, 100,
                 new ArrayList<>(Arrays.asList(attack30, attack40, attack50)));
 
         auxTrainerDeck = new ArrayList<>(Arrays.asList(pikachu, squirtle, aFire, aPsychic, tangela, aWater));
@@ -89,8 +112,8 @@ public class LightningPokemonTest {
         assertEquals(0, pikachu.getPsychicEnergyAvailable());
         assertEquals(0, pikachu.getWaterEnergyAvailable());
         assertEquals("Pikachu", pikachu.getCardName());
-        assertEquals(new ArrayList<>(Arrays.asList(attack30, attack50)), pikachu.getAttacks());
-        assertNull(pikachu.getSelectedAttack());
+        assertEquals(new ArrayList<>(Arrays.asList(attack30, attack50)), pikachu.getAbilityList());
+        assertNull(pikachu.getSelectedAbility());
     }
 
     @Test
@@ -102,14 +125,15 @@ public class LightningPokemonTest {
     @Test
     public void isPlayedTest() {
         pikachu.setTrainer(trainer);
-        pikachu.isPlayed();
+        PlayCardVisitor v = new PlayCardVisitor();
+        pikachu.isPlayed(v);
         assertTrue(pikachu.getTrainer().getBench().contains(pikachu));
         assertFalse(pikachu.getTrainer().getHand().contains(pikachu));
     }
 
     @Test
     public void equalsTest() {
-        IPokemon anotherPikachu = new LightningPokemon("Pikachu", 25, 100, new ArrayList<>(Arrays.asList(attack30, attack50)));
+        IPokemon anotherPikachu = new BasicLightningPokemon("Pikachu", 25, 100, new ArrayList<>(Arrays.asList(attack30, attack50)));
         assertEquals(anotherPikachu, pikachu);
         assertNotEquals(squirtle, pikachu);
     }
@@ -125,51 +149,28 @@ public class LightningPokemonTest {
         EnergyCounter pikachuCounter = pikachu.getEnergyList();
         aFire.setTrainer(trainer);
         pikachu.addEnergyToPokemon(aFire);
-        pikachuCounter.addFireEnergy();
+        pikachuCounter.addFireEnergy(1);
         assertEquals(pikachuCounter, pikachu.getEnergyList());
     }
 
     @Test
-    public void setAttackTest() {
-        pikachu.setAttack(0);
-        assertEquals(attack30, pikachu.getSelectedAttack());
-        pikachu.setAttack(3);
-        assertEquals(attack30, pikachu.getSelectedAttack());
+    public void setSelectedAbilityTest() {
+        pikachu.setSelectedAbility(0);
+        assertEquals(attack30, pikachu.getSelectedAbility());
+        pikachu.setSelectedAbility(3);
+        assertEquals(attack30, pikachu.getSelectedAbility());
     }
 
     @Test
-    public void canAttackTest() {
+    public void canUseAbilityTest() {
         aFire.setTrainer(trainer);
         aWater.setTrainer(trainer);
         pikachu.addEnergyToPokemon(aFire);
         pikachu.addEnergyToPokemon(aWater);
-        pikachu.setAttack(0);
-        assertTrue(pikachu.canAttack());
-        pikachu.setAttack(1);
-        assertFalse(pikachu.canAttack());
-    }
-
-    @Test
-    public void attackTest() {
-        pikachu.setAttack(0);
-        pikachu.attack(squirtle);
-        assertEquals(90, squirtle.getHP());
-
-        aFire.setTrainer(trainer);
-        aPsychic.setTrainer(trainer);
-        aWater.setTrainer(trainer);
-        pikachu.addEnergyToPokemon(aFire);
-        pikachu.addEnergyToPokemon(aPsychic);
-        pikachu.addEnergyToPokemon(aWater);
-
-        squirtle.setTrainer(trainer);
-        pikachu.setAttack(1);
-        pikachu.attack(squirtle);
-        assertEquals(0, squirtle.getHP());
-
-        pikachu.setAttack(0);
-        pikachu.attack(tangela);
-        assertEquals(70, tangela.getHP());
+        pikachu.setSelectedAbility(0);
+        assertTrue(pikachu.canUseAbility());
+        pikachu.setSelectedAbility(1);
+        assertFalse(pikachu.canUseAbility());
     }
 
     @Test

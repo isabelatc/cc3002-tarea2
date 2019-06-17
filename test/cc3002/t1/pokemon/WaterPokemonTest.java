@@ -1,6 +1,6 @@
 package cc3002.t1.pokemon;
 
-import cc3002.t1.abilities.Attack;
+import cc3002.t1.abilities.ElectricShock;
 import cc3002.t1.abilities.IAttack;
 import cc3002.t1.energies.FireEnergy;
 import cc3002.t1.energies.IEnergy;
@@ -10,9 +10,10 @@ import cc3002.t1.general.EnergyCounter;
 import cc3002.t1.general.ICard;
 import cc3002.t1.general.ITrainer;
 import cc3002.t1.general.Trainer;
-import cc3002.t1.pokemon.firePokemon.FirePokemon;
-import cc3002.t1.pokemon.grassPokemon.GrassPokemon;
-import cc3002.t1.pokemon.waterPokemon.WaterPokemon;
+import cc3002.t1.pokemon.basic.BasicFirePokemon;
+import cc3002.t1.pokemon.basic.BasicGrassPokemon;
+import cc3002.t1.pokemon.basic.BasicWaterPokemon;
+import cc3002.t1.visitors.PlayCardVisitor;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,6 +31,7 @@ public class WaterPokemonTest {
     private IPokemon squirtle, charmander, tangela;
     private ITrainer trainer;
     private List<ICard> trainerDeck, auxTrainerDeck;
+    private EnergyCounter count10, count20, count30, count40, count50;
 
     @Before
     public void setUp() {
@@ -38,22 +40,43 @@ public class WaterPokemonTest {
         aPsychic = new PsychicEnergy();
         aWater = new WaterEnergy();
 
-        attack10 = new Attack("Attack 10", 10, "This attack has a base damage of 10",
-                0, 2, 0, 0, 0, 1);
-        attack20 = new Attack("Attack 20", 20, "This attack has a base damage of 20",
-                0, 0, 2, 0, 1, 0);
-        attack30 = new Attack("Attack 30", 30, "This attack has a base damage of 30",
-                0, 1, 0, 0, 0, 1);
-        attack40 = new Attack("Attack 40", 40, "This attack has a base damage of 40",
-                0, 1, 2, 0, 1, 0);
-        attack50 = new Attack("Attack 50", 50, "This attack has a base damage of 50",
-                0, 1, 0, 0, 1, 0);
+        count10 = new EnergyCounter();
+        count10.setFireEnergy(2);
+        count10.setWaterEnergy(1);
 
-        squirtle = new WaterPokemon("Squirtle", 7, 100,
+        count20 = new EnergyCounter();
+        count20.setGrassEnergy(2);
+        count20.setPsychicEnergy(1);
+
+        count30 = new EnergyCounter();
+        count30.setFireEnergy(1);
+        count30.setWaterEnergy(1);
+
+        count40 = new EnergyCounter();
+        count40.setFireEnergy(1);
+        count40.setGrassEnergy(2);
+        count40.setPsychicEnergy(1);
+
+        count50 = new EnergyCounter();
+        count50.setFireEnergy(1);
+        count50.setPsychicEnergy(1);
+
+        attack10 = new ElectricShock("Electric Shock 10", 10,
+                "This Electric Shock has a base damage of 10", count10);
+        attack20 = new ElectricShock("Electric Shock 20", 20,
+                "This Electric Shock has a base damage of 20", count20);
+        attack30 = new ElectricShock("Electric Shock 30", 30,
+                "This Electric Shock has a base damage of 30", count30);
+        attack40 = new ElectricShock("Electric Shock 40", 40,
+                "This Electric Shock has a base damage of 40", count40);
+        attack50 = new ElectricShock("Electric Shock 50", 50,
+                "This Electric Shock has a base damage of 50", count50);
+
+        squirtle = new BasicWaterPokemon("Squirtle", 7, 100,
                 new ArrayList<>(Arrays.asList(attack30, attack50)));
-        charmander = new FirePokemon("Charmander", 4, 90,
+        charmander = new BasicFirePokemon("Charmander", 4, 90,
                 new ArrayList<>(Arrays.asList(attack10, attack20, attack50)));
-        tangela = new GrassPokemon("Tangela", 114, 100,
+        tangela = new BasicGrassPokemon("Tangela", 114, 100,
                 new ArrayList<>(Arrays.asList(attack30, attack40, attack50)));
 
         auxTrainerDeck = new ArrayList<>(Arrays.asList(squirtle, charmander, aFire, aPsychic, tangela, aWater));
@@ -89,8 +112,8 @@ public class WaterPokemonTest {
         assertEquals(0, squirtle.getPsychicEnergyAvailable());
         assertEquals(0, squirtle.getWaterEnergyAvailable());
         assertEquals("Squirtle", squirtle.getCardName());
-        assertEquals(new ArrayList<>(Arrays.asList(attack30, attack50)), squirtle.getAttacks());
-        assertNull(squirtle.getSelectedAttack());
+        assertEquals(new ArrayList<>(Arrays.asList(attack30, attack50)), squirtle.getAbilityList());
+        assertNull(squirtle.getSelectedAbility());
     }
 
     @Test
@@ -102,14 +125,15 @@ public class WaterPokemonTest {
     @Test
     public void isPlayedTest() {
         squirtle.setTrainer(trainer);
-        squirtle.isPlayed();
+        PlayCardVisitor v = new PlayCardVisitor();
+        squirtle.isPlayed(v);
         assertTrue(squirtle.getTrainer().getBench().contains(squirtle));
         assertFalse(squirtle.getTrainer().getHand().contains(squirtle));
     }
 
     @Test
     public void equalsTest() {
-        IPokemon anotherSquirtle = new WaterPokemon("Squirtle", 7, 100, new ArrayList<>(Arrays.asList(attack30, attack50)));
+        IPokemon anotherSquirtle = new BasicWaterPokemon("Squirtle", 7, 100, new ArrayList<>(Arrays.asList(attack30, attack50)));
         assertEquals(anotherSquirtle, squirtle);
         assertNotEquals(charmander, squirtle);
     }
@@ -125,51 +149,28 @@ public class WaterPokemonTest {
         EnergyCounter squirtleCounter = squirtle.getEnergyList();
         aFire.setTrainer(trainer);
         squirtle.addEnergyToPokemon(aFire);
-        squirtleCounter.addFireEnergy();
+        squirtleCounter.addFireEnergy(1);
         assertEquals(squirtleCounter, squirtle.getEnergyList());
     }
 
     @Test
-    public void setAttackTest() {
-        squirtle.setAttack(0);
-        assertEquals(attack30, squirtle.getSelectedAttack());
-        squirtle.setAttack(3);
-        assertEquals(attack30, squirtle.getSelectedAttack());
+    public void setSelectedAbilityTest() {
+        squirtle.setSelectedAbility(0);
+        assertEquals(attack30, squirtle.getSelectedAbility());
+        squirtle.setSelectedAbility(3);
+        assertEquals(attack30, squirtle.getSelectedAbility());
     }
 
     @Test
-    public void canAttackTest() {
+    public void canUseAbilityTest() {
         aFire.setTrainer(trainer);
         aWater.setTrainer(trainer);
         squirtle.addEnergyToPokemon(aFire);
         squirtle.addEnergyToPokemon(aWater);
-        squirtle.setAttack(0);
-        assertTrue(squirtle.canAttack());
-        squirtle.setAttack(1);
-        assertFalse(squirtle.canAttack());
-    }
-
-    @Test
-    public void attackTest() {
-        squirtle.setAttack(0);
-        squirtle.attack(charmander);
-        assertEquals(90, charmander.getHP());
-
-        aFire.setTrainer(trainer);
-        aPsychic.setTrainer(trainer);
-        aWater.setTrainer(trainer);
-        squirtle.addEnergyToPokemon(aFire);
-        squirtle.addEnergyToPokemon(aPsychic);
-        squirtle.addEnergyToPokemon(aWater);
-
-        charmander.setTrainer(trainer);
-        squirtle.setAttack(1);
-        squirtle.attack(charmander);
-        assertEquals(0, charmander.getHP());
-
-        squirtle.setAttack(1);
-        squirtle.attack(tangela);
-        assertEquals(80, tangela.getHP());
+        squirtle.setSelectedAbility(0);
+        assertTrue(squirtle.canUseAbility());
+        squirtle.setSelectedAbility(1);
+        assertFalse(squirtle.canUseAbility());
     }
 
     @Test

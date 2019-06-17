@@ -101,4 +101,9 @@ public abstract class AbstractAbility implements IAbility {
     @Override
     public abstract void usedByWaterPokemon();
 
+    @Override
+    public int getBaseDamage() {
+        return -1;
+    }
+
 }

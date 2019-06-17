@@ -1,6 +1,6 @@
 package cc3002.t1.pokemon;
 
-import cc3002.t1.abilities.Attack;
+import cc3002.t1.abilities.ElectricShock;
 import cc3002.t1.abilities.IAttack;
 import cc3002.t1.energies.FireEnergy;
 import cc3002.t1.energies.IEnergy;
@@ -10,8 +10,9 @@ import cc3002.t1.general.EnergyCounter;
 import cc3002.t1.general.ICard;
 import cc3002.t1.general.ITrainer;
 import cc3002.t1.general.Trainer;
-import cc3002.t1.pokemon.psychicPokemon.PsychicPokemon;
-import cc3002.t1.pokemon.waterPokemon.WaterPokemon;
+import cc3002.t1.pokemon.basic.BasicPsychicPokemon;
+import cc3002.t1.pokemon.basic.BasicWaterPokemon;
+import cc3002.t1.visitors.PlayCardVisitor;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -29,6 +30,7 @@ public class PsychicPokemonTest {
     private IPokemon abra, squirtle, otherAbra;
     private ITrainer trainer;
     private List<ICard> trainerDeck, auxTrainerDeck;
+    private EnergyCounter count10, count20, count30, count40, count50;
 
     @Before
     public void setUp() {
@@ -37,22 +39,43 @@ public class PsychicPokemonTest {
         aPsychic = new PsychicEnergy();
         aWater = new WaterEnergy();
 
-        attack10 = new Attack("Attack 10", 10, "This attack has a base damage of 10",
-                0, 2, 0, 0, 0, 1);
-        attack20 = new Attack("Attack 20", 20, "This attack has a base damage of 20",
-                0, 0, 2, 0, 1, 0);
-        attack30 = new Attack("Attack 30", 30, "This attack has a base damage of 30",
-                0, 1, 0, 0, 0, 1);
-        attack40 = new Attack("Attack 40", 40, "This attack has a base damage of 40",
-                0, 1, 2, 0, 1, 0);
-        attack50 = new Attack("Attack 50", 50, "This attack has a base damage of 50",
-                0, 1, 0, 0, 1, 0);
+        count10 = new EnergyCounter();
+        count10.setFireEnergy(2);
+        count10.setWaterEnergy(1);
 
-        abra = new PsychicPokemon("Abra", 63, 100,
+        count20 = new EnergyCounter();
+        count20.setGrassEnergy(2);
+        count20.setPsychicEnergy(1);
+
+        count30 = new EnergyCounter();
+        count30.setFireEnergy(1);
+        count30.setWaterEnergy(1);
+
+        count40 = new EnergyCounter();
+        count40.setFireEnergy(1);
+        count40.setGrassEnergy(2);
+        count40.setPsychicEnergy(1);
+
+        count50 = new EnergyCounter();
+        count50.setFireEnergy(1);
+        count50.setPsychicEnergy(1);
+
+        attack10 = new ElectricShock("Electric Shock 10", 10,
+                "This Electric Shock has a base damage of 10", count10);
+        attack20 = new ElectricShock("Electric Shock 20", 20,
+                "This Electric Shock has a base damage of 20", count20);
+        attack30 = new ElectricShock("Electric Shock 30", 30,
+                "This Electric Shock has a base damage of 30", count30);
+        attack40 = new ElectricShock("Electric Shock 40", 40,
+                "This Electric Shock has a base damage of 40", count40);
+        attack50 = new ElectricShock("Electric Shock 50", 50,
+                "This Electric Shock has a base damage of 50", count50);
+
+        abra = new BasicPsychicPokemon("Abra", 63, 100,
                 new ArrayList<>(Arrays.asList(attack30, attack50)));
-        squirtle = new WaterPokemon("Squirtle", 7, 100,
+        squirtle = new BasicWaterPokemon("Squirtle", 7, 100,
                 new ArrayList<>(Arrays.asList(attack10, attack50)));
-        otherAbra = new PsychicPokemon("Abra", 63, 90,
+        otherAbra = new BasicPsychicPokemon("Abra", 63, 90,
                 new ArrayList<>(Arrays.asList(attack10, attack20, attack50)));
 
         auxTrainerDeck = new ArrayList<>(Arrays.asList(abra, squirtle, aFire, aPsychic, otherAbra, aWater));
@@ -88,8 +111,8 @@ public class PsychicPokemonTest {
         assertEquals(0, abra.getPsychicEnergyAvailable());
         assertEquals(0, abra.getWaterEnergyAvailable());
         assertEquals("Abra", abra.getCardName());
-        assertEquals(new ArrayList<>(Arrays.asList(attack30, attack50)), abra.getAttacks());
-        assertNull(abra.getSelectedAttack());
+        assertEquals(new ArrayList<>(Arrays.asList(attack30, attack50)), abra.getAbilityList());
+        assertNull(abra.getSelectedAbility());
     }
 
     @Test
@@ -101,14 +124,15 @@ public class PsychicPokemonTest {
     @Test
     public void isPlayedTest() {
         abra.setTrainer(trainer);
-        abra.isPlayed();
+        PlayCardVisitor v = new PlayCardVisitor();
+        abra.isPlayed(v);
         assertTrue(abra.getTrainer().getBench().contains(abra));
         assertFalse(abra.getTrainer().getHand().contains(abra));
     }
 
     @Test
     public void equalsTest() {
-        IPokemon anotherAbra = new PsychicPokemon("Abra", 63, 100, new ArrayList<>(Arrays.asList(attack30, attack50)));
+        IPokemon anotherAbra = new BasicPsychicPokemon("Abra", 63, 100, new ArrayList<>(Arrays.asList(attack30, attack50)));
         assertEquals(anotherAbra, abra);
         assertNotEquals(otherAbra, abra);
     }
@@ -124,51 +148,28 @@ public class PsychicPokemonTest {
         EnergyCounter abraCounter = abra.getEnergyList();
         aFire.setTrainer(trainer);
         abra.addEnergyToPokemon(aFire);
-        abraCounter.addFireEnergy();
+        abraCounter.addFireEnergy(1);
         assertEquals(abraCounter, abra.getEnergyList());
     }
 
     @Test
-    public void setAttackTest() {
-        abra.setAttack(0);
-        assertEquals(attack30, abra.getSelectedAttack());
-        abra.setAttack(3);
-        assertEquals(attack30, abra.getSelectedAttack());
+    public void setSelectedAbilityTest() {
+        abra.setSelectedAbility(0);
+        assertEquals(attack30, abra.getSelectedAbility());
+        abra.setSelectedAbility(3);
+        assertEquals(attack30, abra.getSelectedAbility());
     }
 
     @Test
-    public void canAttackTest() {
+    public void canUseAbilityTest() {
         aFire.setTrainer(trainer);
         aWater.setTrainer(trainer);
         abra.addEnergyToPokemon(aFire);
         abra.addEnergyToPokemon(aWater);
-        abra.setAttack(0);
-        assertTrue(abra.canAttack());
-        abra.setAttack(1);
-        assertFalse(abra.canAttack());
-    }
-
-    @Test
-    public void attackTest() {
-        abra.setAttack(0);
-        abra.attack(otherAbra);
-        assertEquals(90, otherAbra.getHP());
-
-        aFire.setTrainer(trainer);
-        aPsychic.setTrainer(trainer);
-        aWater.setTrainer(trainer);
-        abra.addEnergyToPokemon(aFire);
-        abra.addEnergyToPokemon(aPsychic);
-        abra.addEnergyToPokemon(aWater);
-
-        otherAbra.setTrainer(trainer);
-        abra.setAttack(1);
-        abra.attack(otherAbra);
-        assertEquals(0, otherAbra.getHP());
-
-        abra.setAttack(0);
-        abra.attack(squirtle);
-        assertEquals(70, squirtle.getHP());
+        abra.setSelectedAbility(0);
+        assertTrue(abra.canUseAbility());
+        abra.setSelectedAbility(1);
+        assertFalse(abra.canUseAbility());
     }
 
     @Test

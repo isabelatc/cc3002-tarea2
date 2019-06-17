@@ -7,9 +7,7 @@ package cc3002.t1.abilities;
  */
 public interface IAttack extends IAbility {
 
-    /**
-     * @return Attack's base damage.
-     */
+    @Override
     int getBaseDamage();
 
 }

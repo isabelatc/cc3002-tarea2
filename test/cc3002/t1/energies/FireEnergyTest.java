@@ -1,14 +1,16 @@
 package cc3002.t1.energies;
 
-import cc3002.t1.abilities.Attack;
-import cc3002.t1.abilities.IAttack;
+import cc3002.t1.abilities.ElectricShock;
+import cc3002.t1.abilities.IAbility;
+import cc3002.t1.general.EnergyCounter;
 import cc3002.t1.general.ICard;
 import cc3002.t1.general.ITrainer;
 import cc3002.t1.general.Trainer;
 import cc3002.t1.pokemon.IPokemon;
-import cc3002.t1.pokemon.firePokemon.FirePokemon;
-import cc3002.t1.pokemon.grassPokemon.GrassPokemon;
-import cc3002.t1.pokemon.waterPokemon.WaterPokemon;
+import cc3002.t1.pokemon.basic.BasicFirePokemon;
+import cc3002.t1.pokemon.basic.BasicGrassPokemon;
+import cc3002.t1.pokemon.basic.BasicWaterPokemon;
+import cc3002.t1.visitors.PlayCardVisitor;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,33 +19,45 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class FireEnergyTest {
 
     private IEnergy aFireEnergy;
-    private IAttack attack10, attack20, attack30;
     private IPokemon charmander, squirtle, tangela;
     private ITrainer trainer;
     private List<ICard> trainerDeck, auxTrainerDeck;
+    private IAbility electricShock10, electricShock20, electricShock30;
+    private EnergyCounter count10, count20, count30;
 
     @Before
     public void setUp(){
+
         aFireEnergy = new FireEnergy("I'm a Fire Energy!");
 
-        attack10 = new Attack("Attack 10", 10, "This attack has a base damage of 10",
-                0, 2, 0, 0, 0, 1);
-        attack20 = new Attack("Attack 20", 20, "This attack has a base damage of 20",
-                0, 0, 2, 0, 1, 0);
-        attack30 = new Attack("Attack 30", 30, "This attack has a base damage of 30",
-                0, 1, 2, 0, 0, 0);
+        count10 = new EnergyCounter();
+        count10.setFireEnergy(2);
+        count10.setWaterEnergy(1);
 
-        charmander = new FirePokemon("Charmander", 4, 100,
-                new ArrayList<>(Arrays.asList(attack30, attack10)));
-        squirtle = new WaterPokemon("Squirtle", 7, 100,
-                new ArrayList<>(Arrays.asList(attack10, attack20, attack30)));
-        tangela = new GrassPokemon("Tangela", 114, 100,
-                new ArrayList<>(Arrays.asList(attack10)));
+        count20 = new EnergyCounter();
+        count20.setGrassEnergy(2);
+        count20.setPsychicEnergy(1);
+
+        count30 = new EnergyCounter();
+        count30.setFireEnergy(1);
+        count30.setGrassEnergy(2);
+
+        electricShock10 = new ElectricShock("Electric Shock 10", 10, "This attack has a base damage of 10", count10);
+        electricShock20 = new ElectricShock("Electric Shock 20", 20, "This attack has a base damage of 20", count20);
+        electricShock30 = new ElectricShock("Electric Shock 30", 30, "This attack has a base damage of 30", count30);
+
+        charmander = new BasicFirePokemon("Charmander", 4, 100,
+                new ArrayList<>(Arrays.asList(electricShock30, electricShock10)));
+        squirtle = new BasicWaterPokemon("Squirtle", 7, 100,
+                new ArrayList<>(Arrays.asList(electricShock10, electricShock20, electricShock30)));
+        tangela = new BasicGrassPokemon("Tangela", 114, 100,
+                new ArrayList<>(Arrays.asList(electricShock10, electricShock20)));
 
         auxTrainerDeck = new ArrayList<>(Arrays.asList(charmander, tangela, squirtle, aFireEnergy));
         trainerDeck = new ArrayList<>();
@@ -83,7 +97,8 @@ public class FireEnergyTest {
     @Test
     public void isPlayedTest() {
         aFireEnergy.setTrainer(trainer);
-        aFireEnergy.isPlayed();
+        PlayCardVisitor v = new PlayCardVisitor();
+        aFireEnergy.isPlayed(v);
         assertEquals(4, trainer.getHand().size());
     }
 

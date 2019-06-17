@@ -2,9 +2,11 @@ package cc3002.t1.general;
 
 import cc3002.t1.abilities.IAbility;
 import cc3002.t1.pokemon.IPokemon;
+import cc3002.t1.trainercards.ITrainerCard;
 import cc3002.t1.trainercards.field.AbstractFieldCard;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Common interface for all the Pokémon trainers. They should all have an initial deck of cards.
@@ -68,7 +70,7 @@ public interface ITrainer {
     /**
      * @return The current field card of the trainer, if there is one.
      */
-    ICard getActiveFieldCard();
+    ITrainerCard getActiveFieldCard();
 
     /**
      * @return True if the action was successful, false otherwise.
@@ -99,7 +101,7 @@ public interface ITrainer {
      *
      * @param card The new active field card.
      */
-    void setActiveFieldCard(AbstractFieldCard card);
+    void setActiveFieldCard(ITrainerCard card);
 
     /**
      * The trainer draws the first card of their deck and adds it to their hand.
@@ -179,9 +181,10 @@ public interface ITrainer {
     /**
      * The trainer flips a coin.
      *
+     * @param rand Used for randomizing the flipping.
      * @return true if heads, false if tails.
      */
-    boolean flipACoin();
+    boolean flipACoin(Random rand);
 
     /**
      * The trainer checks is a pokémon is on their field.

@@ -97,4 +97,9 @@ public interface IAbility {
      */
     void usedByWaterPokemon();
 
+    /**
+     * @return Ability's base damage (when it's an attack, returns -1 if not).
+     */
+    int getBaseDamage();
+
 }

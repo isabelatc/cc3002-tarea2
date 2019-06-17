@@ -1,6 +1,5 @@
-package cc3002.t1;
+package cc3002.t1.general;
 
-import cc3002.t1.general.EnergyCounter;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -98,44 +97,44 @@ public class EnergyCounterTest {
 
     @Test
     public void addFightingEnergyTest() {
-        counter1.addFightingEnergy();
+        counter1.addFightingEnergy(1);
         assertEquals(4, counter1.getFightingEnergy());
     }
 
     @Test
     public void addFireEnergyTest() {
-        counter1.addFireEnergy();
+        counter1.addFireEnergy(1);
         assertEquals(1, counter1.getFireEnergy());
     }
 
     @Test
     public void addGrassEnergyTest() {
-        counter1.addGrassEnergy();
+        counter1.addGrassEnergy(1);
         assertEquals(1, counter1.getGrassEnergy());
     }
 
     @Test
     public void addLightningEnergyTest() {
-        counter1.addLightningEnergy();
+        counter1.addLightningEnergy(1);
         assertEquals(1, counter1.getLightningEnergy());
     }
 
     @Test
     public void addPsychicEnergyTest() {
-        counter1.addPsychicEnergy();
+        counter1.addPsychicEnergy(1);
         assertEquals(1, counter1.getPsychicEnergy());
     }
 
     @Test
     public void addWaterEnergyTest() {
-        counter1.addWaterEnergy();
+        counter1.addWaterEnergy(1);
         assertEquals(3, counter1.getWaterEnergy());
     }
 
     @Test
     public void greaterOrEqualTest() {
         assertTrue(counter1.greaterOrEqual(counter2));
-        counter1.addFightingEnergy();
+        counter1.addFightingEnergy(1);
         assertTrue(counter1.greaterOrEqual(counter2));
         assertFalse(counter1.greaterOrEqual(counter3));
     }

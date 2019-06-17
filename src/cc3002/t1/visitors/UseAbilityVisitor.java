@@ -6,6 +6,8 @@ import cc3002.t1.general.EnergyCounter;
 import cc3002.t1.general.EnergyType;
 import cc3002.t1.pokemon.IPokemon;
 
+import java.util.Random;
+
 /**
  * Class for the visitor that implements the usage of abilities by pokémon.
  *
@@ -17,7 +19,8 @@ public class UseAbilityVisitor extends AbstractAbilitiesVisitor {
 
     @Override
     public void electricShockEffect(ElectricShock electricShock) {
-        boolean heads = electricShock.getPokemon().getTrainer().flipACoin();
+        Random rand = new Random();
+        boolean heads = electricShock.getPokemon().getTrainer().flipACoin(rand);
         if (!heads) electricShock.getPokemon().suffersEffectiveDamage(electricShock.getSelfDamage());
     }
 

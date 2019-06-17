@@ -22,7 +22,7 @@ public class PlayableCardVisitor extends AbstractCardsVisitor {
 
     @Override
     public void visitNonBasicPokemon(IPokemon pokemon) {
-        if (preID == pokemon.getTrainer().getActivePokemon().getID()) {
+        if (pokemon.getTrainer().getActivePokemon() != null && preID == pokemon.getTrainer().getActivePokemon().getID()) {
             value = true;
             pokemon.getTrainer().setSelectedPokemon(pokemon.getTrainer().getActivePokemon());
             return;
